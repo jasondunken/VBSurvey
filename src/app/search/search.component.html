@@ -1,0 +1,320 @@
+<div id="box">
+  <div id="title0">USEPA Statistical Modeling Survey Database Query Builder</div>
+  This form has two primary uses:<br>
+  1) View records that match desired search criteria. To do this, enter the desired criteria below and use the 'Submit
+  Query' button. This is an 'and' query, so only records matching ALL submitted criteria will be displayed in the
+  'Results' table.<br>
+  2) Send the information from a selected record to the survey form to facilitate creation of a new record. To do this,
+  click on a record in the 'Results' table, then click the 'Send Selected Record...' button.
+</div>
+
+<div id="box">
+  <!-- Beach Identifiers -->
+  <div class="query-args">
+    <div id="title1">Beach/Site Name:</div>
+    <input type="text" name="Beach" id="site" size="50" maxlength="75" value="">
+
+    <div id="title1">Beach Act ID (if applicable):</div>
+    <input type="number" name="Actid" id="actId" size="50" maxlength="75" value="">
+
+    <div id="title1">State/Region:</div>
+    <select name="state" id="state" style="width:175px">
+      <option value=""></option>
+      <option value="AL">Alabama</option>
+      <option value="AK">Alaska</option>
+      <option value="AZ">Arizona</option>
+      <option value="AR">Arkansas</option>
+      <option value="CA">California</option>
+      <option value="CO">Colorado</option>
+      <option value="CT">Connecticut</option>
+      <option value="DE">Delaware</option>
+      <option value="DC">District Of Columbia</option>
+      <option value="FL">Florida</option>
+      <option value="GA">Georgia</option>
+      <option value="GU">Guam</option>
+      <option value="HI">Hawaii</option>
+      <option value="ID">Idaho</option>
+      <option value="IL">Illinois</option>
+      <option value="IN">Indiana</option>
+      <option value="IA">Iowa</option>
+      <option value="KS">Kansas</option>
+      <option value="KY">Kentucky</option>
+      <option value="LA">Louisiana</option>
+      <option value="ME">Maine</option>
+      <option value="MD">Maryland</option>
+      <option value="MA">Massachusetts</option>
+      <option value="MI">Michigan</option>
+      <option value="MN">Minnesota</option>
+      <option value="MS">Mississippi</option>
+      <option value="MO">Missouri</option>
+      <option value="MT">Montana</option>
+      <option value="NE">Nebraska</option>
+      <option value="NV">Nevada</option>
+      <option value="NH">New Hampshire</option>
+      <option value="NJ">New Jersey</option>
+      <option value="NM">New Mexico</option>
+      <option value="NY">New York</option>
+      <option value="NC">North Carolina</option>
+      <option value="ND">North Dakota</option>
+      <option value="OH">Ohio</option>
+      <option value="OK">Oklahoma</option>
+      <option value="OR">Oregon</option>
+      <option value="PA">Pennsylvania</option>
+      <option value="PR">Puerto Rico</option>
+      <option value="RI">Rhode Island</option>
+      <option value="SC">South Carolina</option>
+      <option value="SD">South Dakota</option>
+      <option value="TN">Tennessee</option>
+      <option value="TX">Texas</option>
+      <option value="UT">Utah</option>
+      <option value="VT">Vermont</option>
+      <option value="VA">Virginia</option>
+      <option value="WA">Washington</option>
+      <option value="WV">West Virginia</option>
+      <option value="WI">Wisconsin</option>
+      <option value="WY">Wyoming</option>
+      <option value=""></option>
+      <option value="AFR">Africa</option>
+      <option value="AUS">Australia</option>
+      <option value="CAN">Canada</option>
+      <option value="CRB">Carribean</option>
+      <option value="CNA">Central America</option>
+      <option value="CHN">China/Southeast Asia</option>
+      <option value="EEU">Eastern Europe</option>
+      <option value="IND">India</option>
+      <option value="MDT">Mediterranean</option>
+      <option value="MEX">Mexico</option>
+      <option value="MDE">Middle East</option>
+      <option value="RUS">Russia</option>
+      <option value="STA">South America</option>
+      <option value="WEU">Western Europe</option>
+    </select>
+
+    <div id="title1"><span>County:</span></div>
+    <input type="text" name="County" id="county" size="50" maxlength="75" value="">
+  </div>
+
+  <!-- Beach Descriptors -->
+  <div class="query-args">
+    <div id="title2">Beach Descriptors:</div>
+    <table>
+      <colgroup>
+        <col width="150">
+        <col width="150">
+        <col width="300">
+      </colgroup>
+      <tbody>
+      <tr>
+        <td><input type="checkbox" name="Shallow" id="bdShallow">Shallow</td>
+        <td><input type="checkbox" name="Deep" id="bdDeep">Deep</td>
+      </tr>
+      <tr>
+        <td><input type="checkbox" name="Open" id="bdOpen">Open</td>
+        <td><input type="checkbox" name="Closed" id="bdClosed">Closed</td>
+      </tr>
+      <tr>
+        <td><input type="checkbox" name="Fresh" id="bdFresh">Freshwater</td>
+        <td><input type="checkbox" name="Marine" id="bdMarine">Marine</td>
+      </tr>
+      <tr>
+        <td colspan="3">
+          <div>
+            <input type="checkbox" name="BDOther" id="bdOtherCheck" (click)="toggleDisable('bdOther')">Other (please specify)
+            <input type="text" name="BDOtherText" id="bdOther" size="50" maxlength="300" class="disabled">
+          </div>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+
+
+  </div>
+
+  <!-- Organism Modeled -->
+  <div class="query-args" (click)="radioDisable($event, 'omOther')">
+    <div id="title2">Modeled organism/condition:</div>
+    <input type="radio" name="RV" id="omEcoli" value="1">E.coli<br>
+    <input type="radio" name="RV" id="omEntercocci" value="2">Enterococci<br>
+    <input type="radio" name="RV" id="omMicrocystin" value="3">Microcystin/HABs<br>
+    <input type="radio" name="RV" id="omOtherCheck" value="4">Other (please specify)
+    <input type="text" name="RVText" id="omOther" size="50" maxlength="80" class="disabled">
+  </div>
+
+  <!-- Software Package -->
+  <div class="query-args" (click)="radioDisable($event, 'spOther')">
+    <div id="title2">What software package was used to develop the model?</div>
+    <input name="STAT" id="spVB" value="1" type="radio">Virtual Beach<br>
+    <input name="STAT" id="spR" value="2" type="radio">R<br>
+    <input name="STAT" id="spSAS" value="3" type="radio">SAS<br>
+    <input name="STAT" id="spExcel" value="4" type="radio">Excel<br>
+    <input name="STAT" id="spOtherCheck" value="5" type="radio">Other (please specify)
+    <input name="STATText" id="spOther" size="50" maxlength="80" class="disabled" type="text" >
+  </div>
+
+  <!-- Statistical Model -->
+  <div class="query-args" (click)="radioDisable($event, 'smOther')">
+    <div id="title2">Model Type:</div>
+    <input type="radio" name="ModelType" id="smMLR" value="1">MLR (Multiple Linear Regression)<br>
+    <input type="radio" name="ModelType" id="smGBM" value="2">GBM (Generalized Boosting Method)<br>
+    <input type="radio" name="ModelType" id="smPLS" value="3">PLS (Partial Least Squares)<br>
+    <input type="radio" name="ModelType" id="smOtherCheck" value="4">Other (please specify)
+    <input type="text" name="RVText" id="smOther" size="50" maxlength="80" class="disabled">
+  </div>
+
+  <!-- Model Use -->
+  <div class="query-args">
+    <div id="title2">Model Use:</div>
+    <input type="checkbox" name="PurpNow" id="muNow">Predict current water quality conditions
+    (Nowcasting)<br>
+    <input type="checkbox" name="PurpFore" id="muFore">Predict future water quality conditions
+    (Forecasting)<br>
+    <input type="checkbox" name="PurpRes" id="muResearch">Estimate the influence of potential microbial sources or
+    environmental factors (Research)
+  </div>
+
+  <!-- Independent Variables -->
+  <div class="query-args">
+    <div id="title2">Significant IVs:</div>
+    <table>
+      <colgroup>
+        <col width="200">
+        <col width="200">
+        <col width="200">
+      </colgroup>
+      <tbody>
+      <tr>
+        <td><input type="checkbox" id="ivAirTemp" name="AirTemp">Air Temp</td>
+        <td><input type="checkbox" id="ivWaterTemp" name="WaterTemp">Water Temp</td>
+        <td><input type="checkbox" id="ivDewpoint" name="Dewpoint">Dewpoint</td>
+      </tr>
+      <tr>
+        <td><input type="checkbox" id="ivWindSpeed" name="Wind">Wind Speed/Velocity</td>
+        <td><input type="checkbox" id="ivCurrentSpeed" name="Current">Current Speed/Velocity</td>
+        <td><input type="checkbox" id="ivWaveHeight" name="Waves">Wave Height/Direction</td>
+      </tr>
+      <tr>
+        <td><input type="checkbox" id="ivRain" name="Rain">Antecedent Rainfall</td>
+        <td><input type="checkbox" id="ivTurbidity" name="Turb">Turbidity</td>
+        <td><input type="checkbox" id="ivTribDischarge" name="Disch">Tributary Discharge</td>
+      </tr>
+      <tr>
+        <td><input type="checkbox" id="ivCloudCover" name="Clouds">Cloud Cover</td>
+        <td><input type="checkbox" id="ivUV" name="PAR">UV/PAR</td>
+        <td><input type="checkbox" id="ivRelHumidity" name="RH">Relative Humidity</td>
+      </tr>
+      <tr>
+        <td><input type="checkbox" id="ivConductivity" name="Cond">Conductivity</td>
+        <td><input type="checkbox" id="ivAbsorbance" name="Absorb">Water Absorbance</td>
+        <td><input type="checkbox" id="ivDepth" name="Depth">Water Depth/Tidal Stage</td>
+      </tr>
+      <tr>
+        <td><input type="checkbox" id="ivHumans" name="Human">Humans</td>
+        <td><input type="checkbox" id="ivBirds" name="Bird">Birds</td>
+        <td><input type="checkbox" id="ivWildlife" name="Wild">Other Wildlife</td>
+      </tr>
+      <tr>
+        <td colspan="3">
+          <div>
+            <input type="checkbox" name="IVOther" id="ivOtherCheck" (click)="toggleDisable('ivOther')">Other (please specify)
+            <input type="text" name="IVsText" id="ivOther" size="50" maxlength="100" class="disabled">
+          </div>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Evaluation Criterion -->
+  <div class="query-args" (click)="radioDisable($event, 'ecOther')">
+    <div id="title2">Primary evaluation criterion:</div>
+    <input type="radio" name="MDS" id="ecRsquared" value="1">R-Squared/Adjusted R-Squared<br>
+    <input type="radio" name="MDS" id="ecAicBic" value="2">AIC/AICc/BIC<br>
+    <input type="radio" name="MDS" id="ecSenSpecAcc" value="3">Sensitivity/Specificity/Accuracy<br>
+    <input type="radio" name="MDS" id="ecPress" value="4">PRESS/RMSEP<br>
+    <input type="radio" name="MDS" id="ecOtherCheck" value="5">Other (please specify)
+    <input type="text" name="RVText" id="ecOther" size="50" maxlength="80" class="disabled">
+  </div>
+
+  <div id="controls">
+    <button id="btnSubmitQuery" value="Submit Query" (click)="submitQuery()">Submit Query</button>
+    <button type="reset" id="btnClear" value="Reset">Clear Query</button>
+  </div>
+
+  <br>  <!------- END OF FORM ------->
+
+  <div id="resultsTable">
+    <h5 align="center" id="query_results_title">Query Results Table</h5>
+    <div id="queryResultsTable_wrapper" class="dataTables_wrapper no-footer">
+      <div class="dataTables_length" id="queryResultsTable_length"><label>Show <select name="queryResultsTable_length"
+                                                                                       aria-controls="queryResultsTable"
+                                                                                       class="">
+        <option value="10">10</option>
+        <option value="25">25</option>
+        <option value="50">50</option>
+        <option value="100">100</option>
+      </select> entries</label></div>
+      <div id="queryResultsTable_filter" class="dataTables_filter"><label>Search:<input type="search" class=""
+                                                                                        placeholder=""
+                                                                                        aria-controls="queryResultsTable"></label>
+      </div>
+      <table id="queryResultsTable" class="display dataTable no-footer" style="width:100%" role="grid"
+             aria-describedby="queryResultsTable_info">
+        <thead>
+        <tr role="row">
+          <th class="sorting_asc" tabindex="0" aria-controls="queryResultsTable" rowspan="1" colspan="1"
+              aria-sort="ascending" aria-label="Beach/Site Name: activate to sort column descending"
+              style="width: 202px;">Beach/Site Name
+          </th>
+          <th class="sorting" tabindex="0" aria-controls="queryResultsTable" rowspan="1" colspan="1"
+              aria-label="State/Region: activate to sort column ascending" style="width: 155px;">State/Region
+          </th>
+          <th class="sorting" tabindex="0" aria-controls="queryResultsTable" rowspan="1" colspan="1"
+              aria-label="County: activate to sort column ascending" style="width: 94px;">County
+          </th>
+          <th class="sorting" tabindex="0" aria-controls="queryResultsTable" rowspan="1" colspan="1"
+              aria-label="Modeled Time Period: activate to sort column ascending" style="width: 248px;">Modeled Time
+            Period
+          </th>
+          <th class="sorting" tabindex="0" aria-controls="queryResultsTable" rowspan="1" colspan="1"
+              aria-label="Model Type: activate to sort column ascending" style="width: 141px;">Model Type
+          </th>
+          <th style="display: none; width: 17px;" class="sorting" tabindex="0" aria-controls="queryResultsTable"
+              rowspan="1" colspan="1" aria-label="ID: activate to sort column ascending">ID
+          </th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr class="odd">
+          <td valign="top" colspan="6" class="dataTables_empty">No data available in table</td>
+        </tr>
+        </tbody>
+      </table>
+      <div class="dataTables_info" id="queryResultsTable_info" role="status" aria-live="polite">Showing 0 to 0 of 0
+        entries
+      </div>
+      <div class="dataTables_paginate paging_simple_numbers" id="queryResultsTable_paginate"><a
+        class="paginate_button previous disabled" aria-controls="queryResultsTable" data-dt-idx="0" tabindex="0"
+        id="queryResultsTable_previous">Previous</a><span></span><a class="paginate_button next disabled"
+                                                                    aria-controls="queryResultsTable" data-dt-idx="1"
+                                                                    tabindex="0" id="queryResultsTable_next">Next</a>
+      </div>
+    </div>
+  </div>
+
+  <br>
+
+  <div id="controls">
+    <button onclick="sendrecord()">Send Selected Record to Survey Form</button>
+    <button onclick="exportrecords()">Save Queried Records as CSV File</button>
+    <button onclick="exportcsv()">Export Entire Database to CSV File</button>
+  </div>
+
+  <br><br>
+
+</div>
+
+<div id="dev-controls">
+  <button><a routerLink="/home">Home</a></button>
+  <button><a routerLink="/survey">Survey</a></button>
+  <button><a routerLink="/search">Search</a></button>
+</div>
