@@ -8,7 +8,9 @@
   click on a record in the 'Results' table, then click the 'Send Selected Record...' button.
 </div>
 
+
 <div id="box">
+  <form>
   <!-- Beach Identifiers -->
   <div class="query-args">
     <div id="title1">Beach/Site Name:</div>
@@ -237,9 +239,9 @@
 
   <div id="controls">
     <button id="btnSubmitQuery" value="Submit Query" (click)="submitQuery()">Submit Query</button>
-    <button id="btnClear" value="Reset" (click)="clearQuery()">Clear Query</button>
+    <button id="btnClear" value="Reset" type="reset">Clear Query</button>
   </div>
-
+</form>
   <br>  <!------- END OF FORM ------->
 
   <div id="resultsTable">

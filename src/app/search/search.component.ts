@@ -25,10 +25,6 @@ export class SearchComponent implements OnInit {
     });
   }
 
-  clearQuery(): void {
-
-  }
-
   buildQuery(): string {
     const record = new Record();
     let query = '?';
