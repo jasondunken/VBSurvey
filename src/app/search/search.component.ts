@@ -25,6 +25,10 @@ export class SearchComponent implements OnInit {
     });
   }
 
+  clearQuery(): void {
+
+  }
+
   buildQuery(): string {
     const record = new Record();
     let query = '?';
@@ -43,6 +47,14 @@ export class SearchComponent implements OnInit {
           if (inputs[i].checked === true) {
             query += inputs[i].id + '=1&';
           }
+        }
+      }
+    }
+    const selects = document.getElementsByTagName('select');
+    for (const j in selects) {
+      if (record.hasOwnProperty(selects[j].id)) {
+        if (selects[j].id === 'state') {
+          query += "state='" + selects[j].options[selects[j].selectedIndex].text + "'&";
         }
       }
     }
