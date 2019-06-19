@@ -27,9 +27,7 @@ export class SurveyComponent implements OnInit {
     const inputs = document.getElementsByTagName('input');
 
     for (const i in inputs) {
-      if (i) {
         if (record.hasOwnProperty(inputs[i].id)) {
-          console.log('build: ' + inputs[i].id + ' | ' + inputs[i].value);
           if (inputs[i].type === 'text' || inputs[i].type === 'email') {
             record[inputs[i].id] = '"' + inputs[i].value + '"';
           } else if (inputs[i].type === 'number') {
@@ -38,18 +36,14 @@ export class SurveyComponent implements OnInit {
             record[inputs[i].id] = inputs[i].checked === true ? 1 : 0;
           }
         }
-      }
     }
     const selects = document.getElementsByTagName('select');
-    let j: any;
-    for (j in selects) {
-      if (j) {
+    for (const j in selects) {
         if (record.hasOwnProperty(selects[j].id)) {
           if (selects[j].id === 'state') {
             record[selects[j].id] = '"' + selects[j].options[selects[j].selectedIndex].text + '"';
           }
         }
-      }
     }
   }
 

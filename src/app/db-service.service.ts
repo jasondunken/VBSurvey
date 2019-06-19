@@ -19,7 +19,7 @@ export class DbServiceService {
   constructor(private http: HttpClient) { }
 
   getRecords(query): Observable<Record[]> {
-    return this.http.get<Record[]>(this.dbUrl + '?' + query)
+    return this.http.get<Record[]>(this.dbUrl + query)
       .pipe(
         tap(_ => this.log('fetched records')),
         catchError(this.handleError<Record[]>('getRecords', []))

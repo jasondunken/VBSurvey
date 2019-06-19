@@ -26,7 +26,32 @@ export class SearchComponent implements OnInit {
   }
 
   buildQuery(): string {
-    return 'rows=*';
+    const record = new Record();
+    let query = '';
+
+    // convert input values to a query string
+    // handle inputs
+    const inputs = document.getElementsByTagName('input');
+    for (const i in inputs) {
+      if (record.hasOwnProperty(inputs[i].id)) {
+        if (inputs[i].type === 'text' || inputs[i].type === 'email') {
+          if (inputs[i].value.length > 0) {
+            query += inputs[i].id + "='" + inputs[i].value + "'&";
+          }
+        } else if (inputs[i].type === 'number') {
+          // there are currently no number fields on the query form
+        } else {
+          if (inputs[i].checked === true) {
+            query += inputs[i].id + '=1&';
+          }
+        }
+      }
+    }
+    // handle selects
+    query = query.substring(0, query.length - 1); // remove the trailing &
+    // if there is no criteria selected return all records
+    console.log('query: ' + query);
+    return query;
   }
   /*Beach/Site Name	State/Region	County	Modeled Time Period	Model Type*/
   displayResults(results): void {
