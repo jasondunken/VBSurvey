@@ -27,9 +27,8 @@ export class SearchComponent implements OnInit {
 
   buildQuery(): string {
     const record = new Record();
-    let query = '';
-
-    // convert input values to a query string
+    let query = '?';
+    // convert input field values to a query string
     // handle inputs
     const inputs = document.getElementsByTagName('input');
     for (const i in inputs) {
@@ -49,8 +48,6 @@ export class SearchComponent implements OnInit {
     }
     // handle selects
     query = query.substring(0, query.length - 1); // remove the trailing &
-    // if there is no criteria selected return all records
-    console.log('query: ' + query);
     return query;
   }
   /*Beach/Site Name	State/Region	County	Modeled Time Period	Model Type*/
