@@ -75,12 +75,12 @@
 
 .disabled
 {
-  background-color:darkgrey
+  background-color: darkgrey;
 }
 
 .enabled
 {
-  background-color:white
+  background-color: white;
 }
 
 .button:hover {

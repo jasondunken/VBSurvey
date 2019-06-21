@@ -26,7 +26,6 @@ export class SearchComponent implements OnInit {
   }
 
   buildQuery(): string {
-    const record = new Record();
     let query = '?';
     // convert input field values to a query string
     // handle inputs
@@ -70,10 +69,33 @@ export class SearchComponent implements OnInit {
 
   radioDisable(event: any, name): void {
     const textbox = document.getElementById(name);
-    if (event.target.id === name + 'Check') {
-      textbox.classList.remove('disabled');
-    } else {
-      textbox.classList.add('disabled');
+    if (event.target.id !== name) {
+      if (event.target.id === name + 'Check') {
+        textbox.classList.remove('disabled');
+      } else {
+        textbox.classList.add('disabled');
+      }
     }
+  }
+
+  clearForm(): void {
+    const inputs = document.getElementsByTagName('input');
+    for (const i in inputs) {
+      if (inputs[i].type === 'text' || inputs[i].type === 'email') {
+          inputs[i].value = '';
+          if (inputs[i].name.substring(inputs[i].name.length - 4) === 'Text') {
+            inputs[i].classList.add('disabled');
+          }
+        } else if (inputs[i].type === 'radio' || inputs[i].type === 'checkbox') {
+          inputs[i].checked = false;
+        }
+    }
+    const selects = document.getElementsByTagName('select');
+    for (const j in selects) {
+      if (selects[j].id === 'state') {
+          selects[j].selectedIndex = 0;
+      }
+    }
+    window.scrollTo(0, 0);
   }
 }

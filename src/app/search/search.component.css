@@ -1,4 +1,4 @@
-#box {
+#box, #form-box{
   display: block;
   margin: 0 auto;
   width: 800px;
@@ -75,12 +75,12 @@
 
 .disabled
 {
-  background-color:darkgrey
+  background-color: darkgrey;
 }
 
 .enabled
 {
-  background-color:white
+  background-color: white;
 }
 
 .button:hover {

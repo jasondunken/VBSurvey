@@ -9,8 +9,7 @@
 </div>
 
 
-<div id="box">
-  <form>
+<div id="form-box">
   <!-- Beach Identifiers -->
   <div class="query-args">
     <div id="title1">Beach/Site Name:</div>
@@ -139,7 +138,7 @@
     <input type="radio" name="RV" id="omEntercocci" value="2">Enterococci<br>
     <input type="radio" name="RV" id="omMicrocystin" value="3">Microcystin/HABs<br>
     <input type="radio" name="RV" id="omOtherCheck" value="4">Other (please specify)
-    <input type="text" name="RVText" id="omOther" size="50" maxlength="80" class="disabled">
+    <input type="text" name="RVText" id="omOther" size="50" maxlength="80" class="disabled" disabled>
   </div>
 
   <!-- Software Package -->
@@ -239,9 +238,8 @@
 
   <div id="controls">
     <button id="btnSubmitQuery" value="Submit Query" (click)="submitQuery()">Submit Query</button>
-    <button id="btnClear" value="Reset" type="reset">Clear Query</button>
+    <button (click)="clearForm()">Reset Query</button>
   </div>
-</form>
   <br>  <!------- END OF FORM ------->
 
   <div id="resultsTable">
