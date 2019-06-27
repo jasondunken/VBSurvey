@@ -26,6 +26,7 @@ export class SearchComponent implements OnInit {
   }
 
   buildQuery(): string {
+    const record = new Record();
     let query = '?';
     // convert input field values to a query string
     // handle inputs
