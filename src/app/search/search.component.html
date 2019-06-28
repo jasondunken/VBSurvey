@@ -121,7 +121,7 @@
         <td colspan="3">
           <div>
             <input type="checkbox" name="BDOther" id="bdOtherCheck" (click)="toggleDisable('bdOther')">Other (please specify)
-            <input type="text" name="BDOtherText" id="bdOther" size="50" maxlength="300" class="disabled">
+            <input type="text" name="BDOtherText" id="bdOther" size="50" maxlength="300" class="disabled" disabled>
           </div>
         </td>
       </tr>
@@ -149,7 +149,7 @@
     <input name="STAT" id="spSAS" value="3" type="radio">SAS<br>
     <input name="STAT" id="spExcel" value="4" type="radio">Excel<br>
     <input name="STAT" id="spOtherCheck" value="5" type="radio">Other (please specify)
-    <input name="STATText" id="spOther" size="50" maxlength="80" class="disabled" type="text" >
+    <input name="STATText" id="spOther" size="50" maxlength="80" class="disabled" type="text" disabled>
   </div>
 
   <!-- Statistical Model -->
@@ -159,7 +159,7 @@
     <input type="radio" name="ModelType" id="smGBM" value="2">GBM (Generalized Boosting Method)<br>
     <input type="radio" name="ModelType" id="smPLS" value="3">PLS (Partial Least Squares)<br>
     <input type="radio" name="ModelType" id="smOtherCheck" value="4">Other (please specify)
-    <input type="text" name="RVText" id="smOther" size="50" maxlength="80" class="disabled">
+    <input type="text" name="RVText" id="smOther" size="50" maxlength="80" class="disabled" disabled>
   </div>
 
   <!-- Model Use -->
@@ -217,7 +217,7 @@
         <td colspan="3">
           <div>
             <input type="checkbox" name="IVOther" id="ivOtherCheck" (click)="toggleDisable('ivOther')">Other (please specify)
-            <input type="text" name="IVsText" id="ivOther" size="50" maxlength="100" class="disabled">
+            <input type="text" name="IVsText" id="ivOther" size="50" maxlength="100" class="disabled" disabled>
           </div>
         </td>
       </tr>
@@ -233,7 +233,7 @@
     <input type="radio" name="MDS" id="ecSenSpecAcc" value="3">Sensitivity/Specificity/Accuracy<br>
     <input type="radio" name="MDS" id="ecPress" value="4">PRESS/RMSEP<br>
     <input type="radio" name="MDS" id="ecOtherCheck" value="5">Other (please specify)
-    <input type="text" name="RVText" id="ecOther" size="50" maxlength="80" class="disabled">
+    <input type="text" name="RVText" id="ecOther" size="50" maxlength="80" class="disabled" disabled>
   </div>
 
   <div id="controls">
