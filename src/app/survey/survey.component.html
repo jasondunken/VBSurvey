@@ -8,7 +8,7 @@
 <div id="box">
   <!-- user id info -->
   <div class="query-args">
-    <div id="title1">Email: (Optional)</div>
+    <div id="title1">Email:</div>
     <input type="email" name="Email" id="eMail" size="50" maxlength="75" value="">
 
     <div id="title1"><span class="required_field">*</span> Organization/Company:</div>
@@ -354,8 +354,11 @@
   <br>
 
   <div id="controls">
-    <button type="submit" value="Submit" name="formSubmit" (click)="submitSurvey()">Submit Survey</button>&nbsp;&nbsp;&nbsp;
-    <button (click)="clearForm()">Reset Survey</button>
+      <em>Fields marked with <span class="required_field">*</span> are required</em>
+      <div>
+        <button type="submit" value="Submit" name="formSubmit" (click)="submitSurvey()">Submit Survey</button>&nbsp;&nbsp;&nbsp;
+        <button (click)="clearForm()">Reset Survey</button>
+      </div>
   </div>
 
   <br>
