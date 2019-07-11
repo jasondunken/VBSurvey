@@ -145,11 +145,17 @@
 
   <!-- Organism Modeled -->
   <div class="query-args" (click)="radioDisable($event, 'omOther')">
-    <div id="title2"><span class="required_field">*</span> What organism/condition was modeled?</div>
+    <label for="omTitle" hidden="true">Choose one of the following choices for the organism modeled</label>
+    <div id="title2"><span class="required_field">*</span> <textarea id="omTitle">What organism/condition was modeled?</textarea></div>
+    <label for="omEcoli" hidden="true">E coli</label>
     <input type="radio" name="RV" id="omEcoli" value="1">E.coli<br>
+    <label for="omEnterococci" hidden="true">Enterococci</label>
     <input type="radio" name="RV" id="omEnterococci" value="2">Enterococci<br>
+    <label for="omMicrocyctin" hidden="true">Microcystin HABs</label>
     <input type="radio" name="RV" id="omMicrocyctin" value="3">Microcystin/HABs<br>
+    <label for="omOtherCheck" hidden="true">Tick this box to enter an orgaism that is not listed</label>
     <input type="radio" name="RV" id="omOtherCheck" value="4">Other (please specify)
+    <label for="omOther" hidden="true">Enter an organism not listed</label>
     <input type="text" name="RVText" id="omOther" size="50" maxlength="80" class="disabled">
   </div>
 
