@@ -165,6 +165,7 @@
         class="tooltiptext">For example: "235 CFU/100 mL" for plated E. coli, etc.</span></div>
       for the modeled organism/condition?
     </div>
+    <label for="adviLevel" hidden="true">Enter the advisory level for the modeled organism</label>
     <input type="text" name="Threshold" id="adviLevel" size="50" maxlength="150" value="">
   </div>
 
@@ -173,27 +174,39 @@
     <div class="title2"><span class="required_field">*</span> How many days per year is this site typically closed due to
       poor water quality conditions?
     </div>
+    <label for="daysPerYear" hidden="true">Enter the days per year this site is typically closed due to poor water conditions</label>
     <input type="number" style="width:50px" name="exceed" id="daysPerYear" min="0" max="365">
   </div>
 
   <!-- Software Package -->
   <div class="query-args" (click)="radioDisable($event, 'spOther')">
     <div class="title2"><span class="required_field">*</span> What software package was used to develop the model?</div>
+    <label for="spVB" hidden="true">Virtual beach</label>
     <input name="STAT" id="spVB" value="1" type="radio">Virtual Beach<br>
+    <label for="spR" hidden="true">R</label>
     <input name="STAT" id="spR" value="2" type="radio">R<br>
+    <label for="spSAS" hidden="true">S A S</label>
     <input name="STAT" id="spSAS" value="3" type="radio">SAS<br>
+    <label for="spExcel" hidden="true">Excel</label>
     <input name="STAT" id="spExcel" value="4" type="radio">Excel<br>
+    <label for="spOtherCheck" hidden="true">Tick this box to enter a software package not listed</label>
     <input name="STAT" id="spOtherCheck" value="5" type="radio">Other (please specify)
+    <label for="spOther" hidden="true">Enter other software package here</label>
     <input name="STATText" id="spOther" size="50" maxlength="80" class="disabled" type="text">
   </div>
 
   <!-- Statistical Model -->
   <div class="query-args" (click)="radioDisable($event, 'smOther')">
     <div class="title2"><span class="required_field">*</span> What type of statistical model was built?</div>
+    <label for="smMLR" hidden="true">Multiple linear regression</label>
     <input type="radio" name="ModelType" value="1" id="smMLR">MLR (Multiple Linear Regression)<br>
+    <label for="spGBM" hidden="true">Generalized boosting meathod</label>
     <input type="radio" name="ModelType" value="2" id="smGBM">GBM (Generalized Boosting Method)<br>
+    <label for="spPLS" hidden="true">Partial least Squares</label>
     <input type="radio" name="ModelType" value="3" id="smPLS">PLS (Partial Least Squares)<br>
+    <label for="spOtherCheck" hidden="true">Tick this box to enter a statistical model not listed</label>
     <input type="radio" name="ModelType" value="4" id="smOtherCheck">Other (please specify)
+    <label for="spOther" hidden="true">Enter other model here</label>
     <input type="text" name="ModelTypeText" id="smOther" size="50" maxlength="80" class="disabled">
   </div>
 
@@ -204,16 +217,20 @@
         class="tooltiptext">For example: summer 2017, 2015-2017 beach seasons, etc.</span></div>
       was this model used for?
     </div>
+    <label for="timePeriod" hidden="true">Enter the time period</label>
     <input type="text" name="Time" id="timePeriod" size="50" maxlength="80">
   </div>
 
   <!-- Model Usage -->
   <div class="query-args">
     <div class="title2"><span class="required_field">*</span> How was the model being used?</div>
+    <label for="muNow" hidden="true">To predict current water quality conditions</label>
     <input type="checkbox" name="PurpNow" id="muNow">Predict current water quality conditions
     (Nowcasting)<br>
+    <label for="muFore" hidden="true">To predict future water quality conditions</label>
     <input type="checkbox" name="PurpFore" id="muFore">Predict future water quality conditions
     (Forecasting)<br>
+    <label for="muResearch" hidden="true">For research</label>
     <input type="checkbox" name="PurpRes" id="muResearch">Estimate the influence of potential microbial sources or
     environmental factors (Research)
   </div>
