@@ -9,18 +9,23 @@
   <!-- user id info -->
   <div class="query-args">
     <div id="title1">Email:</div>
+    <label for="eMail" hidden="true">Enter email</label>
     <input type="email" name="Email" id="eMail" size="50" maxlength="75" value="">
 
     <div id="title1"><span class="required_field">*</span> Organization/Company:</div>
+    <label for="org" hidden="true">Enter your organization</label>
     <input type="text" name="Affiliation" id="org" size="50" maxlength="75" value="">
 
     <div id="title1"><span class="required_field">*</span> Beach/Site Name:</div>
+    <label for="site" hidden="true">Enter the site or beach name</label>
     <input type="text" name="Beach" id="site" size="50" maxlength="75" value="">
 
     <div id="title1"><span class="required_field">*</span> Beach Act ID (use NA if not applicable):</div>
+    <label for="actId" hidden="true">Enter beach act ID, use N A if not applicable</label>
     <input type="text" name="ActID" id="actId" size="50" maxlength="75" value="">
 
     <div id="title1"><span class="required_field">*</span> State/Region:</div>
+    <label for="state" hidden="true">Enter state</label>
     <select name="State" id="state" style="width:175px">
       <option value=""></option>
       <option value="AL">Alabama</option>
@@ -94,36 +99,42 @@
     </select>
 
     <div id="title1"><span class="required_field">*</span> County:</div>
+    <label for="county" hidden="true">Enter county</label>
     <input type="text" name="County" id="county" size="50" maxlength="75" value="">
   </div>
 
   <!-- Beach Descriptors -->
   <div class="query-args">
     <div id="title2"><span class="required_field">*</span> Beach Descriptors:</div>
-    <label for="checkbox_1" generated="true" class="error"></label>
     <table>
       <colgroup>
-        <col width="150">
-        <col width="150">
-        <col width="300">
+        <col width="150"><col width="150"><col width="300">
       </colgroup>
       <tbody>
       <tr>
+        <label for="bdShallow" hidden="true">Beach descriptor is shallow</label>
         <td><input type="checkbox" name="Shallow" id="bdShallow">Shallow</td>
+        <label for="bdDeep" hidden="true">Beach descriptor is deep</label>
         <td><input type="checkbox" name="Deep" id="bdDeep">Deep<br></td>
       </tr>
       <tr>
+        <label for="bdOpen" hidden="true">Beach descriptor is open</label>
         <td><input type="checkbox" name="Open" id="bdOpen">Open<br></td>
+        <label for="bdClosed" hidden="true">Beach descriptor is closed</label>
         <td><input type="checkbox" name="Closed" id="bdClosed">Closed</td>
       </tr>
       <tr>
+        <label for="bdFresh" hidden="true">Beach descriptor is freshwater</label>
         <td><input type="checkbox" name="Fresh" id="bdFresh">Freshwater</td>
+        <label for="bdMarine" hidden="true">Beach descriptor is marine</label>
         <td><input type="checkbox" name="Marine" id="bdMarine">Marine<br></td>
       </tr>
       <tr>
         <td colspan="3">
           <div>
+            <label for="bdOtherCheck" hidden="true">Tick this box to add other descriptors</label>
             <input type="checkbox" name="BDOther" id="bdOtherCheck" (click)="toggleDisable('bdOther')">Other (please specify)
+            <label for="bdOther" hidden="true">Enter other beach descriptors here</label>
             <input type="text" name="BDOtherText" id="bdOther" size="50" maxlength="300" class="disabled">
           </div>
         </td>
