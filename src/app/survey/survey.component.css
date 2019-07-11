@@ -1,4 +1,4 @@
-#box {
+.box {
   display: block;
   margin: 0 auto;
   width: 800px;
@@ -9,22 +9,22 @@
   background: transparent;
 }
 
-#title0 {
+.title0 {
   font-size: 35px;
   font-weight: bold;
   text-align: center;
   margin-bottom: 1em;
 }
 
-#title1, #title1-centered {
+.title1, .title1-centered {
   font-size: 20px;
   font-weight: bold;
 }
-#title1-centered {
+.title1-centered {
   text-align: center;
 }
 
-#title2 {
+.title2 {
   font-size: 18px;
   font-weight: bold;
 }

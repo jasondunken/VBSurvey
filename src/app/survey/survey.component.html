@@ -1,30 +1,30 @@
-<div id="box"><span><div id="title0">USEPA Statistical Water Quality Modeling Survey</div></span>
+<div class="box"><span><div class="title0">USEPA Statistical Water Quality Modeling Survey</div></span>
   The purpose of this survey is to improve data sharing and catalogue predictive modeling performance for
   you, the water quality modeler. The survey is designed for individuals directly involved in the model development
   process, and includes questions regarding the modeled site's characteristics and model parameters. To query and
   obtain information from this survey, visit the <a routerLink="/search">database query</a>.
 </div>
 
-<div id="box">
+<div class="box">
   <!-- user id info -->
   <div class="query-args">
     <div id="title1">Email:</div>
     <label for="eMail" hidden="true">Enter email</label>
     <input type="email" name="Email" id="eMail" size="50" maxlength="75" value="">
 
-    <div id="title1"><span class="required_field">*</span> Organization/Company:</div>
+    <div class="title1"><span class="required_field">*</span> Organization/Company:</div>
     <label for="org" hidden="true">Enter your organization</label>
     <input type="text" name="Affiliation" id="org" size="50" maxlength="75" value="">
 
-    <div id="title1"><span class="required_field">*</span> Beach/Site Name:</div>
+    <div class="title1"><span class="required_field">*</span> Beach/Site Name:</div>
     <label for="site" hidden="true">Enter the site or beach name</label>
     <input type="text" name="Beach" id="site" size="50" maxlength="75" value="">
 
-    <div id="title1"><span class="required_field">*</span> Beach Act ID (use NA if not applicable):</div>
+    <div class="title1"><span class="required_field">*</span> Beach Act ID (use NA if not applicable):</div>
     <label for="actId" hidden="true">Enter beach act ID, use N A if not applicable</label>
     <input type="text" name="ActID" id="actId" size="50" maxlength="75" value="">
 
-    <div id="title1"><span class="required_field">*</span> State/Region:</div>
+    <div class="title1"><span class="required_field">*</span> State/Region:</div>
     <label for="state" hidden="true">Enter state</label>
     <select name="State" id="state" style="width:175px">
       <option value=""></option>
@@ -98,14 +98,14 @@
       <option value="WEU">Western Europe</option>
     </select>
 
-    <div id="title1"><span class="required_field">*</span> County:</div>
+    <div class="title1"><span class="required_field">*</span> County:</div>
     <label for="county" hidden="true">Enter county</label>
     <input type="text" name="County" id="county" size="50" maxlength="75" value="">
   </div>
 
   <!-- Beach Descriptors -->
   <div class="query-args">
-    <div id="title2"><span class="required_field">*</span> Beach Descriptors:</div>
+    <div class="title2"><span class="required_field">*</span> Beach Descriptors:</div>
     <table>
       <colgroup>
         <col width="150"><col width="150"><col width="300">
@@ -145,7 +145,7 @@
 
   <!-- Organism Modeled -->
   <div class="query-args" (click)="radioDisable($event, 'omOther')">
-    <div id="title2"><span class="required_field">*</span> What organism/condition was modeled?</div>
+    <div class="title2"><span class="required_field">*</span> What organism/condition was modeled?</div>
     <label for="omEcoli" hidden="true">E coli</label>
     <input type="radio" name="RV" id="omEcoli" value="1">E.coli<br>
     <label for="omEnterococci" hidden="true">Enterococci</label>
@@ -160,7 +160,7 @@
 
   <!-- Advisory Level -->
   <div class="query-args">
-    <div id="title2"><span class="required_field">*</span> What is your
+    <div class="title2"><span class="required_field">*</span> What is your
       <div class="tooltip">advisory level<span
         class="tooltiptext">For example: "235 CFU/100 mL" for plated E. coli, etc.</span></div>
       for the modeled organism/condition?
@@ -170,7 +170,7 @@
 
   <!-- Days Per Year -->
   <div class="query-args">
-    <div id="title2"><span class="required_field">*</span> How many days per year is this site typically closed due to
+    <div class="title2"><span class="required_field">*</span> How many days per year is this site typically closed due to
       poor water quality conditions?
     </div>
     <input type="number" style="width:50px" name="exceed" id="daysPerYear" min="0" max="365">
@@ -178,7 +178,7 @@
 
   <!-- Software Package -->
   <div class="query-args" (click)="radioDisable($event, 'spOther')">
-    <div id="title2"><span class="required_field">*</span> What software package was used to develop the model?</div>
+    <div class="title2"><span class="required_field">*</span> What software package was used to develop the model?</div>
     <input name="STAT" id="spVB" value="1" type="radio">Virtual Beach<br>
     <input name="STAT" id="spR" value="2" type="radio">R<br>
     <input name="STAT" id="spSAS" value="3" type="radio">SAS<br>
@@ -189,7 +189,7 @@
 
   <!-- Statistical Model -->
   <div class="query-args" (click)="radioDisable($event, 'smOther')">
-    <div id="title2"><span class="required_field">*</span> What type of statistical model was built?</div>
+    <div class="title2"><span class="required_field">*</span> What type of statistical model was built?</div>
     <input type="radio" name="ModelType" value="1" id="smMLR">MLR (Multiple Linear Regression)<br>
     <input type="radio" name="ModelType" value="2" id="smGBM">GBM (Generalized Boosting Method)<br>
     <input type="radio" name="ModelType" value="3" id="smPLS">PLS (Partial Least Squares)<br>
@@ -199,7 +199,7 @@
 
   <!-- Time Period -->
   <div class="query-args">
-    <div id="title2"><span class="required_field">*</span> What
+    <div class="title2"><span class="required_field">*</span> What
       <div class="tooltip">time period<span
         class="tooltiptext">For example: summer 2017, 2015-2017 beach seasons, etc.</span></div>
       was this model used for?
@@ -209,7 +209,7 @@
 
   <!-- Model Usage -->
   <div class="query-args">
-    <div id="title2"><span class="required_field">*</span> How was the model being used?</div>
+    <div class="title2"><span class="required_field">*</span> How was the model being used?</div>
     <input type="checkbox" name="PurpNow" id="muNow">Predict current water quality conditions
     (Nowcasting)<br>
     <input type="checkbox" name="PurpFore" id="muFore">Predict future water quality conditions
@@ -220,7 +220,7 @@
 
   <!-- Independent Variables -->
   <div class="query-args">
-    <div id="title2"><span class="required_field">*</span> What independent variables were
+    <div class="title2"><span class="required_field">*</span> What independent variables were
       <div class="tooltip">significant
         <span class="tooltiptext">I.e., the IVs in your MLR/PLS model, or IVs with &gt;5% influence in your GBM model</span>
       </div>
@@ -278,7 +278,7 @@
 
   <!-- Evaluation Criterion -->
   <div class="query-args" (click)="radioDisable($event, 'ecOther')">
-    <div id="title2">
+    <div class="title2">
       <span class="required_field">*</span> What type of evaluation criterion was primarily used for model selection?
     </div>
     <input type="radio" name="MDS" id="ecRsquared" value="1">R-Squared/Adjusted R-Squared<br>
@@ -293,7 +293,7 @@
   <div class="query-args">
     <div class="model-perf">
       <div class="perf">
-        <div class="perf-heading" id="title2">
+        <div class="perf-heading title2">
           <a href="https://developer.epa.gov/apps/vbsurvey/explain.pdf" target="_blank">Fitted Model Performance</a>
         </div>
         <div>
@@ -327,7 +327,7 @@
       </div>
 
       <div class="perf">
-        <div class="perf-heading" id="title2">
+        <div class="perf-heading title2">
           <a href="https://developer.epa.gov/apps/vbsurvey/explain.pdf" target="_blank">Predictive Model Performance</a>
         </div>
         <div>
@@ -379,7 +379,7 @@
 
   <br>
 
-  <div id="title1-centered">Thank you for your time and information!</div>
+  <div class="title1-centered">Thank you for your time and information!</div>
 </div>
 
 <div id="dev-controls">
