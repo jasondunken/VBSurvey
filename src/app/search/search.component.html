@@ -1,5 +1,5 @@
-<div id="box">
-  <div id="title0">USEPA Statistical Modeling Survey Database Query Builder</div>
+<div class="box">
+  <div class="title0">USEPA Statistical Modeling Survey Database Query Builder</div>
   This form has two primary uses:<br>
   1) View records that match desired search criteria. To do this, enter the desired criteria below and use the 'Submit
   Query' button. This is an 'and' query, so only records matching ALL submitted criteria will be displayed in the
@@ -9,16 +9,16 @@
 </div>
 
 
-<div id="form-box">
+<div class="box">
   <!-- Beach Identifiers -->
   <div class="query-args">
-    <div id="title1">Beach/Site Name:</div>
+    <div class="title1">Beach/Site Name:</div>
     <input type="text" name="Beach" id="site" size="50" maxlength="75" value="">
 
-    <div id="title1">Beach Act ID (if applicable):</div>
+    <div class="title1">Beach Act ID (if applicable):</div>
     <input type="text" name="Actid" id="actId" size="50" maxlength="75" value="">
 
-    <div id="title1">State/Region:</div>
+    <div class="title1">State/Region:</div>
     <select name="state" id="state" style="width:175px">
       <option value=""></option>
       <option value="AL">Alabama</option>
@@ -91,18 +91,16 @@
       <option value="WEU">Western Europe</option>
     </select>
 
-    <div id="title1"><span>County:</span></div>
+    <div class="title1"><span>County:</span></div>
     <input type="text" name="County" id="county" size="50" maxlength="75" value="">
   </div>
 
   <!-- Beach Descriptors -->
   <div class="query-args">
-    <div id="title2">Beach Descriptors:</div>
+    <div class="title2">Beach Descriptors:</div>
     <table>
       <colgroup>
-        <col width="150">
-        <col width="150">
-        <col width="300">
+        <col width="150"><col width="150"><col width="300">
       </colgroup>
       <tbody>
       <tr>
@@ -133,7 +131,7 @@
 
   <!-- Organism Modeled -->
   <div class="query-args" (click)="radioDisable($event, 'omOther')">
-    <div id="title2">Modeled organism/condition:</div>
+    <div class="title2">Modeled organism/condition:</div>
     <input type="radio" name="RV" id="omEcoli" value="1">E.coli<br>
     <input type="radio" name="RV" id="omEntercocci" value="2">Enterococci<br>
     <input type="radio" name="RV" id="omMicrocystin" value="3">Microcystin/HABs<br>
@@ -143,7 +141,7 @@
 
   <!-- Software Package -->
   <div class="query-args" (click)="radioDisable($event, 'spOther')">
-    <div id="title2">What software package was used to develop the model?</div>
+    <div class="title2">What software package was used to develop the model?</div>
     <input name="STAT" id="spVB" value="1" type="radio">Virtual Beach<br>
     <input name="STAT" id="spR" value="2" type="radio">R<br>
     <input name="STAT" id="spSAS" value="3" type="radio">SAS<br>
@@ -154,7 +152,7 @@
 
   <!-- Statistical Model -->
   <div class="query-args" (click)="radioDisable($event, 'smOther')">
-    <div id="title2">Model Type:</div>
+    <div class="title2">Model Type:</div>
     <input type="radio" name="ModelType" id="smMLR" value="1">MLR (Multiple Linear Regression)<br>
     <input type="radio" name="ModelType" id="smGBM" value="2">GBM (Generalized Boosting Method)<br>
     <input type="radio" name="ModelType" id="smPLS" value="3">PLS (Partial Least Squares)<br>
@@ -164,7 +162,7 @@
 
   <!-- Model Use -->
   <div class="query-args">
-    <div id="title2">Model Use:</div>
+    <div class="title2">Model Use:</div>
     <input type="checkbox" name="PurpNow" id="muNow">Predict current water quality conditions
     (Nowcasting)<br>
     <input type="checkbox" name="PurpFore" id="muFore">Predict future water quality conditions
@@ -175,12 +173,10 @@
 
   <!-- Independent Variables -->
   <div class="query-args">
-    <div id="title2">Significant IVs:</div>
+    <div class="title2">Significant IVs:</div>
     <table>
       <colgroup>
-        <col width="200">
-        <col width="200">
-        <col width="200">
+        <col width="200"><col width="200"><col width="200">
       </colgroup>
       <tbody>
       <tr>
@@ -227,7 +223,7 @@
 
   <!-- Evaluation Criterion -->
   <div class="query-args" (click)="radioDisable($event, 'ecOther')">
-    <div id="title2">Primary evaluation criterion:</div>
+    <div class="title2">Primary evaluation criterion:</div>
     <input type="radio" name="MDS" id="ecRsquared" value="1">R-Squared/Adjusted R-Squared<br>
     <input type="radio" name="MDS" id="ecAicBic" value="2">AIC/AICc/BIC<br>
     <input type="radio" name="MDS" id="ecSenSpecAcc" value="3">Sensitivity/Specificity/Accuracy<br>
@@ -243,19 +239,18 @@
   <br>  <!------- END OF FORM ------->
 
   <div id="resultsTable">
-    <h5 align="center" id="query_results_title">Query Results Table</h5>
+    <h5 class="title1-centered" id="query_results_title">Query Results Table</h5>
     <div id="queryResultsTable_wrapper" class="dataTables_wrapper no-footer">
-      <div class="dataTables_length" id="queryResultsTable_length"><label>Show <select name="queryResultsTable_length"
-                                                                                       aria-controls="queryResultsTable"
-                                                                                       class="">
+      <div class="dataTables_length" id="queryResultsTable_length">
+        <label>Show <select name="queryResultsTable_length" aria-controls="queryResultsTable" class="">
         <option value="10">10</option>
         <option value="25">25</option>
         <option value="50">50</option>
         <option value="100">100</option>
-      </select> entries</label></div>
-      <div id="queryResultsTable_filter" class="dataTables_filter"><label>Search:<input type="search" class=""
-                                                                                        placeholder=""
-                                                                                        aria-controls="queryResultsTable"></label>
+      </select> entries</label>
+    </div>
+      <div id="queryResultsTable_filter" class="dataTables_filter">
+        <label>Search:<input type="search" class="" placeholder="" aria-controls="queryResultsTable"></label>
       </div>
       <table id="queryResultsTable" class="display dataTable no-footer" style="width:100%" role="grid"
              aria-describedby="queryResultsTable_info">
@@ -294,16 +289,14 @@
       </div>
       <div class="dataTables_paginate paging_simple_numbers" id="queryResultsTable_paginate"><a
         class="paginate_button previous disabled" aria-controls="queryResultsTable" data-dt-idx="0" tabindex="0"
-        id="queryResultsTable_previous">Previous</a><span></span><a class="paginate_button next disabled"
-                                                                    aria-controls="queryResultsTable" data-dt-idx="1"
-                                                                    tabindex="0" id="queryResultsTable_next">Next</a>
+        id="queryResultsTable_previous">Previous</a><span></span><a class="paginate_button next disabled" aria-controls="queryResultsTable" data-dt-idx="1" tabindex="0" id="queryResultsTable_next">Next</a>
       </div>
     </div>
   </div>
 
   <br>
 
-  <div id="controls">
+  <div id="output-controls">
     <button onclick="sendrecord()">Send Selected Record to Survey Form</button>
     <button onclick="exportrecords()">Save Queried Records as CSV File</button>
     <button onclick="exportcsv()">Export Entire Database to CSV File</button>
