@@ -6,27 +6,37 @@
 </div>
 
 <div class="box">
+  <form [formGroup]="surveyForm" (ngSubmit)="submitSurvey()">
   <!-- user id info -->
   <div class="query-args">
     <div class="title1">Email:</div>
     <label for="eMail" hidden="true">Enter email</label>
     <input type="email" name="Email" id="eMail" size="50" maxlength="75" value="">
 
-    <div class="title1"><span class="required_field">*</span> Organization/Company:</div>
+    <div class="title1"><span class="required-field">*</span> Organization/Company:</div>
     <label for="org" hidden="true">Enter your organization</label>
-    <input type="text" name="Affiliation" id="org" size="50" maxlength="75" value="">
+    <input type="text" name="Affiliation" id="org" size="50" maxlength="75" value="" formControlName="org" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.org.errors }">
+    <div *ngIf="submitted && f.org.errors" class="invalid-feedback">
+        <div *ngIf="f.org.errors.required" class="required-field">Organization/Company is required</div>
+    </div>
 
-    <div class="title1"><span class="required_field">*</span> Beach/Site Name:</div>
+    <div class="title1"><span class="required-field">*</span> Beach/Site Name:</div>
     <label for="site" hidden="true">Enter the site or beach name</label>
-    <input type="text" name="Beach" id="site" size="50" maxlength="75" value="">
+    <input type="text" name="Beach" id="site" size="50" maxlength="75" value="" formControlName="site" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.site.errors }">
+    <div *ngIf="submitted && f.site.errors" class="invalid-feedback">
+        <div *ngIf="f.site.errors.required" class="required-field">Beach/Site Name is required</div>
+    </div>
 
-    <div class="title1"><span class="required_field">*</span> Beach Act ID (use NA if not applicable):</div>
+    <div class="title1"><span class="required-field">*</span> Beach Act ID (use NA if not applicable):</div>
     <label for="actId" hidden="true">Enter beach act ID, use N A if not applicable</label>
-    <input type="text" name="ActID" id="actId" size="50" maxlength="75" value="">
+    <input type="text" name="ActID" id="actId" size="50" maxlength="75" value="" formControlName="actId" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.actId.errors }">
+    <div *ngIf="submitted && f.actId.errors" class="invalid-feedback">
+        <div *ngIf="f.actId.errors.required" class="required-field">Beach Act ID is required</div>
+    </div>
 
-    <div class="title1"><span class="required_field">*</span> State/Region:</div>
+    <div class="title1"><span class="required-field">*</span> State/Region:</div>
     <label for="state" hidden="true">Select a state</label>
-    <select name="State" id="state" style="width:175px">
+    <select name="State" id="state" style="width:175px" formControlName="state" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.state.errors }">
       <option value=""></option>
       <option value="AL">Alabama</option>
       <option value="AK">Alaska</option>
@@ -97,15 +107,21 @@
       <option value="STA">South America</option>
       <option value="WEU">Western Europe</option>
     </select>
+    <div *ngIf="submitted && f.state.errors" class="invalid-feedback">
+        <div *ngIf="f.state.errors.required" class="required-field">State is required</div>
+    </div>
 
-    <div class="title1"><span class="required_field">*</span> County:</div>
+    <div class="title1"><span class="required-field">*</span> County:</div>
     <label for="county" hidden="true">Enter county</label>
-    <input type="text" name="County" id="county" size="50" maxlength="75" value="">
+    <input type="text" name="County" id="county" size="50" maxlength="75" value="" formControlName="county" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.county.errors }">
+    <div *ngIf="submitted && f.county.errors" class="invalid-feedback">
+        <div *ngIf="f.county.errors.required" class="required-field">County is required</div>
+    </div>
   </div>
 
   <!-- Beach Descriptors -->
   <div class="query-args">
-    <div class="title2"><span class="required_field">*</span> Beach Descriptors:</div>
+    <div class="title2"><span class="required-field">*</span> Beach Descriptors:</div>
     <table>
       <colgroup>
         <col width="150"><col width="150"><col width="300">
@@ -145,7 +161,7 @@
 
   <!-- Organism Modeled -->
   <div class="query-args" (click)="radioDisable($event, 'omOther')">
-    <div class="title2"><span class="required_field">*</span> What organism/condition was modeled?</div>
+    <div class="title2"><span class="required-field">*</span> What organism/condition was modeled?</div>
     <label for="omEcoli" hidden="true">E coli</label>
     <input type="radio" name="RV" id="omEcoli" value="1">E.coli<br>
     <label for="omEnterococci" hidden="true">Enterococci</label>
@@ -160,7 +176,7 @@
 
   <!-- Advisory Level -->
   <div class="query-args">
-    <div class="title2"><span class="required_field">*</span> What is your
+    <div class="title2"><span class="required-field">*</span> What is your
       <div class="tooltip">advisory level<span
         class="tooltiptext">For example: "235 CFU/100 mL" for plated E. coli, etc.</span></div>
       for the modeled organism/condition?
@@ -171,7 +187,7 @@
 
   <!-- Days Per Year -->
   <div class="query-args">
-    <div class="title2"><span class="required_field">*</span> How many days per year is this site typically closed due to
+    <div class="title2"><span class="required-field">*</span> How many days per year is this site typically closed due to
       poor water quality conditions?
     </div>
     <label for="daysPerYear" hidden="true">Enter the days per year this site is typically closed due to poor water conditions</label>
@@ -180,7 +196,7 @@
 
   <!-- Software Package -->
   <div class="query-args" (click)="radioDisable($event, 'spOther')">
-    <div class="title2"><span class="required_field">*</span> What software package was used to develop the model?</div>
+    <div class="title2"><span class="required-field">*</span> What software package was used to develop the model?</div>
     <label for="spVB" hidden="true">Virtual beach</label>
     <input name="STAT" id="spVB" value="1" type="radio">Virtual Beach<br>
     <label for="spR" hidden="true">R</label>
@@ -197,7 +213,7 @@
 
   <!-- Statistical Model -->
   <div class="query-args" (click)="radioDisable($event, 'smOther')">
-    <div class="title2"><span class="required_field">*</span> What type of statistical model was built?</div>
+    <div class="title2"><span class="required-field">*</span> What type of statistical model was built?</div>
     <label for="smMLR" hidden="true">Multiple linear regression</label>
     <input type="radio" name="ModelType" value="1" id="smMLR">MLR (Multiple Linear Regression)<br>
     <label for="spGBM" hidden="true">Generalized boosting meathod</label>
@@ -212,7 +228,7 @@
 
   <!-- Time Period -->
   <div class="query-args">
-    <div class="title2"><span class="required_field">*</span> What
+    <div class="title2"><span class="required-field">*</span> What
       <div class="tooltip">time period<span
         class="tooltiptext">For example: summer 2017, 2015-2017 beach seasons, etc.</span></div>
       was this model used for?
@@ -223,7 +239,7 @@
 
   <!-- Model Usage -->
   <div class="query-args">
-    <div class="title2"><span class="required_field">*</span> How was the model being used?</div>
+    <div class="title2"><span class="required-field">*</span> How was the model being used?</div>
     <label for="muNow" hidden="true">To predict current water quality conditions</label>
     <input type="checkbox" name="PurpNow" id="muNow">Predict current water quality conditions
     (Nowcasting)<br>
@@ -237,7 +253,7 @@
 
   <!-- Independent Variables -->
   <div class="query-args">
-    <div class="title2"><span class="required_field">*</span> What independent variables were
+    <div class="title2"><span class="required-field">*</span> What independent variables were
       <div class="tooltip">significant
         <span class="tooltiptext">I.e., the IVs in your MLR/PLS model, or IVs with &gt;5% influence in your GBM model</span>
       </div>
@@ -314,7 +330,7 @@
   <!-- Evaluation Criterion -->
   <div class="query-args" (click)="radioDisable($event, 'ecOther')">
     <div class="title2">
-      <span class="required_field">*</span> What type of evaluation criterion was primarily used for model selection?
+      <span class="required-field">*</span> What type of evaluation criterion was primarily used for model selection?
     </div>
     <label for="ecRsquared" hidden="true">R squared or adjusted r squared</label>
     <input type="radio" name="MDS" id="ecRsquared" value="1">R-Squared/Adjusted R-Squared<br>
@@ -408,7 +424,6 @@
     </div>
   </div>
 
-
   <div id="captcha-container">
     <!--<img id="captcha" src="securimage/securimage_show.php" alt="CAPTCHA Image">-->
     <input type="text" name="captcha_code" size="10" maxlength="6">
@@ -420,9 +435,9 @@
   <br>
 
   <div id="controls">
-      <em>Fields marked with <span class="required_field">*</span> are required</em>
+      <em>Fields marked with <span class="required-field">*</span> are required</em>
       <div>
-        <button type="submit" value="Submit" name="formSubmit" (click)="submitSurvey()">Submit Survey</button>&nbsp;&nbsp;&nbsp;
+        <button type="submit" value="Submit" name="formSubmit">Submit Survey</button>&nbsp;&nbsp;&nbsp;
         <button (click)="clearForm()">Reset Survey</button>
       </div>
   </div>
@@ -430,6 +445,7 @@
   <br>
 
   <div class="title1-centered">Thank you for your time and information!</div>
+</form>
 </div>
 
 <div id="dev-controls">

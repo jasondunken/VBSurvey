@@ -1,4 +1,5 @@
-import {Component, OnInit} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 import { DbServiceService } from '../db-service.service';
 
@@ -11,14 +12,32 @@ import { Record } from '../record';
 })
 
 export class SurveyComponent implements OnInit {
+  surveyForm: FormGroup;
+  submitted = false;
 
-  constructor(private db: DbServiceService) {}
+  constructor(private db: DbServiceService, private formBuilder: FormBuilder) {}
 
   ngOnInit() {
+    this.surveyForm = this.formBuilder.group({
+      org: ['', Validators.required],
+      site: ['', Validators.required],
+      actId: ['', Validators.required],
+      state: ['', Validators.required],
+      county: ['', Validators.required]
+    });
   }
 
+  // convenience getter for easy access to form fields
+  get f() { return this.surveyForm.controls; }
+  
+
   submitSurvey(): void {
-    // TODO validate required fields are filled
+    this.submitted = true;
+    if (this.surveyForm.invalid) {
+      window.scrollTo(0, 0);
+      return;
+    }
+    
     const record = new Record();
     this.buildRecord(record);
     this.db.addRecord(record).subscribe();
@@ -83,5 +102,9 @@ export class SurveyComponent implements OnInit {
       }
     }
     window.scrollTo(0, 0);
+  }
+
+  populateForm(): void {
+    // this method will populate the form with data from an existing record
   }
 }

@@ -133,7 +133,7 @@
   visibility: visible;
 }
 
-.required_field
+.required-field
 {
   color:red;
   font-weight: bold;
