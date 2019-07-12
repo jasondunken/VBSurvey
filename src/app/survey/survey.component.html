@@ -8,7 +8,7 @@
 <div class="box">
   <!-- user id info -->
   <div class="query-args">
-    <div id="title1">Email:</div>
+    <div class="title1">Email:</div>
     <label for="eMail" hidden="true">Enter email</label>
     <input type="email" name="Email" id="eMail" size="50" maxlength="75" value="">
 
@@ -340,29 +340,34 @@
         <div>
           <span class="perf-arg">Sensitivity (%)</span>
           <span class="perf-val">
+            <label for="mpFitSensitivity" hidden="true">Enter fitted model performance sensitivity</label>
           <input type="number" style="width:60px" name="sens" id="mpFitSensitivity" min="0" max="100">
         </span>
         </div>
         <div>
           <span class="perf-arg">Specificity (%)</span>
           <span class="perf-val">
+            <label for="mpFitSpecificity" hidden="true">Enter fitted model performance Specificity</label>
           <input type="number" style="width:60px" name="spec" id="mpFitSpecificity" min="0" max="100">
         </span>
         </div>
         <div>
           <span class="perf-arg">Accuracy (%)</span>
           <span class="perf-val">
+            <label for="mpFitAccuracy" hidden="true">Enter fitted model performance accuracy</label>
           <input type="number" style="width:60px" name="acc" id="mpFitAccuracy" min="0" max="100">
         </span>
         </div>
         <div>
           <span class="perf-arg">R-Squared</span>
           <span class="perf-val">
+            <label for="mpFitRsquared" hidden="true">Enter fitted model performance r squared</label>
           <input type="number" style="width:60px" name="Rsq" id="mpFitRsquared" min="0" max="1" step="0.01">
         </span>
         </div>
         <div>
           <span class="perf-arg"><label for="datasize">Dataset Size (N)</label></span>
+          <label for="mpFitSetSize" hidden="true">Enter fitted model performance set size</label>
           <span class="perf-val"><input type="number" style="width:60px" name="N" id="mpFitSetSize" min="1"></span>
         </div>
       </div>
@@ -374,24 +379,28 @@
         <div>
           <span class="perf-arg">Sensitivity (%)</span>
           <span class="perf-val">
+            <label for="mpPredSensitivity" hidden="true">Enter fitted model performance sensitivity</label>
           <input type="number" style="width:60px" name="sens" id="mpPredSensitivity" min="0" max="100">
         </span>
         </div>
         <div>
           <span class="perf-arg">Specificity (%)</span>
           <span class="perf-val">
+            <label for="mpPredSpecificity" hidden="true">Enter fitted model performance Specificity</label>
           <input type="number" style="width:60px" name="spec" id="mpPredSpecificity" min="0" max="100">
         </span>
         </div>
         <div>
           <span class="perf-arg">Accuracy (%)</span>
           <span class="perf-val">
+            <label for="mpPredAccuracy" hidden="true">Enter fitted model performance accuracy</label>
           <input type="number" style="width:60px" name="acc" id="mpPredAccuracy" min="0" max="100">
         </span>
         </div>
         <div>
           <span class="perf-arg">Predictions (N)</span>
           <span class="perf-val">
+            <label for="mpPredPredictions" hidden="true">Enter fitted model performance number of predictions</label>
           <input type="number" style="width:60px" name="Rsq" id="mpPredPredictions" min="0" max="1" step="0.01">
         </span>
         </div>
