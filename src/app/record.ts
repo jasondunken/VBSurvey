@@ -8,7 +8,7 @@ export class Record {
   bdShallow = false;
   bdDeep = false;
   bdOpen = false;
-  bdClosed =false;
+  bdClosed = false;
   bdFresh = false;
   bdMarine = false;
   bdOther = '';

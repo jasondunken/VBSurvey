@@ -13,12 +13,15 @@
   <!-- Beach Identifiers -->
   <div class="query-args">
     <div class="title1">Beach/Site Name:</div>
+    <label for="site" hidden="true">Enter site or beach name</label>
     <input type="text" name="Beach" id="site" size="50" maxlength="75" value="">
 
     <div class="title1">Beach Act ID (if applicable):</div>
+    <label for="actId" hidden="true">Enter the beach act id if applicable</label>
     <input type="text" name="Actid" id="actId" size="50" maxlength="75" value="">
 
     <div class="title1">State/Region:</div>
+    <label for="state" hidden="true">Select a state</label>
     <select name="state" id="state" style="width:175px">
       <option value=""></option>
       <option value="AL">Alabama</option>
@@ -92,6 +95,7 @@
     </select>
 
     <div class="title1"><span>County:</span></div>
+    <label for="county" hidden="true">Enter the county</label>
     <input type="text" name="County" id="county" size="50" maxlength="75" value="">
   </div>
 
@@ -104,21 +108,29 @@
       </colgroup>
       <tbody>
       <tr>
+        <label for="bdShallow" hidden="true">Beach descriptor is shallow</label>
         <td><input type="checkbox" name="Shallow" id="bdShallow">Shallow</td>
+        <label for="bdDeep" hidden="true">Beach descriptor is deep</label>
         <td><input type="checkbox" name="Deep" id="bdDeep">Deep</td>
       </tr>
       <tr>
+        <label for="bdOpen" hidden="true">Beach descriptor is open</label>
         <td><input type="checkbox" name="Open" id="bdOpen">Open</td>
+        <label for="bdClosed" hidden="true">Beach descriptor is closed</label>
         <td><input type="checkbox" name="Closed" id="bdClosed">Closed</td>
       </tr>
       <tr>
+        <label for="bdFresh" hidden="true">Beach descriptor is freshwater</label>
         <td><input type="checkbox" name="Fresh" id="bdFresh">Freshwater</td>
+        <label for="bdMarine" hidden="true">Beach descriptor is marine</label>
         <td><input type="checkbox" name="Marine" id="bdMarine">Marine</td>
       </tr>
       <tr>
         <td colspan="3">
           <div>
+            <label for="bdOtherCheck" hidden="true">Tick this box to add other descriptors</label>
             <input type="checkbox" name="BDOther" id="bdOtherCheck" (click)="toggleDisable('bdOther')">Other (please specify)
+            <label for="bdOther" hidden="true">Enter other beach descriptors here</label>
             <input type="text" name="BDOtherText" id="bdOther" size="50" maxlength="300" class="disabled" disabled>
           </div>
         </td>
@@ -132,41 +144,60 @@
   <!-- Organism Modeled -->
   <div class="query-args" (click)="radioDisable($event, 'omOther')">
     <div class="title2">Modeled organism/condition:</div>
+    <label for="omEcoli" hidden="true">E coli</label>
     <input type="radio" name="RV" id="omEcoli" value="1">E.coli<br>
+    <label for="omEnterococci" hidden="true">Enterococci</label>
     <input type="radio" name="RV" id="omEntercocci" value="2">Enterococci<br>
+    <label for="omMicrocyctin" hidden="true">Microcystin or H A B</label>
     <input type="radio" name="RV" id="omMicrocystin" value="3">Microcystin/HABs<br>
+    <label for="omOtherCheck" hidden="true">Tick this box to enter an orgaism that is not listed</label>
     <input type="radio" name="RV" id="omOtherCheck" value="4">Other (please specify)
+    <label for="omOther" hidden="true">Enter an organism not listed</label>
     <input type="text" name="RVText" id="omOther" size="50" maxlength="80" class="disabled" disabled>
   </div>
 
   <!-- Software Package -->
   <div class="query-args" (click)="radioDisable($event, 'spOther')">
     <div class="title2">What software package was used to develop the model?</div>
+    <label for="spVB" hidden="true">Virtual beach</label>
     <input name="STAT" id="spVB" value="1" type="radio">Virtual Beach<br>
+    <label for="spR" hidden="true">R</label>
     <input name="STAT" id="spR" value="2" type="radio">R<br>
+    <label for="spSAS" hidden="true">S A S</label>
     <input name="STAT" id="spSAS" value="3" type="radio">SAS<br>
+    <label for="spExcel" hidden="true">Excel</label>
     <input name="STAT" id="spExcel" value="4" type="radio">Excel<br>
+    <label for="spOtherCheck" hidden="true">Tick this box to enter a software package not listed</label>
     <input name="STAT" id="spOtherCheck" value="5" type="radio">Other (please specify)
+    <label for="spOther" hidden="true">Enter software package not listed here</label>
     <input name="STATText" id="spOther" size="50" maxlength="80" class="disabled" type="text" disabled>
   </div>
 
   <!-- Statistical Model -->
   <div class="query-args" (click)="radioDisable($event, 'smOther')">
     <div class="title2">Model Type:</div>
+    <label for="smMLR" hidden="true">Multiple linear regression</label>
     <input type="radio" name="ModelType" id="smMLR" value="1">MLR (Multiple Linear Regression)<br>
+    <label for="spGBM" hidden="true">Generalized boosting meathod</label>
     <input type="radio" name="ModelType" id="smGBM" value="2">GBM (Generalized Boosting Method)<br>
+    <label for="spPLS" hidden="true">Partial least Squares</label>
     <input type="radio" name="ModelType" id="smPLS" value="3">PLS (Partial Least Squares)<br>
+    <label for="spOtherCheck" hidden="true">Tick this box to enter a statistical model not listed</label>
     <input type="radio" name="ModelType" id="smOtherCheck" value="4">Other (please specify)
+    <label for="spOther" hidden="true">Enter model not listed here</label>
     <input type="text" name="RVText" id="smOther" size="50" maxlength="80" class="disabled" disabled>
   </div>
 
   <!-- Model Use -->
   <div class="query-args">
     <div class="title2">Model Use:</div>
+    <label for="muNow" hidden="true">Predicting current water quality conditions</label>
     <input type="checkbox" name="PurpNow" id="muNow">Predict current water quality conditions
     (Nowcasting)<br>
+    <label for="muFore" hidden="true">Predicting future water quality conditions</label>
     <input type="checkbox" name="PurpFore" id="muFore">Predict future water quality conditions
     (Forecasting)<br>
+    <label for="muResearch" hidden="true">Research</label>
     <input type="checkbox" name="PurpRes" id="muResearch">Estimate the influence of potential microbial sources or
     environmental factors (Research)
   </div>
@@ -180,39 +211,59 @@
       </colgroup>
       <tbody>
       <tr>
+        <label for="ivAirTemp" hidden="true">Air Temperature</label>
         <td><input type="checkbox" id="ivAirTemp" name="AirTemp">Air Temp</td>
+        <label for="ivWaterTemp" hidden="true">WaterTemp</label>
         <td><input type="checkbox" id="ivWaterTemp" name="WaterTemp">Water Temp</td>
+        <label for="ivDewpotin" hidden="true">Dewpoint</label>
         <td><input type="checkbox" id="ivDewpoint" name="Dewpoint">Dewpoint</td>
       </tr>
       <tr>
+        <label for="ivWindSpeed" hidden="true">Wind speed</label>
         <td><input type="checkbox" id="ivWindSpeed" name="Wind">Wind Speed/Velocity</td>
+        <label for="ivCurrentSpeed" hidden="true">Current speed</label>
         <td><input type="checkbox" id="ivCurrentSpeed" name="Current">Current Speed/Velocity</td>
+        <label for="ivWaveHeight" hidden="true">Wave height</label>
         <td><input type="checkbox" id="ivWaveHeight" name="Waves">Wave Height/Direction</td>
       </tr>
       <tr>
+        <label for="ivRain" hidden="true">Antecedent Rainfall</label>
         <td><input type="checkbox" id="ivRain" name="Rain">Antecedent Rainfall</td>
+        <label for="ivTurbidity" hidden="true">Turbidity</label>
         <td><input type="checkbox" id="ivTurbidity" name="Turb">Turbidity</td>
+        <label for="ivTribDischarge" hidden="true">Tributary discharge</label>
         <td><input type="checkbox" id="ivTribDischarge" name="Disch">Tributary Discharge</td>
       </tr>
       <tr>
+        <label for="ivCloudCover" hidden="true">Cloud Cover</label>
         <td><input type="checkbox" id="ivCloudCover" name="Clouds">Cloud Cover</td>
+        <label for="ivUV" hidden="true">U V or PAR</label>
         <td><input type="checkbox" id="ivUV" name="PAR">UV/PAR</td>
+        <label for="ivRelHumidity" hidden="true">Relative humidity</label>
         <td><input type="checkbox" id="ivRelHumidity" name="RH">Relative Humidity</td>
       </tr>
       <tr>
+        <label for="ivConductivity" hidden="true">Water conductivity</label>
         <td><input type="checkbox" id="ivConductivity" name="Cond">Conductivity</td>
+        <label for="ivAbsorbance" hidden="true">Water absorbance</label>
         <td><input type="checkbox" id="ivAbsorbance" name="Absorb">Water Absorbance</td>
+        <label for="ivDepth" hidden="true">Water depth or tidal surge</label>
         <td><input type="checkbox" id="ivDepth" name="Depth">Water Depth/Tidal Stage</td>
       </tr>
       <tr>
+        <label for="ivHumans" hidden="true">Humans</label>
         <td><input type="checkbox" id="ivHumans" name="Human">Humans</td>
+        <label for="ivBirds" hidden="true">Birds</label>
         <td><input type="checkbox" id="ivBirds" name="Bird">Birds</td>
+        <label for="ivWildlife" hidden="true">Wildlife</label>
         <td><input type="checkbox" id="ivWildlife" name="Wild">Other Wildlife</td>
       </tr>
       <tr>
         <td colspan="3">
           <div>
+            <label for="ivOtherCHeck" hidden="true">Tick this box to list other independent variables</label>
             <input type="checkbox" name="IVOther" id="ivOtherCheck" (click)="toggleDisable('ivOther')">Other (please specify)
+            <label for="ivOther" hidden="true">Enter other independent variables here</label>
             <input type="text" name="IVsText" id="ivOther" size="50" maxlength="100" class="disabled" disabled>
           </div>
         </td>
@@ -224,11 +275,17 @@
   <!-- Evaluation Criterion -->
   <div class="query-args" (click)="radioDisable($event, 'ecOther')">
     <div class="title2">Primary evaluation criterion:</div>
+    <label for="ecRsquared" hidden="true">R squared or adjusted r squared</label>
     <input type="radio" name="MDS" id="ecRsquared" value="1">R-Squared/Adjusted R-Squared<br>
+    <label for="ecAicBic" hidden="true">A I C, A I C c, or B I C</label>
     <input type="radio" name="MDS" id="ecAicBic" value="2">AIC/AICc/BIC<br>
+    <label for="ecSenSpecAcc" hidden="true">Sensitivity, specify, or accuracy</label>
     <input type="radio" name="MDS" id="ecSenSpecAcc" value="3">Sensitivity/Specificity/Accuracy<br>
+    <label for="ecPress" hidden="true">Press or R M S E P</label>
     <input type="radio" name="MDS" id="ecPress" value="4">PRESS/RMSEP<br>
+    <label for="ecOtherCheck" hidden="true">Tick this box to add evaluation criterion not listed</label>
     <input type="radio" name="MDS" id="ecOtherCheck" value="5">Other (please specify)
+    <label for="ecOther" hidden="true">Enter other evaluation criterion here</label>
     <input type="text" name="RVText" id="ecOther" size="50" maxlength="80" class="disabled" disabled>
   </div>
 

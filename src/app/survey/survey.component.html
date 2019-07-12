@@ -25,7 +25,7 @@
     <input type="text" name="ActID" id="actId" size="50" maxlength="75" value="">
 
     <div class="title1"><span class="required_field">*</span> State/Region:</div>
-    <label for="state" hidden="true">Enter state</label>
+    <label for="state" hidden="true">Select a state</label>
     <select name="State" id="state" style="width:175px">
       <option value=""></option>
       <option value="AL">Alabama</option>
@@ -150,7 +150,7 @@
     <input type="radio" name="RV" id="omEcoli" value="1">E.coli<br>
     <label for="omEnterococci" hidden="true">Enterococci</label>
     <input type="radio" name="RV" id="omEnterococci" value="2">Enterococci<br>
-    <label for="omMicrocyctin" hidden="true">Microcystin HABs</label>
+    <label for="omMicrocyctin" hidden="true">Microcystin or  HAB</label>
     <input type="radio" name="RV" id="omMicrocyctin" value="3">Microcystin/HABs<br>
     <label for="omOtherCheck" hidden="true">Tick this box to enter an orgaism that is not listed</label>
     <input type="radio" name="RV" id="omOtherCheck" value="4">Other (please specify)
@@ -191,7 +191,7 @@
     <input name="STAT" id="spExcel" value="4" type="radio">Excel<br>
     <label for="spOtherCheck" hidden="true">Tick this box to enter a software package not listed</label>
     <input name="STAT" id="spOtherCheck" value="5" type="radio">Other (please specify)
-    <label for="spOther" hidden="true">Enter other software package here</label>
+    <label for="spOther" hidden="true">Enter software package not listed here</label>
     <input name="STATText" id="spOther" size="50" maxlength="80" class="disabled" type="text">
   </div>
 
@@ -206,7 +206,7 @@
     <input type="radio" name="ModelType" value="3" id="smPLS">PLS (Partial Least Squares)<br>
     <label for="spOtherCheck" hidden="true">Tick this box to enter a statistical model not listed</label>
     <input type="radio" name="ModelType" value="4" id="smOtherCheck">Other (please specify)
-    <label for="spOther" hidden="true">Enter other model here</label>
+    <label for="spOther" hidden="true">Enter model not listed here</label>
     <input type="text" name="ModelTypeText" id="smOther" size="50" maxlength="80" class="disabled">
   </div>
 
@@ -292,7 +292,7 @@
       <tr>
         <label for="ivHumans" hidden="true">Humans</label>
         <td><input type="checkbox" id="ivHumans" name="Human">Humans</td>
-        <label for="ivBirdsr" hidden="true">Birds</label>
+        <label for="ivBirds" hidden="true">Birds</label>
         <td><input type="checkbox" id="ivBirds" cname="Bird">Birds</td>
         <label for="ivWildlife" hidden="true">Wildlife</label>
         <td><input type="checkbox" id="ivWildlife" name="Wild">Other Wildlife</td>
