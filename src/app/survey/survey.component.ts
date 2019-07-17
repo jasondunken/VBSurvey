@@ -33,14 +33,11 @@ export class SurveyComponent implements OnInit {
         bdMarine: new FormControl(false),
         bdOtherCheck: new FormControl(false)
       }, this.checkboxValidator()),
-      // organism modeled
-      organismModeled: new FormGroup({
-        OM: new FormControl('', Validators.required)
-      }),
+      organismModeled: new FormControl('', Validators.required),
       adviLevel: ['', Validators.required],
       daysPerYear: ['', Validators.required],
-      // software package
-      // stat model
+      softwarePackage: new FormControl('', Validators.required),
+      statModel: new FormControl('', Validators.required),
       timePeriod: ['', Validators.required],
       modelUse: new FormGroup({
         muNow: new FormControl(false),
@@ -67,11 +64,13 @@ export class SurveyComponent implements OnInit {
         ivBirds: new FormControl(false),
         ivWildlife: new FormControl(false),
         ivOtherCheck: new FormControl(false)
-      }, this.checkboxValidator())
+      }, this.checkboxValidator()),
+      evalCriterion: new FormControl('', Validators.required)
     });
   }
 
   // convenience getter for easy access to form fields
+  // thanks https://stackoverflow.com/users/5688490/mick !
   get f() { return this.surveyForm.controls; }
 
   submitSurvey(): void {
