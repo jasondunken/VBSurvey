@@ -49,7 +49,7 @@ export class SearchComponent implements OnInit {
     const selects = document.getElementsByTagName('select');
     for (const j in selects) {
       if (record.hasOwnProperty(selects[j].id)) {
-        if (selects[j].id === 'state') {
+        if (selects[j].id === 'state' && selects[j].selectedIndex > 0) {
           query += "state='" + selects[j].options[selects[j].selectedIndex].text + "'&";
         }
       }
