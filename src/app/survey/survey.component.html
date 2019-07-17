@@ -22,14 +22,14 @@
 
     <div class="title1"><span class="required-field">*</span> Beach/Site Name:</div>
     <label for="site" hidden="true">Enter the site or beach name</label>
-    <input type="text" name="Beach" id="site" size="50" maxlength="75" value="" formControlName="site" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.site.errors }">
+    <input type="text" name="Beach" id="site" size="50" maxlength="75" formControlName="site" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.site.errors }">
     <div *ngIf="submitted && f.site.errors" class="invalid-feedback">
         <div *ngIf="f.site.errors.required" class="required-field">Beach/Site Name is required</div>
     </div>
 
     <div class="title1"><span class="required-field">*</span> Beach Act ID (use NA if not applicable):</div>
     <label for="actId" hidden="true">Enter beach act ID, use N A if not applicable</label>
-    <input type="text" name="ActID" id="actId" size="50" maxlength="75" value="" formControlName="actId" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.actId.errors }">
+    <input type="text" name="ActID" id="actId" size="50" maxlength="75" formControlName="actId" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.actId.errors }">
     <div *ngIf="submitted && f.actId.errors" class="invalid-feedback">
         <div *ngIf="f.actId.errors.required" class="required-field">Beach Act ID is required</div>
     </div>
@@ -182,7 +182,10 @@
       for the modeled organism/condition?
     </div>
     <label for="adviLevel" hidden="true">Enter the advisory level for the modeled organism</label>
-    <input type="text" name="Threshold" id="adviLevel" size="50" maxlength="150" value="">
+    <input type="text" name="Threshold" id="adviLevel" size="50" maxlength="150" value="" formControlName="adviLevel" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.adviLevel.errors }">
+    <div *ngIf="submitted && f.adviLevel.errors" class="invalid-feedback">
+      <div *ngIf="f.adviLevel.errors.required" class="required-field">Advisory level is required</div>
+    </div>
   </div>
 
   <!-- Days Per Year -->
@@ -191,7 +194,10 @@
       poor water quality conditions?
     </div>
     <label for="daysPerYear" hidden="true">Enter the days per year this site is typically closed due to poor water conditions</label>
-    <input type="number" style="width:50px" name="exceed" id="daysPerYear" min="0" max="365">
+    <input type="number" style="width:50px" name="exceed" id="daysPerYear" min="0" max="365" formControlName="daysPerYear" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.daysPerYear.errors }">
+    <div *ngIf="submitted && f.daysPerYear.errors" class="invalid-feedback">
+      <div *ngIf="f.daysPerYear.errors.required" class="required-field">Days closed is required</div>
+    </div>
   </div>
 
   <!-- Software Package -->

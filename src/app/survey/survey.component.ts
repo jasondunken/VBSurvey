@@ -23,13 +23,21 @@ export class SurveyComponent implements OnInit {
       site: ['', Validators.required],
       actId: ['', Validators.required],
       state: ['', Validators.required],
-      county: ['', Validators.required]
+      county: ['', Validators.required],
+      // beach descriptors
+      // org modeled
+      adviLevel: ['', Validators.required],
+      daysPerYear: ['', Validators.required]
+      // software package
+      // stat model
+      // time period
+      // model usage
+      // i vars
     });
   }
 
   // convenience getter for easy access to form fields
   get f() { return this.surveyForm.controls; }
-  
 
   submitSurvey(): void {
     this.submitted = true;
@@ -37,7 +45,6 @@ export class SurveyComponent implements OnInit {
       window.scrollTo(0, 0);
       return;
     }
-    
     const record = new Record();
     this.buildRecord(record);
     this.db.addRecord(record).subscribe();
@@ -45,7 +52,6 @@ export class SurveyComponent implements OnInit {
 
   buildRecord(record: Record): void {
     const inputs = document.getElementsByTagName('input');
-
     for (const i in inputs) {
         if (record.hasOwnProperty(inputs[i].id)) {
           if (inputs[i].type === 'text' || inputs[i].type === 'email') {
