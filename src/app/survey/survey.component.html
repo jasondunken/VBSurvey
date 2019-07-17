@@ -120,7 +120,7 @@
   </div>
 
   <!-- Beach Descriptors -->
-  <div class="query-args">
+  <div class="query-args form-group" formGroupName="beachDescriptors">
     <div class="title2"><span class="required-field">*</span> Beach Descriptors:</div>
     <table>
       <colgroup>
@@ -129,27 +129,27 @@
       <tbody>
       <tr>
         <label for="bdShallow" hidden="true">Beach descriptor is shallow</label>
-        <td><input type="checkbox" name="Shallow" id="bdShallow">Shallow</td>
+        <td><input type="checkbox" name="Shallow" id="bdShallow" formControlName="bdShallow">Shallow</td>
         <label for="bdDeep" hidden="true">Beach descriptor is deep</label>
-        <td><input type="checkbox" name="Deep" id="bdDeep">Deep<br></td>
+        <td><input type="checkbox" name="Deep" id="bdDeep" formControlName="bdDeep">Deep<br></td>
       </tr>
       <tr>
         <label for="bdOpen" hidden="true">Beach descriptor is open</label>
-        <td><input type="checkbox" name="Open" id="bdOpen">Open<br></td>
+        <td><input type="checkbox" name="Open" id="bdOpen" formControlName="bdOpen">Open<br></td>
         <label for="bdClosed" hidden="true">Beach descriptor is closed</label>
-        <td><input type="checkbox" name="Closed" id="bdClosed">Closed</td>
+        <td><input type="checkbox" name="Closed" id="bdClosed" formControlName="bdClosed">Closed</td>
       </tr>
       <tr>
         <label for="bdFresh" hidden="true">Beach descriptor is freshwater</label>
-        <td><input type="checkbox" name="Fresh" id="bdFresh">Freshwater</td>
+        <td><input type="checkbox" name="Fresh" id="bdFresh" formControlName="bdFresh">Freshwater</td>
         <label for="bdMarine" hidden="true">Beach descriptor is marine</label>
-        <td><input type="checkbox" name="Marine" id="bdMarine">Marine<br></td>
+        <td><input type="checkbox" name="Marine" id="bdMarine" formControlName="bdMarine">Marine<br></td>
       </tr>
       <tr>
         <td colspan="3">
           <div>
             <label for="bdOtherCheck" hidden="true">Tick this box to add other descriptors</label>
-            <input type="checkbox" name="BDOther" id="bdOtherCheck" (click)="toggleDisable('bdOther')">Other (please specify)
+            <input type="checkbox" name="BDOther" id="bdOtherCheck" (click)="toggleDisable('bdOther')" formControlName="bdOtherCheck">Other (please specify)
             <label for="bdOther" hidden="true">Enter other beach descriptors here</label>
             <input type="text" name="BDOtherText" id="bdOther" size="50" maxlength="300" class="disabled">
           </div>
@@ -157,21 +157,27 @@
       </tr>
       </tbody>
     </table>
+    <div *ngIf="submitted && f.beachDescriptors.errors" class="invalid-feedback">
+      <div *ngIf="f.beachDescriptors.errors.selectionMade" class="required-field">At least one beach descriptor is required</div>
+    </div>
     </div>
 
   <!-- Organism Modeled -->
-  <div class="query-args" (click)="radioDisable($event, 'omOther')">
+  <div class="query-args form-group" formGroupName="organismModeled" (click)="radioDisable($event, 'omOther')">
     <div class="title2"><span class="required-field">*</span> What organism/condition was modeled?</div>
     <label for="omEcoli" hidden="true">E coli</label>
-    <input type="radio" name="RV" id="omEcoli" value="1">E.coli<br>
+    <input type="radio" id="omEcoli" value="1" name="OM" formControlName="OM">E.coli<br>
     <label for="omEnterococci" hidden="true">Enterococci</label>
-    <input type="radio" name="RV" id="omEnterococci" value="2">Enterococci<br>
+    <input type="radio" id="omEnterococci" value="2" name="OM" formControlName="OM">Enterococci<br>
     <label for="omMicrocyctin" hidden="true">Microcystin or  HAB</label>
-    <input type="radio" name="RV" id="omMicrocyctin" value="3">Microcystin/HABs<br>
+    <input type="radio" id="omMicrocyctin" value="3" name="OM" formControlName="OM">Microcystin/HABs<br>
     <label for="omOtherCheck" hidden="true">Tick this box to enter an orgaism that is not listed</label>
-    <input type="radio" name="RV" id="omOtherCheck" value="4">Other (please specify)
+    <input type="radio" id="omOtherCheck" value="4" name="OM" formControlName="OM">Other (please specify)
     <label for="omOther" hidden="true">Enter an organism not listed</label>
-    <input type="text" name="RVText" id="omOther" size="50" maxlength="80" class="disabled">
+    <input type="text" id="omOther" size="50" maxlength="80" class="disabled">
+    <div *ngIf="submitted && f.organismModeled.errors" class="invalid-feedback">
+      <div *ngIf="f.get('OM').invalid" class="required-field">Organism modeled is required</div>
+    </div>
   </div>
 
   <!-- Advisory Level -->
@@ -240,25 +246,31 @@
       was this model used for?
     </div>
     <label for="timePeriod" hidden="true">Enter the time period</label>
-    <input type="text" name="Time" id="timePeriod" size="50" maxlength="80">
+    <input type="text" name="Time" id="timePeriod" size="50" maxlength="80" formControlName="timePeriod" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.timePeriod.errors }">
+    <div *ngIf="submitted && f.timePeriod.errors" class="invalid-feedback">
+      <div *ngIf="f.timePeriod.errors.required" class="required-field">Time period is required</div>
+    </div>
   </div>
 
   <!-- Model Usage -->
-  <div class="query-args">
+  <div class="query-args" formGroupName="modelUse">
     <div class="title2"><span class="required-field">*</span> How was the model being used?</div>
     <label for="muNow" hidden="true">To predict current water quality conditions</label>
-    <input type="checkbox" name="PurpNow" id="muNow">Predict current water quality conditions
+    <input type="checkbox" id="muNow" formControlName="muNow">Predict current water quality conditions
     (Nowcasting)<br>
     <label for="muFore" hidden="true">To predict future water quality conditions</label>
-    <input type="checkbox" name="PurpFore" id="muFore">Predict future water quality conditions
+    <input type="checkbox" id="muFore" formControlName="muFore">Predict future water quality conditions
     (Forecasting)<br>
     <label for="muResearch" hidden="true">For research</label>
-    <input type="checkbox" name="PurpRes" id="muResearch">Estimate the influence of potential microbial sources or
+    <input type="checkbox" id="muResearch" formControlName="muResearch">Estimate the influence of potential microbial sources or
     environmental factors (Research)
+    <div *ngIf="submitted && f.modelUse.errors" class="invalid-feedback">
+      <div *ngIf="f.modelUse.errors.selectionMade" class="required-field">At least one model use is required</div>
+    </div>
   </div>
 
   <!-- Independent Variables -->
-  <div class="query-args">
+  <div class="query-args form-group" formGroupName="iVariables">
     <div class="title2"><span class="required-field">*</span> What independent variables were
       <div class="tooltip">significant
         <span class="tooltiptext">I.e., the IVs in your MLR/PLS model, or IVs with &gt;5% influence in your GBM model</span>
@@ -273,57 +285,57 @@
       <tbody>
       <tr>
         <label for="ivAirTemp" hidden="true">Air Temperature</label>
-        <td><input type="checkbox" id="ivAirTemp" name="AirTemp">Air Temp</td>
+        <td><input type="checkbox" id="ivAirTemp" formControlName="ivAirTemp">Air Temp</td>
         <label for="ivWaterTemp" hidden="true">WaterTemp</label>
-        <td><input type="checkbox" id="ivWaterTemp" name="WaterTemp">Water Temp</td>
+        <td><input type="checkbox" id="ivWaterTemp" formControlName="ivWaterTemp">Water Temp</td>
         <label for="ivDewpotin" hidden="true">Dewpoint</label>
-        <td><input type="checkbox" id="ivDewpoint" cname="Dewpoint">Dewpoint</td>
+        <td><input type="checkbox" id="ivDewpoint" formControlName="ivDewpoint">Dewpoint</td>
       </tr>
       <tr>
         <label for="ivWindSpeed" hidden="true">Wind speed</label>
-        <td><input type="checkbox" id="ivWindSpeed" name="Wind">Wind Speed/Velocity</td>
+        <td><input type="checkbox" id="ivWindSpeed" formControlName="ivWindSpeed">Wind Speed/Velocity</td>
         <label for="ivCurrentSpeed" hidden="true">Current speed</label>
-        <td><input type="checkbox" id="ivCurrentSpeed" name="Current">Current Speed/Velocity</td>
+        <td><input type="checkbox" id="ivCurrentSpeed" formControlName="ivCurrentSpeed">Current Speed/Velocity</td>
         <label for="ivWaveHeight" hidden="true">Wave height</label>
-        <td><input type="checkbox" id="ivWaveHeight" name="Waves">Wave Height/Direction</td>
+        <td><input type="checkbox" id="ivWaveHeight" formControlName="ivWaveHeight">Wave Height/Direction</td>
       </tr>
       <tr>
         <label for="ivRain" hidden="true">Antecedent Rainfall</label>
-        <td><input type="checkbox" id="ivRain" name="Rain">Antecedent Rainfall</td>
+        <td><input type="checkbox" id="ivRain" formControlName="ivRain">Antecedent Rainfall</td>
         <label for="ivTurbidity" hidden="true">Turbidity</label>
-        <td><input type="checkbox" id="ivTurbidity" name="Turb">Turbidity</td>
+        <td><input type="checkbox" id="ivTurbidity" formControlName="ivTurbidity">Turbidity</td>
         <label for="ivTribDischarge" hidden="true">Tributary discharge</label>
-        <td><input type="checkbox" id="ivTribDischarge" name="Disch">Tributary Discharge</td>
+        <td><input type="checkbox" id="ivTribDischarge" formControlName="ivTribDischarge">Tributary Discharge</td>
       </tr>
       <tr>
         <label for="ivCloudCover" hidden="true">Cloud Cover</label>
-        <td><input type="checkbox" id="ivCloudCover" name="Clouds">Cloud Cover</td>
+        <td><input type="checkbox" id="ivCloudCover" formControlName="ivCloudCover">Cloud Cover</td>
         <label for="ivUV" hidden="true">U V or PAR</label>
-        <td><input type="checkbox" id="ivUV" name="PAR">UV/PAR</td>
+        <td><input type="checkbox" id="ivUV" formControlName="ivUV">UV/PAR</td>
         <label for="ivRelHumidity" hidden="true">Relative humidity</label>
-        <td><input type="checkbox" id="ivRelHumidity" name="RH">Relative Humidity</td>
+        <td><input type="checkbox" id="ivRelHumidity" formControlName="ivRelHumidity">Relative Humidity</td>
       </tr>
       <tr>
         <label for="ivConductivity" hidden="true">Water conductivity</label>
-        <td><input type="checkbox" id="ivConductivity" name="Cond">Conductivity</td>
+        <td><input type="checkbox" id="ivConductivity" formControlName="ivConductivity">Conductivity</td>
         <label for="ivAbsorbance" hidden="true">Water absorbance</label>
-        <td><input type="checkbox" id="ivAbsorbance" name="Absorb">Water Absorbance</td>
+        <td><input type="checkbox" id="ivAbsorbance" formControlName="ivAbsorbance">Water Absorbance</td>
         <label for="ivDepth" hidden="true">Water depth or tidal surge</label>
-        <td><input type="checkbox" id="ivDepth" name="Depth">Water Depth/Tidal Stage</td>
+        <td><input type="checkbox" id="ivDepth" formControlName="ivDepth">Water Depth/Tidal Stage</td>
       </tr>
       <tr>
         <label for="ivHumans" hidden="true">Humans</label>
-        <td><input type="checkbox" id="ivHumans" name="Human">Humans</td>
+        <td><input type="checkbox" id="ivHumans" formControlName="ivHumans">Humans</td>
         <label for="ivBirds" hidden="true">Birds</label>
-        <td><input type="checkbox" id="ivBirds" cname="Bird">Birds</td>
+        <td><input type="checkbox" id="ivBirds" formControlName="ivBirds">Birds</td>
         <label for="ivWildlife" hidden="true">Wildlife</label>
-        <td><input type="checkbox" id="ivWildlife" name="Wild">Other Wildlife</td>
+        <td><input type="checkbox" id="ivWildlife" formControlName="ivWildlife">Other Wildlife</td>
       </tr>
       <tr>
         <td colspan="3">
           <div>
             <label for="ivOtherCHeck" hidden="true">Tick this box to list other independent variables</label>
-            <input type="checkbox" name="IVOther" id="ivOtherCheck" (click)="toggleDisable('ivOther')">Other (please specify)
+            <input type="checkbox" id="ivOtherCheck" formControlName="ivOtherCheck" (click)="toggleDisable('ivOther')">Other (please specify)
             <label for="ivOther" hidden="true">Enter other independent variables here</label>
             <input type="text" name="IVsText" id="ivOther" size="50" maxlength="100" class="disabled">
           </div>
@@ -331,6 +343,9 @@
       </tr>
       </tbody>
     </table>
+    <div *ngIf="submitted && f.iVariables.errors" class="invalid-feedback">
+      <div *ngIf="f.iVariables.errors.selectionMade" class="required-field">At least one independent variable is required</div>
+    </div>
   </div>
 
   <!-- Evaluation Criterion -->

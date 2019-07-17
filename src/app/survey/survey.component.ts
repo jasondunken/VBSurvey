@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, ValidatorFn, FormControl } from '@angular/forms';
 
 import { DbServiceService } from '../db-service.service';
 
@@ -24,15 +24,50 @@ export class SurveyComponent implements OnInit {
       actId: ['', Validators.required],
       state: ['', Validators.required],
       county: ['', Validators.required],
-      // beach descriptors
-      // org modeled
+      beachDescriptors: new FormGroup({
+        bdDeep: new FormControl(false),
+        bdShallow: new FormControl(false),
+        bdOpen: new FormControl(false),
+        bdClosed: new FormControl(false),
+        bdFresh: new FormControl(false),
+        bdMarine: new FormControl(false),
+        bdOtherCheck: new FormControl(false)
+      }, this.checkboxValidator()),
+      // organism modeled
+      organismModeled: new FormGroup({
+        OM: new FormControl('', Validators.required)
+      }),
       adviLevel: ['', Validators.required],
-      daysPerYear: ['', Validators.required]
+      daysPerYear: ['', Validators.required],
       // software package
       // stat model
-      // time period
-      // model usage
-      // i vars
+      timePeriod: ['', Validators.required],
+      modelUse: new FormGroup({
+        muNow: new FormControl(false),
+        muFore: new FormControl(false),
+        muResearch: new FormControl(false)
+      }, this.checkboxValidator()),
+      iVariables: new FormGroup({
+        ivAirTemp: new FormControl(false),
+        ivWaterTemp: new FormControl(false),
+        ivDewpoint: new FormControl(false),
+        ivWindSpeed: new FormControl(false),
+        ivCurrentSpeed: new FormControl(false),
+        ivWaveHeight: new FormControl(false),
+        ivRain: new FormControl(false),
+        ivTurbidity: new FormControl(false),
+        ivTribDischarge: new FormControl(false),
+        ivCloudCover: new FormControl(false),
+        ivUV: new FormControl(false),
+        ivRelHumidity: new FormControl(false),
+        ivConductivity: new FormControl(false),
+        ivAbsorbance: new FormControl(false),
+        ivDepth: new FormControl(false),
+        ivHumans: new FormControl(false),
+        ivBirds: new FormControl(false),
+        ivWildlife: new FormControl(false),
+        ivOtherCheck: new FormControl(false)
+      }, this.checkboxValidator())
     });
   }
 
@@ -78,10 +113,10 @@ export class SurveyComponent implements OnInit {
     textbox.classList.toggle('disabled');
   }
 
-  radioDisable(event: any, name): void {
-    const textbox = document.getElementById(name);
-    if (event.target.id !== name) {
-      if (event.target.id === name + 'Check') {
+  radioDisable(event: any, id): void {
+    const textbox = document.getElementById(id);
+    if (event.target.id !== id) {
+      if (event.target.id === id + 'Check') {
         textbox.classList.remove('disabled');
       } else {
         textbox.classList.add('disabled');
@@ -108,6 +143,34 @@ export class SurveyComponent implements OnInit {
       }
     }
     window.scrollTo(0, 0);
+  }
+
+  checkboxValidator(minRequired = 1): ValidatorFn {
+    return function validate(formGroup: FormGroup) {
+      let checked = 0;
+      Object.keys(formGroup.controls).forEach(key => {
+        const control = formGroup.controls[key];
+        if (control.value === true) {
+          checked++;
+        }
+      });
+      if (checked < minRequired) {
+        return {  selectionMade: true };
+      }
+      return null;
+    };
+  }
+
+  radioValidator(): ValidatorFn {
+    return function validate(formGroup: FormGroup) {
+      Object.keys(formGroup.controls).forEach(key => {
+        const control = formGroup.controls[key];
+        if (control.value === true) {
+          return { selctionMade: true };
+        }
+      });
+      return null;
+    };
   }
 
   populateForm(): void {
