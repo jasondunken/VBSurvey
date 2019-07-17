@@ -11,32 +11,32 @@
   <div class="query-args">
     <div class="title1">Email:</div>
     <label for="eMail" hidden="true">Enter email</label>
-    <input type="email" name="Email" id="eMail" size="50" maxlength="75" value="">
+    <input type="email" id="eMail" size="50" maxlength="75">
 
     <div class="title1"><span class="required-field">*</span> Organization/Company:</div>
     <label for="org" hidden="true">Enter your organization</label>
-    <input type="text" name="Affiliation" id="org" size="50" maxlength="75" value="" formControlName="org" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.org.errors }">
+    <input type="text" id="org" size="50" maxlength="75" formControlName="org" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.org.errors }">
     <div *ngIf="submitted && f.org.errors" class="invalid-feedback">
         <div *ngIf="f.org.errors.required" class="required-field">Organization/Company is required</div>
     </div>
 
     <div class="title1"><span class="required-field">*</span> Beach/Site Name:</div>
     <label for="site" hidden="true">Enter the site or beach name</label>
-    <input type="text" name="Beach" id="site" size="50" maxlength="75" formControlName="site" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.site.errors }">
+    <input type="text" id="site" size="50" maxlength="75" formControlName="site" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.site.errors }">
     <div *ngIf="submitted && f.site.errors" class="invalid-feedback">
         <div *ngIf="f.site.errors.required" class="required-field">Beach/Site Name is required</div>
     </div>
 
     <div class="title1"><span class="required-field">*</span> Beach Act ID (use NA if not applicable):</div>
     <label for="actId" hidden="true">Enter beach act ID, use N A if not applicable</label>
-    <input type="text" name="ActID" id="actId" size="50" maxlength="75" formControlName="actId" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.actId.errors }">
+    <input type="text" id="actId" size="50" maxlength="75" formControlName="actId" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.actId.errors }">
     <div *ngIf="submitted && f.actId.errors" class="invalid-feedback">
         <div *ngIf="f.actId.errors.required" class="required-field">Beach Act ID is required</div>
     </div>
 
     <div class="title1"><span class="required-field">*</span> State/Region:</div>
     <label for="state" hidden="true">Select a state</label>
-    <select name="State" id="state" style="width:175px" formControlName="state" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.state.errors }">
+    <select id="state" style="width:175px" formControlName="state" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.state.errors }">
       <option value=""></option>
       <option value="AL">Alabama</option>
       <option value="AK">Alaska</option>
@@ -113,7 +113,7 @@
 
     <div class="title1"><span class="required-field">*</span> County:</div>
     <label for="county" hidden="true">Enter county</label>
-    <input type="text" name="County" id="county" size="50" maxlength="75" value="" formControlName="county" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.county.errors }">
+    <input type="text" id="county" size="50" maxlength="75" formControlName="county" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.county.errors }">
     <div *ngIf="submitted && f.county.errors" class="invalid-feedback">
         <div *ngIf="f.county.errors.required" class="required-field">County is required</div>
     </div>
@@ -129,29 +129,29 @@
       <tbody>
       <tr>
         <label for="bdShallow" hidden="true">Beach descriptor is shallow</label>
-        <td><input type="checkbox" name="Shallow" id="bdShallow" formControlName="bdShallow">Shallow</td>
+        <td><input type="checkbox" id="bdShallow" formControlName="bdShallow">Shallow</td>
         <label for="bdDeep" hidden="true">Beach descriptor is deep</label>
-        <td><input type="checkbox" name="Deep" id="bdDeep" formControlName="bdDeep">Deep<br></td>
+        <td><input type="checkbox" id="bdDeep" formControlName="bdDeep">Deep<br></td>
       </tr>
       <tr>
         <label for="bdOpen" hidden="true">Beach descriptor is open</label>
-        <td><input type="checkbox" name="Open" id="bdOpen" formControlName="bdOpen">Open<br></td>
+        <td><input type="checkbox" id="bdOpen" formControlName="bdOpen">Open<br></td>
         <label for="bdClosed" hidden="true">Beach descriptor is closed</label>
-        <td><input type="checkbox" name="Closed" id="bdClosed" formControlName="bdClosed">Closed</td>
+        <td><input type="checkbox" id="bdClosed" formControlName="bdClosed">Closed</td>
       </tr>
       <tr>
         <label for="bdFresh" hidden="true">Beach descriptor is freshwater</label>
-        <td><input type="checkbox" name="Fresh" id="bdFresh" formControlName="bdFresh">Freshwater</td>
+        <td><input type="checkbox" id="bdFresh" formControlName="bdFresh">Freshwater</td>
         <label for="bdMarine" hidden="true">Beach descriptor is marine</label>
-        <td><input type="checkbox" name="Marine" id="bdMarine" formControlName="bdMarine">Marine<br></td>
+        <td><input type="checkbox" id="bdMarine" formControlName="bdMarine">Marine<br></td>
       </tr>
       <tr>
         <td colspan="3">
           <div>
             <label for="bdOtherCheck" hidden="true">Tick this box to add other descriptors</label>
-            <input type="checkbox" name="BDOther" id="bdOtherCheck" (click)="toggleDisable('bdOther')" formControlName="bdOtherCheck">Other (please specify)
+            <input type="checkbox" id="bdOtherCheck" (click)="toggleDisable('bdOther')" formControlName="bdOtherCheck">Other (please specify)
             <label for="bdOther" hidden="true">Enter other beach descriptors here</label>
-            <input type="text" name="BDOtherText" id="bdOther" size="50" maxlength="300" class="disabled">
+            <input type="text" id="bdOther" size="50" maxlength="300" class="disabled">
           </div>
         </td>
       </tr>
@@ -200,7 +200,7 @@
       poor water quality conditions?
     </div>
     <label for="daysPerYear" hidden="true">Enter the days per year this site is typically closed due to poor water conditions</label>
-    <input type="number" style="width:50px" name="exceed" id="daysPerYear" min="0" max="365" formControlName="daysPerYear" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.daysPerYear.errors }">
+    <input type="number" id="daysPerYear" size="4" min="0" max="365" formControlName="daysPerYear" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.daysPerYear.errors }">
     <div *ngIf="submitted && f.daysPerYear.errors" class="invalid-feedback">
       <div *ngIf="f.daysPerYear.errors.required" class="required-field">Days closed is required</div>
     </div>
@@ -252,7 +252,7 @@
       was this model used for?
     </div>
     <label for="timePeriod" hidden="true">Enter the time period</label>
-    <input type="text" name="Time" id="timePeriod" size="50" maxlength="80" formControlName="timePeriod" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.timePeriod.errors }">
+    <input type="text" id="timePeriod" size="50" maxlength="80" formControlName="timePeriod" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.timePeriod.errors }">
     <div *ngIf="submitted && f.timePeriod.errors" class="invalid-feedback">
       <div *ngIf="f.timePeriod.errors.required" class="required-field">Time period is required</div>
     </div>
@@ -343,7 +343,7 @@
             <label for="ivOtherCHeck" hidden="true">Tick this box to list other independent variables</label>
             <input type="checkbox" id="ivOtherCheck" formControlName="ivOtherCheck" (click)="toggleDisable('ivOther')">Other (please specify)
             <label for="ivOther" hidden="true">Enter other independent variables here</label>
-            <input type="text" name="IVsText" id="ivOther" size="50" maxlength="100" class="disabled">
+            <input type="text" id="ivOther" size="50" maxlength="100" class="disabled">
           </div>
         </td>
       </tr>
@@ -387,34 +387,36 @@
           <span class="perf-arg">Sensitivity (%)</span>
           <span class="perf-val">
             <label for="mpFitSensitivity" hidden="true">Enter fitted model performance sensitivity</label>
-          <input type="number" style="width:60px" name="sens" id="mpFitSensitivity" min="0" max="100">
-        </span>
+            <input type="number" style="width:60px"  id="mpFitSensitivity" min="0" max="100">
+          </span>
         </div>
         <div>
           <span class="perf-arg">Specificity (%)</span>
           <span class="perf-val">
             <label for="mpFitSpecificity" hidden="true">Enter fitted model performance Specificity</label>
-          <input type="number" style="width:60px" name="spec" id="mpFitSpecificity" min="0" max="100">
-        </span>
+            <input type="number" style="width:60px" id="mpFitSpecificity" min="0" max="100">
+          </span>
         </div>
         <div>
           <span class="perf-arg">Accuracy (%)</span>
           <span class="perf-val">
             <label for="mpFitAccuracy" hidden="true">Enter fitted model performance accuracy</label>
-          <input type="number" style="width:60px" name="acc" id="mpFitAccuracy" min="0" max="100">
-        </span>
+            <input type="number" style="width:60px" id="mpFitAccuracy" min="0" max="100">
+          </span>
         </div>
         <div>
           <span class="perf-arg">R-Squared</span>
           <span class="perf-val">
             <label for="mpFitRsquared" hidden="true">Enter fitted model performance r squared</label>
-          <input type="number" style="width:60px" name="Rsq" id="mpFitRsquared" min="0" max="1" step="0.01">
-        </span>
+            <input type="number" style="width:60px" id="mpFitRsquared" min="0" max="1" step="0.01">
+          </span>
         </div>
         <div>
-          <span class="perf-arg"><label for="datasize">Dataset Size (N)</label></span>
-          <label for="mpFitSetSize" hidden="true">Enter fitted model performance set size</label>
-          <span class="perf-val"><input type="number" style="width:60px" name="N" id="mpFitSetSize" min="1"></span>
+          <span class="perf-arg">Dataset Size (N)</span>
+          <span class="perf-val">
+            <input type="number" style="width:60px" id="mpFitSetSize" min="1">
+            <label for="mpFitSetSize" hidden="true">Enter fitted model performance set size</label>
+          </span>
         </div>
       </div>
 
@@ -426,29 +428,29 @@
           <span class="perf-arg">Sensitivity (%)</span>
           <span class="perf-val">
             <label for="mpPredSensitivity" hidden="true">Enter fitted model performance sensitivity</label>
-          <input type="number" style="width:60px" name="sens" id="mpPredSensitivity" min="0" max="100">
-        </span>
+            <input type="number" style="width:60px" id="mpPredSensitivity" min="0" max="100">
+          </span>
         </div>
         <div>
           <span class="perf-arg">Specificity (%)</span>
           <span class="perf-val">
             <label for="mpPredSpecificity" hidden="true">Enter fitted model performance Specificity</label>
-          <input type="number" style="width:60px" name="spec" id="mpPredSpecificity" min="0" max="100">
-        </span>
+            <input type="number" style="width:60px" id="mpPredSpecificity" min="0" max="100">
+          </span>
         </div>
         <div>
           <span class="perf-arg">Accuracy (%)</span>
           <span class="perf-val">
             <label for="mpPredAccuracy" hidden="true">Enter fitted model performance accuracy</label>
-          <input type="number" style="width:60px" name="acc" id="mpPredAccuracy" min="0" max="100">
-        </span>
+            <input type="number" style="width:60px" id="mpPredAccuracy" min="0" max="100">
+          </span>
         </div>
         <div>
           <span class="perf-arg">Predictions (N)</span>
           <span class="perf-val">
             <label for="mpPredPredictions" hidden="true">Enter fitted model performance number of predictions</label>
-          <input type="number" style="width:60px" name="Rsq" id="mpPredPredictions" min="0" max="1" step="0.01">
-        </span>
+            <input type="number" style="width:60px" id="mpPredPredictions" min="0" max="1" step="0.01">
+          </span>
         </div>
       </div>
     </div>
