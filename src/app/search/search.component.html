@@ -297,7 +297,12 @@
 
   <div id="resultsTable">
     <h5 class="title1-centered" id="query_results_title">Query Results Table</h5>
-    <div id="queryResultsTable_wrapper" class="dataTables_wrapper no-footer">
+    <table>
+      <ul>
+        <li *ngFor="let item of testRecord">Email: <em>{{ item.eMail }}</em> State: <em>{{ item.state }}</em> County: <em>{{ item.county }}</em></li>
+      </ul>
+    </table>
+    <!--<div id="queryResultsTable_wrapper" class="dataTables_wrapper no-footer">
       <div class="dataTables_length" id="queryResultsTable_length">
         <label>Show <select name="queryResultsTable_length" aria-controls="queryResultsTable" class="">
         <option value="10">10</option>
@@ -348,7 +353,7 @@
         class="paginate_button previous disabled" aria-controls="queryResultsTable" data-dt-idx="0" tabindex="0"
         id="queryResultsTable_previous">Previous</a><span></span><a class="paginate_button next disabled" aria-controls="queryResultsTable" data-dt-idx="1" tabindex="0" id="queryResultsTable_next">Next</a>
       </div>
-    </div>
+    </div>-->
   </div>
 
   <br>

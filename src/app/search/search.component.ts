@@ -11,17 +11,25 @@ import {Record} from '../record';
 })
 
 export class SearchComponent implements OnInit {
+  testRecord = {};
 
   constructor(private db: DbServiceService) {
   }
 
   ngOnInit() {
+    this.testRecord = [];
   }
 
   submitQuery(): void {
     const query = this.buildQuery();
     this.db.getRecords(query).subscribe((queryData: Record[]) => {
-      this.displayResults(queryData);
+      console.log(queryData);
+      for (const item in queryData.records) {
+        if (item) {
+          this.testRecord.push(queryData.records[item]);
+        }
+      }
+      console.log(this.testRecord);
     });
   }
 
