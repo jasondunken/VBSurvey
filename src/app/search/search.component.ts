@@ -11,7 +11,7 @@ import {Record} from '../record';
 })
 
 export class SearchComponent implements OnInit {
-  searchResult = {};
+  searchResult = [];
   page = 1;
   count = 5;
 
@@ -24,15 +24,20 @@ export class SearchComponent implements OnInit {
 
   submitQuery(): void {
     const query = this.buildQuery();
-    this.db.getRecords(query).subscribe((queryData: Record[]) => {
+    this.db.getRecords(query).subscribe((queryData: {}) => {
+      console.log(queryData);
       this.searchResult = [];
-      for (const item in queryData.records) {
-        if (item) {
-          this.searchResult.push(queryData.records[item]);
+      for (const i in queryData) {
+        console.log(i);
+        if (i === 'records') {
+          this.searchResult = queryData[i];
         }
       }
+      
+      console.log(this.searchResult);
       const pageSizeSelect  = document.getElementById('itemsPerPage');
-      this.count = pageSizeSelect.options[pageSizeSelect.options.selectedIndex].value;
+      // this.count = pageSizeSelect.options[pageSizeSelect.options.selectedIndex].value;
+      this.count = 5;
       const topResult = document.getElementById('results-table');
       topResult.hidden = false;
       // TODO: odd bug here, on first scrollTo it only scrolls part way, on subsequent scrolls, it works as expected?
@@ -42,7 +47,8 @@ export class SearchComponent implements OnInit {
 
   updatePageSize(): void {
     const pageSizeSelect  = document.getElementById('itemsPerPage');
-    this.count = pageSizeSelect.options[pageSizeSelect.options.selectedIndex].value;
+    // this.count = pageSizeSelect.options[pageSizeSelect.options.selectedIndex].value;
+    this.count = 5;
   }
 
   buildQuery(): string {
