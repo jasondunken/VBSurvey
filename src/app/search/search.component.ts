@@ -35,6 +35,7 @@ export class SearchComponent implements OnInit {
       const pageSizeSelect  = document.getElementById('itemsPerPage');
       this.count = pageSizeSelect.options[pageSizeSelect.options.selectedIndex].value;
       console.log(this.searchResult);
+      document.getElementById('results-table').hidden = false;
     });
   }
 
@@ -75,10 +76,6 @@ export class SearchComponent implements OnInit {
     // handle selects
     query = query.substring(0, query.length - 1); // remove the trailing &
     return query;
-  }
-  /*Beach/Site Name	State/Region	County	Modeled Time Period	Model Type*/
-  displayResults(results): void {
-    console.log(results);
   }
 
   toggleDisable(name): void {
@@ -121,6 +118,7 @@ export class SearchComponent implements OnInit {
       }
     }
     window.scrollTo(0, 0);
+    document.getElementById('results-table').hidden = true;
   }
 
   populateSurvey(): void {

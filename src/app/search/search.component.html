@@ -295,7 +295,8 @@
   </div>
   <br>  <!------- END OF FORM ------->
 
-  <div id="resultsTable">
+  <div id="results-table" hidden="true">
+    <h5 class="title1-centered" id="query_results_title">Query Results Table</h5>
     <div>
         <label>Show 
           <select name="queryResultsTable_length" aria-controls="queryResultsTable"  id="itemsPerPage" (click)="updatePageSize()">
@@ -305,7 +306,6 @@
             <option value="100">100</option>
           </select> entries</label>
     </div>
-    <h5 class="title1-centered" id="query_results_title">Query Results Table</h5>
     <div>
       <table>
         <colgroup>
@@ -338,20 +338,19 @@
     <div class="text-right pagenation-controls">
       <pagination-controls (pageChange)="p = $event"></pagination-controls>
     </div>
+
+    <br>
+  
+    <div id="output-controls">
+      <button onclick="exportrecords()">Save Queried Records as CSV File</button>
+      <button onclick="exportcsv()">Export Entire Database to CSV File</button>
+    </div>
   </div>
-
-  <br>
-
-  <div id="output-controls">
-    <button onclick="exportrecords()">Save Queried Records as CSV File</button>
-    <button onclick="exportcsv()">Export Entire Database to CSV File</button>
-  </div>
-
-  <br><br>
-
 </div>
 
-<div id="dev-controls">
+<br><br>
+
+<div id="dev-controls"> <!--these are for dev only-->
   <button><a routerLink="/home">Home</a></button>
   <button><a routerLink="/survey">Survey</a></button>
   <button><a routerLink="/search">Search</a></button>
