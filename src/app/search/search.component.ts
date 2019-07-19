@@ -25,7 +25,6 @@ export class SearchComponent implements OnInit {
   submitQuery(): void {
     const query = this.buildQuery();
     this.db.getRecords(query).subscribe((queryData: Record[]) => {
-      console.log(queryData);
       this.searchResult = [];
       for (const item in queryData.records) {
         if (item) {
@@ -34,8 +33,10 @@ export class SearchComponent implements OnInit {
       }
       const pageSizeSelect  = document.getElementById('itemsPerPage');
       this.count = pageSizeSelect.options[pageSizeSelect.options.selectedIndex].value;
-      console.log(this.searchResult);
-      document.getElementById('results-table').hidden = false;
+      const topResult = document.getElementById('results-table');
+      topResult.hidden = false;
+      // TODO: odd bug here, on first scrollTo it only scrolls part way, on subsequent scrolls, it works as expected?
+      topResult.scrollIntoView({ behavior: 'smooth', block: 'center', inline: 'nearest' });
     });
   }
 
@@ -122,6 +123,6 @@ export class SearchComponent implements OnInit {
   }
 
   populateSurvey(): void {
-    // this method will populate the form with data from an existing record
+    // this method will populate the survey form with data from an existing record
   }
 }

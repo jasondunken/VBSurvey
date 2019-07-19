@@ -1,3 +1,4 @@
+<div id="app-container">
 <div class="box">
   <div class="title0">USEPA Statistical Modeling Survey Database Query Builder</div>
   This form has two primary uses:<br>
@@ -307,7 +308,7 @@
           </select> entries</label>
     </div>
     <div>
-      <table>
+      <table id="actual-results-table">
         <colgroup>
           <col width="150"><col width="150"><col width="150"><col width="150"><col width="150"><col width="150"><col width="50">
         </colgroup>
@@ -335,7 +336,7 @@
       </table>
     </div>
    
-    <div class="text-right pagenation-controls">
+    <div id="pagination-controls" class="text-right pagination-controls">
       <pagination-controls (pageChange)="p = $event"></pagination-controls>
     </div>
 
@@ -354,4 +355,5 @@
   <button><a routerLink="/home">Home</a></button>
   <button><a routerLink="/survey">Survey</a></button>
   <button><a routerLink="/search">Search</a></button>
+</div>
 </div>
