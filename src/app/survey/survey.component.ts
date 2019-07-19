@@ -171,8 +171,4 @@ export class SurveyComponent implements OnInit {
       return null;
     };
   }
-
-  populateForm(): void {
-    // this method will populate the form with data from an existing record
-  }
 }

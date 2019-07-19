@@ -296,70 +296,53 @@
   <br>  <!------- END OF FORM ------->
 
   <div id="resultsTable">
-    <h5 class="title1-centered" id="query_results_title">Query Results Table</h5>
-    <table>
-      <ul>
-        <li *ngFor="let item of testRecord">Email: <em>{{ item.eMail }}</em> State: <em>{{ item.state }}</em> County: <em>{{ item.county }}</em></li>
-      </ul>
-    </table>
-    <!--<div id="queryResultsTable_wrapper" class="dataTables_wrapper no-footer">
-      <div class="dataTables_length" id="queryResultsTable_length">
-        <label>Show <select name="queryResultsTable_length" aria-controls="queryResultsTable" class="">
-        <option value="10">10</option>
-        <option value="25">25</option>
-        <option value="50">50</option>
-        <option value="100">100</option>
-      </select> entries</label>
+    <div>
+        <label>Show 
+          <select name="queryResultsTable_length" aria-controls="queryResultsTable"  id="itemsPerPage" (click)="updatePageSize()">
+            <option value="10">10</option>
+            <option value="25">25</option>
+            <option value="50">50</option>
+            <option value="100">100</option>
+          </select> entries</label>
     </div>
-      <div id="queryResultsTable_filter" class="dataTables_filter">
-        <label>Search:<input type="search" class="" placeholder="" aria-controls="queryResultsTable"></label>
-      </div>
-      <table id="queryResultsTable" class="display dataTable no-footer" style="width:100%" role="grid"
-             aria-describedby="queryResultsTable_info">
+    <h5 class="title1-centered" id="query_results_title">Query Results Table</h5>
+    <div>
+      <table>
+        <colgroup>
+          <col width="150"><col width="150"><col width="150"><col width="150"><col width="150"><col width="150"><col width="50">
+        </colgroup>
         <thead>
-        <tr role="row">
-          <th class="sorting_asc" tabindex="0" aria-controls="queryResultsTable" rowspan="1" colspan="1"
-              aria-sort="ascending" aria-label="Beach/Site Name: activate to sort column descending"
-              style="width: 202px;">Beach/Site Name
-          </th>
-          <th class="sorting" tabindex="0" aria-controls="queryResultsTable" rowspan="1" colspan="1"
-              aria-label="State/Region: activate to sort column ascending" style="width: 155px;">State/Region
-          </th>
-          <th class="sorting" tabindex="0" aria-controls="queryResultsTable" rowspan="1" colspan="1"
-              aria-label="County: activate to sort column ascending" style="width: 94px;">County
-          </th>
-          <th class="sorting" tabindex="0" aria-controls="queryResultsTable" rowspan="1" colspan="1"
-              aria-label="Modeled Time Period: activate to sort column ascending" style="width: 248px;">Modeled Time
-            Period
-          </th>
-          <th class="sorting" tabindex="0" aria-controls="queryResultsTable" rowspan="1" colspan="1"
-              aria-label="Model Type: activate to sort column ascending" style="width: 141px;">Model Type
-          </th>
-          <th style="display: none; width: 17px;" class="sorting" tabindex="0" aria-controls="queryResultsTable"
-              rowspan="1" colspan="1" aria-label="ID: activate to sort column ascending">ID
-          </th>
-        </tr>
+          <tr>
+            <th colspan="1">Beach/Site</th>
+            <th colspan="1">State/Region</th>
+            <th colspan="1">County</th>
+            <th colspan="1">Time Period</th>
+            <th colspan="1">Model Type</th>
+            <th colspan="1">Date recorded</th>
+          </tr>
         </thead>
         <tbody>
-        <tr class="odd">
-          <td valign="top" colspan="6" class="dataTables_empty">No data available in table</td>
-        </tr>
+          <tr *ngFor="let e of searchResult | paginate: { itemsPerPage: count, currentPage: p }">
+            <td colspan="1">{{e.site}}</td>
+            <td colspan="1">{{e.state}}</td>
+            <td colspan="1">{{e.county}}</td>
+            <td colspan="1">{{e.timePeriod}}</td>
+            <td colspan="1">{{e.muNow}} {{e.muFore}} {{e.muResearch}}</td>
+            <td colspan="1">{{e.timestamp}}</td>
+            <td><button id="populateSurvey" (click)="populateSurvey()">populate survey</button></td>
+          </tr>
         </tbody>
       </table>
-      <div class="dataTables_info" id="queryResultsTable_info" role="status" aria-live="polite">Showing 0 to 0 of 0
-        entries
-      </div>
-      <div class="dataTables_paginate paging_simple_numbers" id="queryResultsTable_paginate"><a
-        class="paginate_button previous disabled" aria-controls="queryResultsTable" data-dt-idx="0" tabindex="0"
-        id="queryResultsTable_previous">Previous</a><span></span><a class="paginate_button next disabled" aria-controls="queryResultsTable" data-dt-idx="1" tabindex="0" id="queryResultsTable_next">Next</a>
-      </div>
-    </div>-->
+    </div>
+   
+    <div class="text-right pagenation-controls">
+      <pagination-controls (pageChange)="p = $event"></pagination-controls>
+    </div>
   </div>
 
   <br>
 
   <div id="output-controls">
-    <button onclick="sendrecord()">Send Selected Record to Survey Form</button>
     <button onclick="exportrecords()">Save Queried Records as CSV File</button>
     <button onclick="exportcsv()">Export Entire Database to CSV File</button>
   </div>

@@ -50,12 +50,17 @@
   float: right;
 }
 
-#captcha-container, #controls, #dev-controls {
+#captcha-container, #controls, #dev-controls, #output-controls {
   display: block;
   text-align: center;
 }
-#controls button, #dev-controls button {
+#controls button, #dev-controls button, #output-controls button {
   margin: 0 1em;
+}
+
+.pagenation-controls {
+  display: block;
+  text-align: right;
 }
 
 .button {

@@ -10,6 +10,8 @@ import { AppComponent } from './app.component';
 import { SurveyComponent } from './survey/survey.component';
 import { SearchComponent } from './search/search.component';
 
+import { NgxPaginationModule } from 'ngx-pagination';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -18,6 +20,7 @@ import { SearchComponent } from './search/search.component';
   ],
   imports: [
     BrowserModule,
+    NgxPaginationModule,
     AppRoutingModule,
     ReactiveFormsModule,
     HttpClientModule // HttpClientModule must be loaded after BrowserModule

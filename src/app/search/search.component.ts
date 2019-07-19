@@ -11,26 +11,36 @@ import {Record} from '../record';
 })
 
 export class SearchComponent implements OnInit {
-  testRecord = {};
+  searchResult = {};
+  page = 1;
+  count = 5;
 
   constructor(private db: DbServiceService) {
   }
 
   ngOnInit() {
-    this.testRecord = [];
+    this.searchResult = [];
   }
 
   submitQuery(): void {
     const query = this.buildQuery();
     this.db.getRecords(query).subscribe((queryData: Record[]) => {
       console.log(queryData);
+      this.searchResult = [];
       for (const item in queryData.records) {
         if (item) {
-          this.testRecord.push(queryData.records[item]);
+          this.searchResult.push(queryData.records[item]);
         }
       }
-      console.log(this.testRecord);
+      const pageSizeSelect  = document.getElementById('itemsPerPage');
+      this.count = pageSizeSelect.options[pageSizeSelect.options.selectedIndex].value;
+      console.log(this.searchResult);
     });
+  }
+
+  updatePageSize(): void {
+    const pageSizeSelect  = document.getElementById('itemsPerPage');
+    this.count = pageSizeSelect.options[pageSizeSelect.options.selectedIndex].value;
   }
 
   buildQuery(): string {
@@ -111,5 +121,9 @@ export class SearchComponent implements OnInit {
       }
     }
     window.scrollTo(0, 0);
+  }
+
+  populateSurvey(): void {
+    // this method will populate the form with data from an existing record
   }
 }
