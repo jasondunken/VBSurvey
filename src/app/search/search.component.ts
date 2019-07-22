@@ -25,30 +25,25 @@ export class SearchComponent implements OnInit {
   submitQuery(): void {
     const query = this.buildQuery();
     this.db.getRecords(query).subscribe((queryData: {}) => {
-      console.log(queryData);
       this.searchResult = [];
       for (const i in queryData) {
-        console.log(i);
         if (i === 'records') {
           this.searchResult = queryData[i];
         }
       }
-      
-      console.log(this.searchResult);
-      const pageSizeSelect  = document.getElementById('itemsPerPage');
-      // this.count = pageSizeSelect.options[pageSizeSelect.options.selectedIndex].value;
-      this.count = 5;
+
+      const pageSizeSelect  = document.getElementById('itemsPerPage') as  HTMLSelectElement;
+      this.count = +(pageSizeSelect.options[pageSizeSelect.options.selectedIndex].value);
       const topResult = document.getElementById('results-table');
       topResult.hidden = false;
-      // TODO: odd bug here, on first scrollTo it only scrolls part way, on subsequent scrolls, it works as expected?
+      // TODO: odd bug here, on first scrollTo it only scrolls part way, on subsequent scrollTo, it works as expected?
       topResult.scrollIntoView({ behavior: 'smooth', block: 'center', inline: 'nearest' });
     });
   }
 
   updatePageSize(): void {
-    const pageSizeSelect  = document.getElementById('itemsPerPage');
-    // this.count = pageSizeSelect.options[pageSizeSelect.options.selectedIndex].value;
-    this.count = 5;
+    const pageSizeSelect  = document.getElementById('itemsPerPage') as HTMLSelectElement;
+    this.count = +(pageSizeSelect.options[pageSizeSelect.options.selectedIndex].value);
   }
 
   buildQuery(): string {
