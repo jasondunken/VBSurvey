@@ -294,6 +294,7 @@
     <button id="btnSubmitQuery" (click)="submitQuery()">Submit Query</button>
     <button (click)="clearForm()">Reset Query</button>
   </div>
+
   <br>  <!------- END OF FORM ------->
 
   <div id="results-table" hidden="true">
@@ -318,7 +319,8 @@
             <th colspan="1">State/Region</th>
             <th colspan="1">County</th>
             <th colspan="1">Time Period</th>
-            <th colspan="1">Model Type</th>
+            <th colspan="1" class="tooltip">Model Type<span
+              class="tooltiptext">N = Nowcasting, F = Forecasting, R = Research.</span></th>
             <th colspan="1">Date recorded</th>
           </tr>
         </thead>
@@ -328,7 +330,7 @@
             <td colspan="1">{{e.state}}</td>
             <td colspan="1">{{e.county}}</td>
             <td colspan="1">{{e.timePeriod}}</td>
-            <td colspan="1">{{e.muNow}} {{e.muFore}} {{e.muResearch}}</td>
+            <td colspan="1"><span *ngIf="e.muNow === 1">N</span> <span *ngIf="e.muFore === 1">F</span> <span *ngIf="e.muResearch === 1">R</span></td>
             <td colspan="1">{{e.timestamp}}</td>
             <td><button id="populateSurvey" (click)="populateSurvey()">populate survey</button></td>
           </tr>
