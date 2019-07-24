@@ -389,7 +389,7 @@
     <label for="ecPress" hidden="true">Press or R M S E P</label>
     <input type="checkbox" id="ecPress" formControlName="ecPress">PRESS/RMSEP<br>
     <label for="ecOtherCheck" hidden="true">Tick this box to add evaluation criterion not listed</label>
-    <input type="checkbox" id="ecOtherCheck" formControlName="ecOtherCheck">Other (please specify)
+    <input type="checkbox" id="ecOtherCheck" formControlName="ecOtherCheck" (click)="toggleDisable('ecOther')">Other (please specify)
     <label for="ecOther" hidden="true">Enter other evaluation criterion here</label>
     <input type="text" id="ecOther" size="50" maxlength="80" class="disabled">
     <div *ngIf="submitted && f.evalCriterion.invalid" class="invalid-feedback">

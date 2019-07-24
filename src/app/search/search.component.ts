@@ -49,7 +49,7 @@ export class SearchComponent implements OnInit {
   buildQuery(): string {
     const record = new Record();
     let query = '?';
-    // convert input field values to a query string
+    // convert field values to a query string
     // handle inputs
     const inputs = document.getElementsByTagName('input');
     for (const i in inputs) {
@@ -78,6 +78,8 @@ export class SearchComponent implements OnInit {
     // handle selects
     query = query.substring(0, query.length - 1); // remove the trailing &
     return query;
+
+    // TODO: check to see if any criterion selected, if not warn of all records being returned
   }
 
   toggleDisable(name): void {
