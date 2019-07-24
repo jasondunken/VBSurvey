@@ -210,7 +210,7 @@
     <label for="dClosed" hidden="true">Enter the days per year this site is typically closed due to poor water conditions</label>
     <input type="number" id="dClosed" size="4" min="0" max="365" formControlName="dClosed"> Days Closed
     <div *ngIf="submitted && f.daysPerYear.errors" class="invalid-feedback">
-      <div *ngIf="f.daysPerYear.errors.required" class="required-field">Days posted/closed is required</div>
+      <div *ngIf="f.daysPerYear.errors.selectionMade" class="required-field">Days posted/closed is required</div>
     </div>
   </div>
 

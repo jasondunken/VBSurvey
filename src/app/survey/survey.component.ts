@@ -180,13 +180,11 @@ export class SurveyComponent implements OnInit {
       let checked = 0;
       Object.keys(formGroup.controls).forEach(key => {
         const control = formGroup.controls[key];
-        console.log('control: ' + control.value);
         if (control.value !== false) {
           checked++;
         }
-        console.log('checked: ' + checked);
       });
-      if (checked > minRequired) {
+      if (checked < minRequired) {
         return { selectionMade: true };
       }
       return null;
