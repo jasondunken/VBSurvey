@@ -19,7 +19,8 @@ export class Record {
   omMicrocystin = false;
   omOther = '';
   adviLevel = '';
-  daysPerYear = 0;
+  dPosted = 0;
+  dOpen = 0;
   spVB = false;
   spR = false;
   spSAS = false;
@@ -52,6 +53,8 @@ export class Record {
   ivBirds = false;
   ivWildlife = false;
   ivOther = '';
+  onSite = false;
+  onLine = false;
   ecRsquared = false;
   ecAicBic = false;
   ecSenSpecAcc = false;

@@ -37,7 +37,10 @@ export class SurveyComponent implements OnInit {
       }, this.checkboxValidator()),
       organismModeled: new FormControl('', Validators.required),
       adviLevel: ['', Validators.required],
-      daysPerYear: ['', Validators.required],
+      daysPerYear: new FormGroup({
+        dPosted: new FormControl(false),
+        dClosed: new FormControl(false)
+      }, this.textGroupValidator()),
       softwarePackage: new FormControl('', Validators.required),
       statModel: new FormControl('', Validators.required),
       timePeriod: ['', Validators.required],
@@ -67,7 +70,17 @@ export class SurveyComponent implements OnInit {
         ivWildlife: new FormControl(false),
         ivOtherCheck: new FormControl(false)
       }, this.checkboxValidator()),
-      evalCriterion: new FormControl('', Validators.required)
+      ivSource: new FormGroup({
+        onSite: new FormControl(false),
+        onLine: new FormControl(false)
+      }, this.checkboxValidator()),
+      evalCriterion: new FormGroup({
+        ecRsquared: new FormControl(false),
+        ecAicBic: new FormControl(false),
+        ecSenSpecAcc: new FormControl(false),
+        ecPress: new FormControl(false),
+        ecOtherCheck: new FormControl(false)
+      }, this.checkboxValidator())
     });
   }
 
@@ -156,7 +169,25 @@ export class SurveyComponent implements OnInit {
         }
       });
       if (checked < minRequired) {
-        return {  selectionMade: true };
+        return { selectionMade: true };
+      }
+      return null;
+    };
+  }
+
+  textGroupValidator(minRequired = 1): ValidatorFn {
+    return function validate(formGroup: FormGroup) {
+      let checked = 0;
+      Object.keys(formGroup.controls).forEach(key => {
+        const control = formGroup.controls[key];
+        console.log('control: ' + control.value);
+        if (control.value !== false) {
+          checked++;
+        }
+        console.log('checked: ' + checked);
+      });
+      if (checked > minRequired) {
+        return { selectionMade: true };
       }
       return null;
     };

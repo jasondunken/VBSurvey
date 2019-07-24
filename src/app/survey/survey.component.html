@@ -202,14 +202,15 @@
   </div>
 
   <!-- Days Per Year -->
-  <div class="query-args">
-    <div class="title2"><span class="required-field">*</span> How many days per year is this site typically closed due to
-      poor water quality conditions?
+  <div class="query-args form-group" formGroupName="daysPerYear">
+    <div class="title2"><span class="required-field">*</span> How many days per year is this site posted/closed due to poor water quality conditions?
     </div>
-    <label for="daysPerYear" hidden="true">Enter the days per year this site is typically closed due to poor water conditions</label>
-    <input type="number" id="daysPerYear" size="4" min="0" max="365" formControlName="daysPerYear" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.daysPerYear.errors }">
+    <label for="dPosted" hidden="true">Enter the days per year this site is typically posted due to poor water conditions</label>
+    <input type="number" id="dPosted" size="4" min="0" max="365" formControlName="dPosted"> Days Posted<br>
+    <label for="dClosed" hidden="true">Enter the days per year this site is typically closed due to poor water conditions</label>
+    <input type="number" id="dClosed" size="4" min="0" max="365" formControlName="dClosed"> Days Closed
     <div *ngIf="submitted && f.daysPerYear.errors" class="invalid-feedback">
-      <div *ngIf="f.daysPerYear.errors.required" class="required-field">Days closed is required</div>
+      <div *ngIf="f.daysPerYear.errors.required" class="required-field">Days posted/closed is required</div>
     </div>
   </div>
 
@@ -305,12 +306,12 @@
         <td><input type="checkbox" id="ivDewpoint" formControlName="ivDewpoint">Dewpoint</td>
       </tr>
       <tr>
-        <label for="ivWindSpeed" hidden="true">Wind speed</label>
-        <td><input type="checkbox" id="ivWindSpeed" formControlName="ivWindSpeed">Wind Speed/Velocity</td>
-        <label for="ivCurrentSpeed" hidden="true">Current speed</label>
-        <td><input type="checkbox" id="ivCurrentSpeed" formControlName="ivCurrentSpeed">Current Speed/Velocity</td>
-        <label for="ivWaveHeight" hidden="true">Wave height</label>
-        <td><input type="checkbox" id="ivWaveHeight" formControlName="ivWaveHeight">Wave Height/Direction</td>
+        <label for="ivWindSpeed" hidden="true">Wind Characteristics</label>
+        <td><input type="checkbox" id="ivWindSpeed" formControlName="ivWindSpeed">Wind Characteristics</td>
+        <label for="ivCurrentSpeed" hidden="true">Current Characteristics</label>
+        <td><input type="checkbox" id="ivCurrentSpeed" formControlName="ivCurrentSpeed">Current Characteristics</td>
+        <label for="ivWaveHeight" hidden="true">Wave Characteristics</label>
+        <td><input type="checkbox" id="ivWaveHeight" formControlName="ivWaveHeight">Wave Characteristics</td>
       </tr>
       <tr>
         <label for="ivRain" hidden="true">Antecedent Rainfall</label>
@@ -361,21 +362,34 @@
     </div>
   </div>
 
+  <div class="query-args form-group" formGroupName="ivSource">
+    <div class="title2">
+      <span class="required-field">*</span> What was the Independant Variable source?
+    </div>
+    <label for="onSite" hidden="true">Varaibles collected on site</label>
+    <input type="checkbox" id="onSite" formControlName="onSite">Collected Onsite<br>
+    <label for="onLine" hidden="true">Variables accessed online</label>
+    <input type="checkbox" id="onLine" formControlName="onLine">Accessed Online
+    <div *ngIf="submitted && f.ivSource.errors" class="invalid-feedback">
+      <div *ngIf="f.ivSource.errors.selectionMade" class="required-field">At least one independent variable source is required</div>
+    </div>
+  </div>
+
   <!-- Evaluation Criterion -->
-  <div class="query-args" (click)="radioDisable($event, 'ecOther')">
+  <div class="query-args form-group" formGroupName="evalCriterion">
     <div class="title2">
       <span class="required-field">*</span> What type of evaluation criterion was primarily used for model selection?
     </div>
     <label for="ecRsquared" hidden="true">R squared or adjusted r squared</label>
-    <input type="radio" id="ecRsquared" value="1" name="evalCriterion" formControlName="evalCriterion">R-Squared/Adjusted R-Squared<br>
+    <input type="checkbox" id="ecRsquared" formControlName="ecRsquared">R-Squared/Adjusted R-Squared<br>
     <label for="ecAicBic" hidden="true">A I C, A I C c, or B I C</label>
-    <input type="radio" id="ecAicBic" value="2" name="evalCriterion" formControlName="evalCriterion">AIC/AICc/BIC<br>
+    <input type="checkbox" id="ecAicBic" formControlName="ecAicBic">AIC/AICc/BIC<br>
     <label for="ecSenSpecAcc" hidden="true">Sensitivity, specify, or accuracy</label>
-    <input type="radio" id="ecSenSpecAcc" value="3" name="evalCriterion" formControlName="evalCriterion">Sensitivity/Specificity/Accuracy<br>
+    <input type="checkbox" id="ecSenSpecAcc" formControlName="ecSenSpecAcc">Sensitivity/Specificity/Accuracy<br>
     <label for="ecPress" hidden="true">Press or R M S E P</label>
-    <input type="radio" id="ecPress" value="4" name="evalCriterion" formControlName="evalCriterion">PRESS/RMSEP<br>
+    <input type="checkbox" id="ecPress" formControlName="ecPress">PRESS/RMSEP<br>
     <label for="ecOtherCheck" hidden="true">Tick this box to add evaluation criterion not listed</label>
-    <input type="radio" id="ecOtherCheck" value="5" name="evalCriterion" formControlName="evalCriterion">Other (please specify)
+    <input type="checkbox" id="ecOtherCheck" formControlName="ecOtherCheck">Other (please specify)
     <label for="ecOther" hidden="true">Enter other evaluation criterion here</label>
     <input type="text" id="ecOther" size="50" maxlength="80" class="disabled">
     <div *ngIf="submitted && f.evalCriterion.invalid" class="invalid-feedback">

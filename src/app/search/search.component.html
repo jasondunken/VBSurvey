@@ -227,12 +227,12 @@
         <td><input type="checkbox" id="ivDewpoint">Dewpoint</td>
       </tr>
       <tr>
-        <label for="ivWindSpeed" hidden="true">Wind speed</label>
-        <td><input type="checkbox" id="ivWindSpeed">Wind Speed/Velocity</td>
-        <label for="ivCurrentSpeed" hidden="true">Current speed</label>
-        <td><input type="checkbox" id="ivCurrentSpeed">Current Speed/Velocity</td>
-        <label for="ivWaveHeight" hidden="true">Wave height</label>
-        <td><input type="checkbox" id="ivWaveHeight">Wave Height/Direction</td>
+        <label for="ivWindSpeed" hidden="true">Wind Characteristics</label>
+        <td><input type="checkbox" id="ivWindSpeed">Wind Characteristics</td>
+        <label for="ivCurrentSpeed" hidden="true">Current Characteristics</label>
+        <td><input type="checkbox" id="ivCurrentSpeed">Current Characteristics</td>
+        <label for="ivWaveHeight" hidden="true">Wave Characteristics</label>
+        <td><input type="checkbox" id="ivWaveHeight">Wave Characteristics</td>
       </tr>
       <tr>
         <label for="ivRain" hidden="true">Antecedent Rainfall</label>
@@ -284,15 +284,15 @@
   <div class="query-args" (click)="radioDisable($event, 'ecOther')">
     <div class="title2">Primary evaluation criterion:</div>
     <label for="ecRsquared" hidden="true">R squared or adjusted r squared</label>
-    <input type="radio" name="MDS" id="ecRsquared" value="1">R-Squared/Adjusted R-Squared<br>
+    <input type="checkbox" id="ecRsquared" >R-Squared/Adjusted R-Squared<br>
     <label for="ecAicBic" hidden="true">A I C, A I C c, or B I C</label>
-    <input type="radio" name="MDS" id="ecAicBic" value="2">AIC/AICc/BIC<br>
+    <input type="checkbox" id="ecAicBic" >AIC/AICc/BIC<br>
     <label for="ecSenSpecAcc" hidden="true">Sensitivity, specify, or accuracy</label>
-    <input type="radio" name="MDS" id="ecSenSpecAcc" value="3">Sensitivity/Specificity/Accuracy<br>
+    <input type="checkbox" id="ecSenSpecAcc" >Sensitivity/Specificity/Accuracy<br>
     <label for="ecPress" hidden="true">Press or R M S E P</label>
-    <input type="radio" name="MDS" id="ecPress" value="4">PRESS/RMSEP<br>
+    <input type="checkbox" id="ecPress" >PRESS/RMSEP<br>
     <label for="ecOtherCheck" hidden="true">Tick this box to add evaluation criterion not listed</label>
-    <input type="radio" name="MDS" id="ecOtherCheck" value="5">Other (please specify)
+    <input type="checkbox" id="ecOtherCheck" >Other (please specify)
     <label for="ecOther" hidden="true">Enter other evaluation criterion here</label>
     <input type="text" id="ecOther" size="50" maxlength="80" class="disabled">
   </div>
