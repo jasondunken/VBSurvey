@@ -110,7 +110,7 @@
 
 .tooltip .tooltiptext {
   visibility: hidden;
-  width: 400px;
+  width: 120px;
   background-color: dimgray;
   color: white;
   text-align: center;
@@ -119,7 +119,7 @@
   padding: 5px 0;
   position: absolute;
   z-index: 1;
-  top: -5px;
+  top: -25px;
   left: 105%;
 }
 
