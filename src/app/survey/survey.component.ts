@@ -28,9 +28,11 @@ export class SurveyComponent implements OnInit {
         bdDeep: new FormControl(false),
         bdShallow: new FormControl(false),
         bdOpen: new FormControl(false),
-        bdClosed: new FormControl(false),
+        bdEmbayed: new FormControl(false),
         bdFresh: new FormControl(false),
         bdMarine: new FormControl(false),
+        bdPier: new FormControl(false),
+        bdDrain: new FormControl(false),
         bdOtherCheck: new FormControl(false)
       }, this.checkboxValidator()),
       organismModeled: new FormControl('', Validators.required),

@@ -18,8 +18,8 @@
     <input type="text" id="site" size="50" maxlength="75">
 
     <div class="title1">Beach <a href="https://watersgeo.epa.gov/BEACON2/Beacon.html" target="_blank" class="tooltip">Act ID<span
-      class="tooltiptext">Use this link to find an Act ID</span></a> (if applicable):</div>
-    <label for="actId" hidden="true">Enter the beach act id if applicable</label>
+      class="tooltiptext">Use this link to find an Act ID</span></a> or EPA Storet ID (if applicable):</div>
+    <label for="actId" hidden="true">Enter the beach act i d or E P A Storet I D if applicable</label>
     <input type="text" id="actId" size="50" maxlength="75">
 
     <div class="title1">State/Region:</div>
@@ -106,7 +106,7 @@
     <div class="title2">Beach Descriptors:</div>
     <table>
       <colgroup>
-        <col width="150"><col width="150"><col width="300">
+        <col width="150"><col width="450">
       </colgroup>
       <tbody>
       <tr>
@@ -128,7 +128,13 @@
         <td><input type="checkbox" id="bdMarine">Marine</td>
       </tr>
       <tr>
-        <td colspan="3">
+        <label for="bdPier" hidden="true">Beach descriptor is pier</label>
+        <td><input type="checkbox" id="bdPier">Pier</td>
+        <label for="bdDrain" hidden="true">Beach descriptor is storm drain river outlet</label>
+        <td><input type="checkbox" id="bdDrain">Storm Drain/River Outlet<br></td>
+      </tr>
+      <tr>
+        <td colspan="2">
           <div>
             <label for="bdOtherCheck" hidden="true">Tick this box to add other descriptors</label>
             <input type="checkbox" id="bdOtherCheck" (click)="toggleDisable('bdOther')">Other (please specify)

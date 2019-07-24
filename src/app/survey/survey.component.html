@@ -28,8 +28,8 @@
     </div>
 
     <div class="title1"><span class="required-field">*</span> Beach <a href="https://watersgeo.epa.gov/BEACON2/Beacon.html" target="_blank" class="tooltip">Act ID<span
-      class="tooltiptext">Use this link to find an Act ID</span></a> (use NA if not applicable):</div>
-    <label for="actId" hidden="true">Enter beach act ID, use N A if not applicable</label>
+      class="tooltiptext">Use this link to find an Act ID</span></a> or EPA Storet ID (use NA if not applicable):</div>
+    <label for="actId" hidden="true">Enter beach act i d or e p a storet i d, use N A if not applicable</label>
     <input type="text" id="actId" size="50" maxlength="75" formControlName="actId" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.actId.errors }">
     <div *ngIf="submitted && f.actId.errors" class="invalid-feedback">
         <div *ngIf="f.actId.errors.required" class="required-field">Beach Act ID is required</div>
@@ -125,7 +125,7 @@
     <div class="title2"><span class="required-field">*</span> Beach Descriptors:</div>
     <table>
       <colgroup>
-        <col width="150"><col width="150"><col width="300">
+        <col width="150"><col width="450">
       </colgroup>
       <tbody>
       <tr>
@@ -138,7 +138,7 @@
         <label for="bdOpen" hidden="true">Beach descriptor is open</label>
         <td><input type="checkbox" id="bdOpen" formControlName="bdOpen">Open<br></td>
         <label for="bdClosed" hidden="true">Beach descriptor is closed</label>
-        <td><input type="checkbox" id="bdClosed" formControlName="bdClosed">Closed</td>
+        <td><input type="checkbox" id="bdEmbayed" formControlName="bdEmbayed">Embayed</td>
       </tr>
       <tr>
         <label for="bdFresh" hidden="true">Beach descriptor is freshwater</label>
@@ -147,7 +147,13 @@
         <td><input type="checkbox" id="bdMarine" formControlName="bdMarine">Marine<br></td>
       </tr>
       <tr>
-        <td colspan="3">
+        <label for="bdPier" hidden="true">Beach descriptor is pier</label>
+        <td><input type="checkbox" id="bdPier" formControlName="bdPier">Pier</td>
+        <label for="bdDrain" hidden="true">Beach descriptor is storm drain river outlet</label>
+        <td><input type="checkbox" id="bdDrain" formControlName="bdDrain">Storm Drain/River Outlet<br></td>
+      </tr>
+      <tr>
+        <td colspan="2">
           <div>
             <label for="bdOtherCheck" hidden="true">Tick this box to add other descriptors</label>
             <input type="checkbox" id="bdOtherCheck" (click)="toggleDisable('bdOther')" formControlName="bdOtherCheck">Other (please specify)

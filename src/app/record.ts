@@ -8,9 +8,11 @@ export class Record {
   bdShallow = false;
   bdDeep = false;
   bdOpen = false;
-  bdClosed = false;
+  bdEmbayed = false;
   bdFresh = false;
   bdMarine = false;
+  bdDrain = false;
+  bdPier = false;
   bdOther = '';
   omEcoli = false;
   omEnterocci = false;
