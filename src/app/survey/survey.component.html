@@ -27,7 +27,8 @@
         <div *ngIf="f.site.errors.required" class="required-field">Beach/Site Name is required</div>
     </div>
 
-    <div class="title1"><span class="required-field">*</span> Beach Act ID (use NA if not applicable):</div>
+    <div class="title1"><span class="required-field">*</span> Beach <a href="https://watersgeo.epa.gov/BEACON2/Beacon.html" target="_blank" class="tooltip">Act ID<span
+      class="tooltiptext">Use this link to find an Act ID</span></a> (use NA if not applicable):</div>
     <label for="actId" hidden="true">Enter beach act ID, use N A if not applicable</label>
     <input type="text" id="actId" size="50" maxlength="75" formControlName="actId" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.actId.errors }">
     <div *ngIf="submitted && f.actId.errors" class="invalid-feedback">
