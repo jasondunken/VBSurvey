@@ -120,6 +120,12 @@ export class SurveyComponent implements OnInit {
           }
         }
     }
+    const textAreas = document.getElementsByTagName('textarea');
+    for (const k in textAreas) {
+        if (record.hasOwnProperty(textAreas[k].id)) {
+        record[textAreas[k].id] = '"' + textAreas[k].value + '"';
+      }
+    }
   }
 
   toggleDisable(name): void {

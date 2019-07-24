@@ -69,4 +69,5 @@ export class Record {
   mpPredSpecificity = 0;
   mpPredAccuracy = 0;
   mpPredPredictions = 0;
+  comments = '';
 }
