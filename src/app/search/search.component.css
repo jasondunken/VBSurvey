@@ -24,7 +24,7 @@ a {
   font-size: 20px;
   font-weight: bold;
 }
-.title1-centered {
+.title1-centered, .title2-centered {
   text-align: center;
 }
 

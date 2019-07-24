@@ -332,6 +332,7 @@
           </tr>
         </thead>
         <tbody>
+          <ng-container *ngIf="searchResult.length !==  0">
           <tr *ngFor="let e of searchResult | paginate: { itemsPerPage: count, currentPage: p }">
             <td colspan="1">{{e.site}}</td>
             <td colspan="1">{{e.state}}</td>
@@ -341,8 +342,10 @@
             <td colspan="1">{{e.dateEntered}}</td>
             <td><button id="populateSurvey" (click)="populateSurvey()">populate survey</button></td>
           </tr>
+          </ng-container>
         </tbody>
       </table>
+      <h5 *ngIf="searchResult.length === 0" class="title2-centered"><br>No Results found!</h5>
     </div>
    
     <div id="pagination-controls" class="text-right pagination-controls">
