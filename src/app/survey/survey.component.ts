@@ -135,12 +135,14 @@ export class SurveyComponent implements OnInit {
   }
 
   radioDisable(event: any, id): void {
-    const textbox = document.getElementById(id);
+    const textbox = document.getElementById(id) as HTMLInputElement;
     if (event.target.id !== id) {
       if (event.target.id === id + 'Check') {
         textbox.classList.remove('disabled');
+        textbox.disabled = false;
       } else {
         textbox.classList.add('disabled');
+        textbox.disabled = true;
       }
     }
   }

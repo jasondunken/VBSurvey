@@ -181,7 +181,7 @@
     <label for="omOtherCheck" hidden="true">Tick this box to enter an orgaism that is not listed</label>
     <input type="radio" id="omOtherCheck" value="4" name="organismModeled" formControlName="organismModeled">Other (please specify)
     <label for="omOther" hidden="true">Enter an organism not listed</label>
-    <input type="text" id="omOther" size="50" maxlength="80" class="disabled">
+    <input type="text" id="omOther" size="50" maxlength="80" class="disabled" disabled="true">
     <div *ngIf="submitted && f.organismModeled.invalid" class="invalid-feedback">
       <div class="required-field">Organism modeled is required</div>
     </div>
@@ -228,7 +228,7 @@
     <label for="spOtherCheck" hidden="true">Tick this box to enter a software package not listed</label>
     <input type="radio" id="spOtherCheck" value="5" name="softwarePackage" formControlName="softwarePackage">Other (please specify)
     <label for="spOther" hidden="true">Enter software package not listed here</label>
-    <input type="text" id="spOther" size="50" maxlength="80" class="disabled" >
+    <input type="text" id="spOther" size="50" maxlength="80" class="disabled" disabled="true">
     <div *ngIf="submitted && f.softwarePackage.invalid" class="invalid-feedback">
       <div class="required-field">Software package is required</div>
     </div>
@@ -246,7 +246,7 @@
     <label for="spOtherCheck" hidden="true">Tick this box to enter a statistical model not listed</label>
     <input type="radio" id="smOtherCheck" value="4" name="statModel" formControlName="statModel">Other (please specify)
     <label for="spOther" hidden="true">Enter model not listed here</label>
-    <input type="text" name="ModelTypeText" id="smOther" size="50" maxlength="80" class="disabled">
+    <input type="text" name="ModelTypeText" id="smOther" size="50" maxlength="80" class="disabled" disabled="true">
     <div *ngIf="submitted && f.statModel.invalid" class="invalid-feedback">
       <div class="required-field">Statistical model is required</div>
     </div>

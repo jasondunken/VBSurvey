@@ -89,15 +89,15 @@ export class SearchComponent implements OnInit {
   }
 
   radioDisable(event: any, name): void {
-    const textbox = document.getElementById(name);
+    const textbox = document.getElementById(name) as HTMLInputElement;
     if (event.target.id !== name) {
       if (event.target.id === name + 'Check') {
         textbox.classList.remove('disabled');
-        textbox.removeAttribute('disabled');
+        textbox.disabled = false;
         textbox.innerHTML = '';
       } else {
         textbox.classList.add('disabled');
-        textbox.setAttribute('disabled', 'true');
+        textbox.disabled = true;
       }
     }
   }
