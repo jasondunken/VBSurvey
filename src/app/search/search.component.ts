@@ -83,9 +83,9 @@ export class SearchComponent implements OnInit {
   }
 
   toggleDisable(name): void {
-    const textbox = document.getElementById(name);
+    const textbox = document.getElementById(name) as HTMLInputElement;
     textbox.classList.toggle('disabled');
-    textbox.toggleAttribute('disabled');
+    textbox.disabled = !textbox.disabled;
   }
 
   radioDisable(event: any, name): void {
