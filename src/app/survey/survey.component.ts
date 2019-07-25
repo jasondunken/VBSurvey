@@ -143,6 +143,7 @@ export class SurveyComponent implements OnInit {
       } else {
         textbox.classList.add('disabled');
         textbox.disabled = true;
+        textbox.value = '';
       }
     }
   }

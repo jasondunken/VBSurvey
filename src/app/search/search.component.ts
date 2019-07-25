@@ -94,10 +94,10 @@ export class SearchComponent implements OnInit {
       if (event.target.id === name + 'Check') {
         textbox.classList.remove('disabled');
         textbox.disabled = false;
-        textbox.innerHTML = '';
       } else {
         textbox.classList.add('disabled');
         textbox.disabled = true;
+        textbox.value = '';
       }
     }
   }
