@@ -132,6 +132,7 @@ export class SurveyComponent implements OnInit {
     const textbox = document.getElementById(name) as HTMLInputElement;
     textbox.classList.toggle('disabled');
     textbox.disabled = !textbox.disabled;
+    textbox.value = '';
   }
 
   radioDisable(event: any, id): void {
