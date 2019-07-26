@@ -156,7 +156,9 @@ export class SurveyComponent implements OnInit {
       if (inputs[i].type === 'text' || inputs[i].type === 'email' || inputs[i].type === 'number') {
         inputs[i].value = '';
         if (inputs[i].name.substring(inputs[i].name.length - 4) === 'Text') {
-          inputs[i].classList.add('disabled');
+          const otherText = inputs[i] as HTMLInputElement;
+          otherText.classList.add('disabled');
+          otherText.disabled = true;
         }
       } else if (inputs[i].type === 'radio' || inputs[i].type === 'checkbox') {
         inputs[i].checked = false;
