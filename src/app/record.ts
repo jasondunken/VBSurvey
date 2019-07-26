@@ -30,10 +30,12 @@ export class Record {
   smGBM = false;
   smPLS = false;
   smOther = '';
-  timePeriod = '';
+  tpDevelop = '';
+  tpImplement = '';
   muNow = false;
   muFore = false;
   muResearch = false;
+  dvTransform = false;
   ivAirTemp = false;
   ivWaterTemp = false;
   ivDewpoint = false;
@@ -60,6 +62,7 @@ export class Record {
   ecSenSpecAcc = false;
   ecPress = false;
   ecOther = '';
+  dCriterion = '';
   mpFitSensitivity = 0;
   mpFitSpecificity = 0;
   mpFitAccuracy = 0;

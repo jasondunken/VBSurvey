@@ -259,11 +259,20 @@
         class="tooltiptext">For example: summer 2017, 2015-2017 beach seasons, etc.</span></div>
       was this model used for?
     </div>
-    <label for="timePeriod" hidden="true">Enter the time period</label>
-    <input type="text" id="timePeriod" size="50" maxlength="80" formControlName="timePeriod" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.timePeriod.errors }">
-    <div *ngIf="submitted && f.timePeriod.errors" class="invalid-feedback">
-      <div *ngIf="f.timePeriod.errors.required" class="required-field">Time period is required</div>
+    <div>
+    <label for="tpDevelop" hidden="true">Model development</label>
+    <input type="text" id="tpDevelop" size="30" maxlength="80" formControlName="tpDevelop" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.tpDevelop.errors }"> Development
+    <div *ngIf="submitted && f.tpDevelop.errors" class="invalid-feedback">
+      <div *ngIf="f.tpDevelop.errors.required" class="required-field">Development time period is required</div>
     </div>
+  </div>
+  <div>
+    <label for="tpImplement" hidden="true">Model implementation</label>
+    <input type="text" id="tpImplement" size="30" maxlength="80" formControlName="tpImplement" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.tpImplement.errors }"> Implementation
+    <div *ngIf="submitted && f.tpImplement.errors" class="invalid-feedback">
+      <div *ngIf="f.tpImplement.errors.required" class="required-field">Implementation time period is required</div>
+    </div>
+  </div>
   </div>
 
   <!-- Model Usage -->
@@ -282,6 +291,20 @@
       <div *ngIf="f.modelUse.errors.selectionMade" class="required-field">At least one model use is required</div>
     </div>
   </div>
+
+  <!-- Dependent variable transform -->
+  <div class="query-args">
+      <div class="title2"><span class="required-field">*</span> What 
+        <div class="tooltip">transformation<span
+          class="tooltiptext">examples here!</span></div>
+          was used on the dependent variable?
+      </div>
+      <label for="dvTransform" hidden="true">Enter the transform applied to the dependent variable</label>
+      <input type="text" id="dvTransform" size="50" maxlength="150" formControlName="dvTransform" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.dvTransform.errors }">
+      <div *ngIf="submitted && f.dvTransform.errors" class="invalid-feedback">
+        <div *ngIf="f.dvTransform.errors.required" class="required-field">Dependent variable transform required</div>
+      </div>
+    </div>
 
   <!-- Independent Variables -->
   <div class="query-args form-group" formGroupName="iVariables">
@@ -396,6 +419,20 @@
       <div class="required-field">Evaluation criterion is required</div>
     </div>
   </div>
+
+  <!-- Decision criterion -->
+  <div class="query-args">
+      <div class="title2"><span class="required-field">*</span> What decision
+        <div class="tooltip">criterion<span
+          class="tooltiptext">examples here!</span></div>
+          was used for evaluating model predictions?
+      </div>
+      <label for="dCriterion" hidden="true">Enter decision criterion here</label>
+      <input type="text" id="dCriterion" size="50" maxlength="150" formControlName="dCriterion" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.dCriterion.errors }">
+      <div *ngIf="submitted && f.dCriterion.errors" class="invalid-feedback">
+        <div *ngIf="f.dCriterion.errors.required" class="required-field">Decision criterion for model predictions is required</div>
+      </div>
+    </div>
 
   <!-- Model Performance -->
   <div class="query-args">

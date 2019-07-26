@@ -43,12 +43,14 @@ export class SurveyComponent implements OnInit {
       }, this.textGroupValidator()),
       softwarePackage: new FormControl('', Validators.required),
       statModel: new FormControl('', Validators.required),
-      timePeriod: ['', Validators.required],
+      tpDevelop: ['', Validators.required],
+      tpImplement: ['', Validators.required],
       modelUse: new FormGroup({
         muNow: new FormControl(false),
         muFore: new FormControl(false),
         muResearch: new FormControl(false)
       }, this.checkboxValidator()),
+      dvTransform: ['', Validators.required],
       iVariables: new FormGroup({
         ivAirTemp: new FormControl(false),
         ivWaterTemp: new FormControl(false),
@@ -80,7 +82,8 @@ export class SurveyComponent implements OnInit {
         ecSenSpecAcc: new FormControl(false),
         ecPress: new FormControl(false),
         ecOtherCheck: new FormControl(false)
-      }, this.checkboxValidator())
+      }, this.checkboxValidator()),
+      dCriterion: ['', Validators.required]
     });
   }
 
