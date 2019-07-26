@@ -170,16 +170,16 @@
     </div>
 
   <!-- Organism Modeled -->
-  <div class="query-args" (click)="radioDisable($event, 'omOther')">
+  <div class="query-args">
     <div class="title2"><span class="required-field">*</span> What organism/condition was modeled?</div>
     <label for="omEcoli" hidden="true">E coli</label>
-    <input type="radio" id="omEcoli" value="1" name="organismModeled" formControlName="organismModeled">E.coli<br>
+    <input type="radio" id="omEcoli" value="1" name="organismModeled" formControlName="organismModeled" (click)="radioDisable($event, 'omOther')">E.coli<br>
     <label for="omEnterococci" hidden="true">Enterococci</label>
-    <input type="radio" id="omEnterococci" value="2" name="organismModeled" formControlName="organismModeled">Enterococci<br>
+    <input type="radio" id="omEnterococci" value="2" name="organismModeled" formControlName="organismModeled" (click)="radioDisable($event, 'omOther')">Enterococci<br>
     <label for="omMicrocyctin" hidden="true">Microcystin or  HAB</label>
-    <input type="radio" id="omMicrocyctin" value="3" name="organismModeled" formControlName="organismModeled">Microcystin/HABs<br>
+    <input type="radio" id="omMicrocyctin" value="3" name="organismModeled" formControlName="organismModeled" (click)="radioDisable($event, 'omOther')">Microcystin/HABs<br>
     <label for="omOtherCheck" hidden="true">Tick this box to enter an orgaism that is not listed</label>
-    <input type="radio" id="omOtherCheck" value="4" name="organismModeled" formControlName="organismModeled">Other (please specify)
+    <input type="radio" id="omOtherCheck" value="4" name="organismModeled" formControlName="organismModeled" (click)="radioDisable($event, 'omOther')">Other (please specify)
     <label for="omOther" hidden="true">Enter an organism not listed</label>
     <input type="text" id="omOther" size="50" maxlength="80" class="disabled" disabled="true">
     <div *ngIf="submitted && f.organismModeled.invalid" class="invalid-feedback">
@@ -215,18 +215,18 @@
   </div>
 
   <!-- Software Package -->
-  <div class="query-args" (click)="radioDisable($event, 'spOther')">
+  <div class="query-args">
     <div class="title2"><span class="required-field">*</span> What software package was used to develop the model?</div>
     <label for="spVB" hidden="true">Virtual beach</label>
-    <input type="radio" id="spVB" value="1" name="softwarePackage" formControlName="softwarePackage">Virtual Beach<br>
+    <input type="radio" id="spVB" value="1" name="softwarePackage" formControlName="softwarePackage" (click)="radioDisable($event, 'spOther')">Virtual Beach<br>
     <label for="spR" hidden="true">R</label>
-    <input type="radio" id="spR" value="2" name="softwarePackage" formControlName="softwarePackage">R<br>
+    <input type="radio" id="spR" value="2" name="softwarePackage" formControlName="softwarePackage" (click)="radioDisable($event, 'spOther')">R<br>
     <label for="spSAS" hidden="true">S A S</label>
-    <input type="radio" id="spSAS" value="3" name="softwarePackage" formControlName="softwarePackage">SAS<br>
+    <input type="radio" id="spSAS" value="3" name="softwarePackage" formControlName="softwarePackage" (click)="radioDisable($event, 'spOther')">SAS<br>
     <label for="spExcel" hidden="true">Excel</label>
-    <input type="radio" id="spExcel" value="4" name="softwarePackage" formControlName="softwarePackage">Excel<br>
+    <input type="radio" id="spExcel" value="4" name="softwarePackage" formControlName="softwarePackage" (click)="radioDisable($event, 'spOther')">Excel<br>
     <label for="spOtherCheck" hidden="true">Tick this box to enter a software package not listed</label>
-    <input type="radio" id="spOtherCheck" value="5" name="softwarePackage" formControlName="softwarePackage">Other (please specify)
+    <input type="radio" id="spOtherCheck" value="5" name="softwarePackage" formControlName="softwarePackage" (click)="radioDisable($event, 'spOther')">Other (please specify)
     <label for="spOther" hidden="true">Enter software package not listed here</label>
     <input type="text" id="spOther" size="50" maxlength="80" class="disabled" disabled="true">
     <div *ngIf="submitted && f.softwarePackage.invalid" class="invalid-feedback">
@@ -235,16 +235,16 @@
   </div>
 
   <!-- Statistical Model -->
-  <div class="query-args" (click)="radioDisable($event, 'smOther')">
+  <div class="query-args">
     <div class="title2"><span class="required-field">*</span> What type of statistical model was built?</div>
     <label for="smMLR" hidden="true">Multiple linear regression</label>
-    <input type="radio" id="smMLR" value="1" name="statModel" formControlName="statModel">MLR (Multiple Linear Regression)<br>
+    <input type="radio" id="smMLR" value="1" name="statModel" formControlName="statModel" (click)="radioDisable($event, 'smOther')">MLR (Multiple Linear Regression)<br>
     <label for="spGBM" hidden="true">Generalized boosting meathod</label>
-    <input type="radio" id="smGBM" value="2" name="statModel" formControlName="statModel">GBM (Generalized Boosting Method)<br>
+    <input type="radio" id="smGBM" value="2" name="statModel" formControlName="statModel" (click)="radioDisable($event, 'smOther')">GBM (Generalized Boosting Method)<br>
     <label for="spPLS" hidden="true">Partial least Squares</label>
-    <input type="radio" id="smPLS" value="3" name="statModel" formControlName="statModel">PLS (Partial Least Squares)<br>
+    <input type="radio" id="smPLS" value="3" name="statModel" formControlName="statModel" (click)="radioDisable($event, 'smOther')">PLS (Partial Least Squares)<br>
     <label for="spOtherCheck" hidden="true">Tick this box to enter a statistical model not listed</label>
-    <input type="radio" id="smOtherCheck" value="4" name="statModel" formControlName="statModel">Other (please specify)
+    <input type="radio" id="smOtherCheck" value="4" name="statModel" formControlName="statModel" (click)="radioDisable($event, 'smOther')">Other (please specify)
     <label for="spOther" hidden="true">Enter model not listed here</label>
     <input type="text" name="ModelTypeText" id="smOther" size="50" maxlength="80" class="disabled" disabled="true">
     <div *ngIf="submitted && f.statModel.invalid" class="invalid-feedback">

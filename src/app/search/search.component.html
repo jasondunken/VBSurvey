@@ -150,48 +150,48 @@
   </div>
 
   <!-- Organism Modeled -->
-  <div class="query-args" (click)="radioDisable($event, 'omOther')">
+  <div class="query-args">
     <div class="title2">Modeled organism/condition:</div>
     <label for="omEcoli" hidden="true">E coli</label>
-    <input type="radio" name="RV" id="omEcoli" value="1">E.coli<br>
+    <input type="radio" name="RV" id="omEcoli" value="1" (click)="radioDisable($event, 'omOther')">E.coli<br>
     <label for="omEnterococci" hidden="true">Enterococci</label>
-    <input type="radio" name="RV" id="omEntercocci" value="2">Enterococci<br>
+    <input type="radio" name="RV" id="omEntercocci" value="2" (click)="radioDisable($event, 'omOther')">Enterococci<br>
     <label for="omMicrocyctin" hidden="true">Microcystin or H A B</label>
-    <input type="radio" name="RV" id="omMicrocystin" value="3">Microcystin/HABs<br>
+    <input type="radio" name="RV" id="omMicrocystin" value="3" (click)="radioDisable($event, 'omOther')">Microcystin/HABs<br>
     <label for="omOtherCheck" hidden="true">Tick this box to enter an orgaism that is not listed</label>
-    <input type="radio" name="RV" id="omOtherCheck" value="4">Other (please specify)
+    <input type="radio" name="RV" id="omOtherCheck" value="4" (click)="radioDisable($event, 'omOther')">Other (please specify)
     <label for="omOther" hidden="true">Enter an organism not listed</label>
     <input type="text" id="omOther" size="50" maxlength="80" class="disabled" disabled="true">
   </div>
 
   <!-- Software Package -->
-  <div class="query-args" (click)="radioDisable($event, 'spOther')">
+  <div class="query-args">
     <div class="title2">What software package was used to develop the model?</div>
     <label for="spVB" hidden="true">Virtual beach</label>
-    <input name="STAT" id="spVB" value="1" type="radio">Virtual Beach<br>
+    <input name="STAT" id="spVB" value="1" type="radio" (click)="radioDisable($event, 'spOther')">Virtual Beach<br>
     <label for="spR" hidden="true">R</label>
-    <input name="STAT" id="spR" value="2" type="radio">R<br>
+    <input name="STAT" id="spR" value="2" type="radio" (click)="radioDisable($event, 'spOther')">R<br>
     <label for="spSAS" hidden="true">S A S</label>
-    <input name="STAT" id="spSAS" value="3" type="radio">SAS<br>
+    <input name="STAT" id="spSAS" value="3" type="radio" (click)="radioDisable($event, 'spOther')">SAS<br>
     <label for="spExcel" hidden="true">Excel</label>
-    <input name="STAT" id="spExcel" value="4" type="radio">Excel<br>
+    <input name="STAT" id="spExcel" value="4" type="radio" (click)="radioDisable($event, 'spOther')">Excel<br>
     <label for="spOtherCheck" hidden="true">Tick this box to enter a software package not listed</label>
-    <input name="STAT" id="spOtherCheck" value="5" type="radio">Other (please specify)
+    <input name="STAT" id="spOtherCheck" value="5" type="radio" (click)="radioDisable($event, 'spOther')">Other (please specify)
     <label for="spOther" hidden="true">Enter software package not listed here</label>
     <input type="text" id="spOther" size="50" maxlength="80" class="disabled" disabled="true">
   </div>
 
   <!-- Statistical Model -->
-  <div class="query-args" (click)="radioDisable($event, 'smOther')">
+  <div class="query-args">
     <div class="title2">Model Type:</div>
     <label for="smMLR" hidden="true">Multiple linear regression</label>
-    <input type="radio" name="ModelType" id="smMLR" value="1">MLR (Multiple Linear Regression)<br>
+    <input type="radio" name="ModelType" id="smMLR" value="1" (click)="radioDisable($event, 'smOther')">MLR (Multiple Linear Regression)<br>
     <label for="spGBM" hidden="true">Generalized boosting meathod</label>
-    <input type="radio" name="ModelType" id="smGBM" value="2">GBM (Generalized Boosting Method)<br>
+    <input type="radio" name="ModelType" id="smGBM" value="2" (click)="radioDisable($event, 'smOther')">GBM (Generalized Boosting Method)<br>
     <label for="spPLS" hidden="true">Partial least Squares</label>
-    <input type="radio" name="ModelType" id="smPLS" value="3">PLS (Partial Least Squares)<br>
+    <input type="radio" name="ModelType" id="smPLS" value="3" (click)="radioDisable($event, 'smOther')">PLS (Partial Least Squares)<br>
     <label for="spOtherCheck" hidden="true">Tick this box to enter a statistical model not listed</label>
-    <input type="radio" name="ModelType" id="smOtherCheck" value="4">Other (please specify)
+    <input type="radio" name="ModelType" id="smOtherCheck" value="4" (click)="radioDisable($event, 'smOther')">Other (please specify)
     <label for="spOther" hidden="true">Enter model not listed here</label>
     <input type="text" id="smOther" size="50" maxlength="80" class="disabled" disabled="true">
   </div>

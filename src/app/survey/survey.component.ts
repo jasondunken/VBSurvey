@@ -86,6 +86,7 @@ export class SurveyComponent implements OnInit {
 
   // convenience getter for easy access to form fields
   // thanks https://stackoverflow.com/users/5688490/mick !
+  // for help with angular form controls
   get f() { return this.surveyForm.controls; }
 
   submitSurvey(): void {
