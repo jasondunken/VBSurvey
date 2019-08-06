@@ -25,63 +25,63 @@ export class SurveyComponent implements OnInit {
       state: ['', Validators.required],
       county: ['', Validators.required],
       beachDescriptors: new FormGroup({
-        bdDeep: new FormControl(false),
-        bdShallow: new FormControl(false),
-        bdOpen: new FormControl(false),
-        bdEmbayed: new FormControl(false),
-        bdFresh: new FormControl(false),
-        bdMarine: new FormControl(false),
-        bdPier: new FormControl(false),
-        bdDrain: new FormControl(false),
-        bdOtherCheck: new FormControl(false)
+        bdDeep: new FormControl(),
+        bdShallow: new FormControl(),
+        bdOpen: new FormControl(),
+        bdEmbayed: new FormControl(),
+        bdFresh: new FormControl(),
+        bdMarine: new FormControl(),
+        bdPier: new FormControl(),
+        bdDrain: new FormControl(),
+        bdOtherCheck: new FormControl()
       }, this.checkboxValidator()),
-      organismModeled: new FormControl('', Validators.required),
+      organismModeled: ['', Validators.required],
       adviLevel: ['', Validators.required],
       daysPerYear: new FormGroup({
         dPosted: new FormControl(false),
         dClosed: new FormControl(false)
       }, this.textGroupValidator()),
-      softwarePackage: new FormControl('', Validators.required),
-      statModel: new FormControl('', Validators.required),
+      softwarePackage: ['', Validators.required],
+      statModel: ['', Validators.required],
       tpDevelop: ['', Validators.required],
       tpImplement: ['', Validators.required],
       modelUse: new FormGroup({
-        muNow: new FormControl(false),
-        muFore: new FormControl(false),
-        muResearch: new FormControl(false)
+        muNow: new FormControl(),
+        muFore: new FormControl(),
+        muResearch: new FormControl()
       }, this.checkboxValidator()),
       dvTransform: ['', Validators.required],
       iVariables: new FormGroup({
-        ivAirTemp: new FormControl(false),
-        ivWaterTemp: new FormControl(false),
-        ivDewpoint: new FormControl(false),
-        ivWindSpeed: new FormControl(false),
-        ivCurrentSpeed: new FormControl(false),
-        ivWaveHeight: new FormControl(false),
-        ivRain: new FormControl(false),
-        ivTurbidity: new FormControl(false),
-        ivTribDischarge: new FormControl(false),
-        ivCloudCover: new FormControl(false),
-        ivUV: new FormControl(false),
-        ivRelHumidity: new FormControl(false),
-        ivConductivity: new FormControl(false),
-        ivAbsorbance: new FormControl(false),
-        ivDepth: new FormControl(false),
-        ivHumans: new FormControl(false),
-        ivBirds: new FormControl(false),
-        ivWildlife: new FormControl(false),
-        ivOtherCheck: new FormControl(false)
+        ivAirTemp: new FormControl(),
+        ivWaterTemp: new FormControl(),
+        ivDewpoint: new FormControl(),
+        ivWindSpeed: new FormControl(),
+        ivCurrentSpeed: new FormControl(),
+        ivWaveHeight: new FormControl(),
+        ivRain: new FormControl(),
+        ivTurbidity: new FormControl(),
+        ivTribDischarge: new FormControl(),
+        ivCloudCover: new FormControl(),
+        ivUV: new FormControl(),
+        ivRelHumidity: new FormControl(),
+        ivConductivity: new FormControl(),
+        ivAbsorbance: new FormControl(),
+        ivDepth: new FormControl(),
+        ivHumans: new FormControl(),
+        ivBirds: new FormControl(),
+        ivWildlife: new FormControl(),
+        ivOtherCheck: new FormControl()
       }, this.checkboxValidator()),
       ivSource: new FormGroup({
-        onSite: new FormControl(false),
-        onLine: new FormControl(false)
+        onSite: new FormControl(),
+        onLine: new FormControl()
       }, this.checkboxValidator()),
       evalCriterion: new FormGroup({
-        ecRsquared: new FormControl(false),
-        ecAicBic: new FormControl(false),
-        ecSenSpecAcc: new FormControl(false),
-        ecPress: new FormControl(false),
-        ecOtherCheck: new FormControl(false)
+        ecRsquared: new FormControl(),
+        ecAicBic: new FormControl(),
+        ecSenSpecAcc: new FormControl(),
+        ecPress: new FormControl(),
+        ecOtherCheck: new FormControl()
       }, this.checkboxValidator()),
       dCriterion: ['', Validators.required]
     });
@@ -89,7 +89,7 @@ export class SurveyComponent implements OnInit {
 
   // convenience getter for easy access to form fields
   // thanks https://stackoverflow.com/users/5688490/mick !
-  // for help with angular form controls
+  // for help with angular form controls/custom validators
   get f() { return this.surveyForm.controls; }
 
   submitSurvey(): void {

@@ -11,8 +11,8 @@ export class Record {
   bdEmbayed = false;
   bdFresh = false;
   bdMarine = false;
-  bdDrain = false;
   bdPier = false;
+  bdDrain = false;
   bdOther = '';
   omEcoli = false;
   omEnterocci = false;
@@ -35,7 +35,7 @@ export class Record {
   muNow = false;
   muFore = false;
   muResearch = false;
-  dvTransform = false;
+  dvTransform = '';
   ivAirTemp = false;
   ivWaterTemp = false;
   ivDewpoint = false;
