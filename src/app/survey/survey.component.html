@@ -156,9 +156,9 @@
         <td colspan="2">
           <div>
             <label for="bdOtherCheck" hidden="true">Tick this box to add other descriptors</label>
-            <input type="checkbox" id="bdOtherCheck" (click)="toggleDisable('bdOther')" >Other (please specify)
+            <input type="checkbox" id="bdOtherCheck" (click)="toggleDisable('bdOther')" formControlName="bdOtherCheck">Other (please specify)
             <label for="bdOther" hidden="true">Enter other beach descriptors here</label>
-            <input type="text" id="bdOther" size="50" maxlength="300" class="disabled" disabled="true" formControlName="bdOtherCheck">
+            <input type="text" id="bdOther" size="50" maxlength="300" class="disabled" disabled="true">
           </div>
         </td>
       </tr>

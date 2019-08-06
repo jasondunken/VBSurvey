@@ -38,9 +38,9 @@ export class SurveyComponent implements OnInit {
       organismModeled: ['', Validators.required],
       adviLevel: ['', Validators.required],
       daysPerYear: new FormGroup({
-        dPosted: new FormControl(),
-        dClosed: new FormControl()
-      }, this.groupValidator()),
+        dPosted: new FormControl(false),
+        dClosed: new FormControl(false)
+      }, this.numberGroupValidator()),
       softwarePackage: ['', Validators.required],
       statModel: ['', Validators.required],
       tpDevelop: ['', Validators.required],
@@ -182,6 +182,24 @@ export class SurveyComponent implements OnInit {
       Object.keys(formGroup.controls).forEach(key => {
         const control = formGroup.controls[key];
         if (control.value === true) {
+          checked++;
+        }
+      });
+      if (checked < minRequired) {
+        return { selectionMade: true };
+      }
+      return null;
+    };
+  }
+
+  // yes, this function looks awfully similar to the one above, but the above doesn't work
+  // on an input of type number
+  numberGroupValidator(minRequired = 1): ValidatorFn {
+    return function validate(formGroup: FormGroup) {
+      let checked = 0;
+      Object.keys(formGroup.controls).forEach(key => {
+        const control = formGroup.controls[key];
+        if (control.value !== false) {
           checked++;
         }
       });
