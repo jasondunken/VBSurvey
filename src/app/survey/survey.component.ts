@@ -34,13 +34,13 @@ export class SurveyComponent implements OnInit {
         bdPier: new FormControl(),
         bdDrain: new FormControl(),
         bdOtherCheck: new FormControl()
-      }, this.checkboxValidator()),
+      }, this.groupValidator()),
       organismModeled: ['', Validators.required],
       adviLevel: ['', Validators.required],
       daysPerYear: new FormGroup({
-        dPosted: new FormControl(false),
-        dClosed: new FormControl(false)
-      }, this.textGroupValidator()),
+        dPosted: new FormControl(),
+        dClosed: new FormControl()
+      }, this.groupValidator()),
       softwarePackage: ['', Validators.required],
       statModel: ['', Validators.required],
       tpDevelop: ['', Validators.required],
@@ -49,7 +49,7 @@ export class SurveyComponent implements OnInit {
         muNow: new FormControl(),
         muFore: new FormControl(),
         muResearch: new FormControl()
-      }, this.checkboxValidator()),
+      }, this.groupValidator()),
       dvTransform: ['', Validators.required],
       iVariables: new FormGroup({
         ivAirTemp: new FormControl(),
@@ -71,18 +71,18 @@ export class SurveyComponent implements OnInit {
         ivBirds: new FormControl(),
         ivWildlife: new FormControl(),
         ivOtherCheck: new FormControl()
-      }, this.checkboxValidator()),
+      }, this.groupValidator()),
       ivSource: new FormGroup({
         onSite: new FormControl(),
         onLine: new FormControl()
-      }, this.checkboxValidator()),
+      }, this.groupValidator()),
       evalCriterion: new FormGroup({
         ecRsquared: new FormControl(),
         ecAicBic: new FormControl(),
         ecSenSpecAcc: new FormControl(),
         ecPress: new FormControl(),
         ecOtherCheck: new FormControl()
-      }, this.checkboxValidator()),
+      }, this.groupValidator()),
       dCriterion: ['', Validators.required]
     });
   }
@@ -176,28 +176,12 @@ export class SurveyComponent implements OnInit {
     window.scrollTo(0, 0);
   }
 
-  checkboxValidator(minRequired = 1): ValidatorFn {
+  groupValidator(minRequired = 1): ValidatorFn {
     return function validate(formGroup: FormGroup) {
       let checked = 0;
       Object.keys(formGroup.controls).forEach(key => {
         const control = formGroup.controls[key];
         if (control.value === true) {
-          checked++;
-        }
-      });
-      if (checked < minRequired) {
-        return { selectionMade: true };
-      }
-      return null;
-    };
-  }
-
-  textGroupValidator(minRequired = 1): ValidatorFn {
-    return function validate(formGroup: FormGroup) {
-      let checked = 0;
-      Object.keys(formGroup.controls).forEach(key => {
-        const control = formGroup.controls[key];
-        if (control.value !== false) {
           checked++;
         }
       });
