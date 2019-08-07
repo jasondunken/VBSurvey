@@ -2,6 +2,10 @@ a {
   text-decoration: none;
 }
 
+input[type="text"]:disabled {
+  background: darkgrey;
+}
+
 .box {
   display: block;
   margin: 0 auto;
@@ -141,6 +145,11 @@ a {
 {
   color:red;
   font-weight: bold;
+}
+
+.is-invalid {
+  border: 1px solid;
+  border-color: red;
 }
 
 .for-screen-reader-only {

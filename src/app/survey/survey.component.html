@@ -148,9 +148,9 @@
       <tr>
         <td colspan="2">
           <div>
-            <label><input type="checkbox" id="bdOtherCheck" (click)="toggleDisable('bdOther')" formControlName="bdOtherCheck">Other (please specify) </label>
+            <label><input type="checkbox" id="bdOtherCheck" (click)="toggleDisable('bdOther', 'beachDescriptors')">Other (please specify) </label>
             <label for="bdOther" class="for-screen-reader-only">Enter other beach descriptors here</label>
-            <input type="text" id="bdOther" size="50" maxlength="300" class="disabled" disabled="true">
+            <input type="text" id="bdOther" size="50" maxlength="300" formControlName="bdOther">
           </div>
         </td>
       </tr>
@@ -167,9 +167,9 @@
     <label><input type="radio" id="omEcoli" name="OM" value="1" formControlName="OM" (click)="radioDisable($event, 'omOther')">E.coli</label><br>
     <label><input type="radio" id="omEnterococci" name="OM" value="2" formControlName="OM" (click)="radioDisable($event, 'omOther')">Enterococci</label><br>
     <label><input type="radio" id="omMicrocyctin" name="OM" value="3" formControlName="OM" (click)="radioDisable($event, 'omOther')">Microcystin/HABs</label><br>
-    <label><input type="radio" id="omOtherCheck" name="OM" value="4" formControlName="OM" (click)="radioDisable($event, 'omOther')">Other (please specify) </label>
+    <label><input type="radio" id="omOtherCheck" name="OM" value="4" (click)="radioDisable($event, 'omOther')">Other (please specify) </label>
     <label for="omOther" class="for-screen-reader-only">Enter an organism not listed</label>
-    <input type="text" id="omOther" size="50" maxlength="80" class="disabled" disabled="true">
+    <input type="text" id="omOther" size="50" maxlength="80" formControlName="omOther">
     <div *ngIf="submitted && f.OM.invalid" class="invalid-feedback">
       <div class="required-field">Organism modeled is required</div>
     </div>
@@ -206,11 +206,11 @@
     <label><input type="radio" id="spVB" name="SP" value="1" formControlName="SP" (click)="radioDisable($event, 'spOther')">Virtual Beach</label><br>
     <label><input type="radio" id="spR" name="SP" value="2" formControlName="SP" (click)="radioDisable($event, 'spOther')">R</label><br>
     <label><input type="radio" id="spSAS" name="SP" value="3" formControlName="SP" (click)="radioDisable($event, 'spOther')">SAS</label><br>
-    <label><input type="radio" id="spExcel" name="SP" value="4" formControlName="SP" (click)="radioDisable($event, 'spOther')">Excel</label><br>
-    <label><input type="radio" id="spOtherCheck" name="SP" value="5" formControlName="SP" (click)="radioDisable($event, 'spOther')">Other (please specify) </label>
+    <label><input type="radio" id="spExcel" name="SP" value="4" (click)="radioDisable($event, 'spOther')">Excel</label><br>
+    <label><input type="radio" id="spOtherCheck" name="SP" value="5" (click)="radioDisable($event, 'spOther')">Other (please specify) </label>
     <label for="spOther" class="for-screen-reader-only">Enter software package not listed here</label>
-    <input type="text" id="spOther" size="50" maxlength="80" class="disabled" disabled="true">
-    <div *ngIf="submitted && f.SP.invalid" class="invalid-feedback">
+    <input type="text" id="spOther" size="50" maxlength="80" formControlName="spOther">
+    <div *ngIf="submitted && f.SP.invalid && f.spOther.invalid" class="invalid-feedback">
       <div class="required-field">Software package is required</div>
     </div>
   </div>
@@ -223,7 +223,7 @@
     <label><input type="radio" id="smPLS" name="SM" value="3" formControlName="SM" (click)="radioDisable($event, 'smOther')">PLS (Partial Least Squares)</label><br>
     <label><input type="radio" id="smOtherCheck" name="SM" value="4" formControlName="SM" (click)="radioDisable($event, 'smOther')">Other (please specify) </label>
     <label for="spOther" class="for-screen-reader-only">Enter model not listed here</label>
-    <input type="text" id="smOther" size="50" maxlength="80" class="disabled" disabled="true">
+    <input type="text" id="smOther" size="50" maxlength="80" formControlName="smOther">
     <div *ngIf="submitted && f.SM.invalid" class="invalid-feedback">
       <div class="required-field">Statistical model is required</div>
     </div>
@@ -323,9 +323,9 @@
       <tr>
         <td colspan="3">
           <div>
-            <label><input type="checkbox" id="ivOtherCheck" formControlName="ivOtherCheck" (click)="toggleDisable('ivOther')">Other (please specify) </label>
+            <label><input type="checkbox" id="ivOtherCheck" (click)="toggleDisable('ivOther', 'iVariables')">Other (please specify) </label>
             <label for="ivOther" class="for-screen-reader-only">Enter other independent variables here</label>
-            <input type="text" id="ivOther" size="50" maxlength="100" class="disabled" disabled="true">
+            <input type="text" id="ivOther" size="50" maxlength="100" formControlName="ivOther">
           </div>
         </td>
       </tr>
@@ -352,9 +352,9 @@
     <label><input type="checkbox" id="ecAicBic" formControlName="ecAicBic">AIC/AICc/BIC</label><br>
     <label><input type="checkbox" id="ecSenSpecAcc" formControlName="ecSenSpecAcc">Sensitivity/Specificity/Accuracy</label><br>
     <label><input type="checkbox" id="ecPress" formControlName="ecPress">PRESS/RMSEP</label><br>
-    <label><input type="checkbox" id="ecOtherCheck" formControlName="ecOtherCheck" (click)="toggleDisable('ecOther')">Other (please specify) </label>
+    <label><input type="checkbox" id="ecOtherCheck" (click)="toggleDisable('ecOther', 'evalCriterion')">Other (please specify) </label>
     <label for="ecOther" class="for-screen-reader-only">Enter other evaluation criterion here</label>
-    <input type="text" id="ecOther" size="50" maxlength="80" class="disabled" disabled="true">
+    <input type="text" id="ecOther" size="50" maxlength="80" formControlName="ecOther">
     <div *ngIf="submitted && f.evalCriterion.invalid" class="invalid-feedback">
       <div class="required-field">Evaluation criterion is required</div>
     </div>

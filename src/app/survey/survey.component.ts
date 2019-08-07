@@ -33,16 +33,19 @@ export class SurveyComponent implements OnInit {
         bdMarine: new FormControl(),
         bdPier: new FormControl(),
         bdDrain: new FormControl(),
-        bdOtherCheck: new FormControl()
+        bdOther: new FormControl({value: '', disabled: true}, Validators.minLength(1))
       }, this.groupValidator()),
       OM: ['', Validators.required],
+      omOther: new FormControl({value: '', disabled: true}, Validators.minLength(1)),
       adviLevel: ['', Validators.required],
       daysPerYear: new FormGroup({
         dPosted: new FormControl(false),
         dClosed: new FormControl(false)
       }, this.numberGroupValidator()),
       SP: ['', Validators.required],
+      spOther: new FormControl({value: '', disabled: true}, Validators.minLength(1)),
       SM: ['', Validators.required],
+      smOther: new FormControl({value: '', disabled: true}, Validators.minLength(1)),
       tpDevelop: ['', Validators.required],
       tpImplement: ['', Validators.required],
       modelUse: new FormGroup({
@@ -70,7 +73,7 @@ export class SurveyComponent implements OnInit {
         ivHumans: new FormControl(),
         ivBirds: new FormControl(),
         ivWildlife: new FormControl(),
-        ivOtherCheck: new FormControl()
+        ivOther: new FormControl({value: '', disabled: true}, Validators.minLength(1))
       }, this.groupValidator()),
       ivSource: new FormGroup({
         onSite: new FormControl(),
@@ -81,7 +84,7 @@ export class SurveyComponent implements OnInit {
         ecAicBic: new FormControl(),
         ecSenSpecAcc: new FormControl(),
         ecPress: new FormControl(),
-        ecOtherCheck: new FormControl()
+        ecOther: new FormControl({value: '', disabled: true}, Validators.minLength(1))
       }, this.groupValidator()),
       dCriterion: ['', Validators.required]
     });
@@ -132,23 +135,35 @@ export class SurveyComponent implements OnInit {
     }
   }
 
-  toggleDisable(name): void {
-    const textbox = document.getElementById(name) as HTMLInputElement;
-    textbox.classList.toggle('disabled');
-    textbox.disabled = !textbox.disabled;
-    textbox.value = '';
+  toggleDisable(name, parent?): void {
+    if (parent) {
+      const control = this.surveyForm.get([parent, name]);
+      if (control) {
+        if (control.disabled) {
+          control.enable();
+        } else {
+          control.disable();
+          control.reset('');
+        }
+      }
+    }
   }
 
   radioDisable(event: any, id): void {
     const textbox = document.getElementById(id) as HTMLInputElement;
     if (event.target.id !== id) {
+      const control = this.surveyForm.get(id);
       if (event.target.id === id + 'Check') {
-        textbox.classList.remove('disabled');
-        textbox.disabled = false;
+       /*  textbox.classList.remove('disabled');
+        textbox.disabled = false; */
+        control.enable();
+
       } else {
-        textbox.classList.add('disabled');
+       /*  textbox.classList.add('disabled');
         textbox.disabled = true;
-        textbox.value = '';
+        textbox.value = ''; */
+        control.disable();
+        control.reset('');
       }
     }
   }
@@ -158,11 +173,11 @@ export class SurveyComponent implements OnInit {
     for (const i in inputs) {
       if (inputs[i].type === 'text' || inputs[i].type === 'email' || inputs[i].type === 'number') {
         inputs[i].value = '';
-        if (inputs[i].name.substring(inputs[i].name.length - 4) === 'Text') {
+        /* if (inputs[i].name.substring(inputs[i].name.length - 4) === 'Text') {
           const otherText = inputs[i] as HTMLInputElement;
           otherText.classList.add('disabled');
           otherText.disabled = true;
-        }
+        } */
       } else if (inputs[i].type === 'radio' || inputs[i].type === 'checkbox') {
         inputs[i].checked = false;
       }
@@ -173,19 +188,25 @@ export class SurveyComponent implements OnInit {
         selects[j].selectedIndex = 0;
       }
     }
+    /* Object.keys(this.surveyForm.controls).forEach(key => {
+      const control = this.surveyForm.controls[key];
+      if (control) {
+       control.reset();
+      }
+    }); */
     window.scrollTo(0, 0);
   }
 
   groupValidator(minRequired = 1): ValidatorFn {
     return function validate(formGroup: FormGroup) {
-      let checked = 0;
+      let numValid = 0;
       Object.keys(formGroup.controls).forEach(key => {
         const control = formGroup.controls[key];
-        if (control.value === true) {
-          checked++;
+        if ((key.substring(2) === 'Other' && control.value !== '') || (key.substring(2) !== 'Other' && control.value === true)) {
+          numValid++;
         }
       });
-      if (checked < minRequired) {
+      if (numValid < minRequired) {
         return { selectionMade: true };
       }
       return null;
@@ -196,14 +217,14 @@ export class SurveyComponent implements OnInit {
   // on an input of type number
   numberGroupValidator(minRequired = 1): ValidatorFn {
     return function validate(formGroup: FormGroup) {
-      let checked = 0;
+      let numValid = 0;
       Object.keys(formGroup.controls).forEach(key => {
         const control = formGroup.controls[key];
         if (control.value !== false) {
-          checked++;
+          numValid++;
         }
       });
-      if (checked < minRequired) {
+      if (numValid < minRequired) {
         return { selectionMade: true };
       }
       return null;
