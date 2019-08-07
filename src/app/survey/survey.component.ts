@@ -35,14 +35,14 @@ export class SurveyComponent implements OnInit {
         bdDrain: new FormControl(),
         bdOtherCheck: new FormControl()
       }, this.groupValidator()),
-      organismModeled: ['', Validators.required],
+      OM: ['', Validators.required],
       adviLevel: ['', Validators.required],
       daysPerYear: new FormGroup({
         dPosted: new FormControl(false),
         dClosed: new FormControl(false)
       }, this.numberGroupValidator()),
-      softwarePackage: ['', Validators.required],
-      statModel: ['', Validators.required],
+      SP: ['', Validators.required],
+      SM: ['', Validators.required],
       tpDevelop: ['', Validators.required],
       tpImplement: ['', Validators.required],
       modelUse: new FormGroup({

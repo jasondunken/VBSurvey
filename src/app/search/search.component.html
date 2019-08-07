@@ -7,7 +7,7 @@
   Query' button. This is an 'and' query, so only records matching ALL submitted criteria will be displayed in the
   'Results' table.<br>
   2) Send the information from a selected record to the survey form to facilitate creation of a new record. To do this,
-   click the 'Populate Form' button.<br>
+   click the 'Populate Survey' button.<br>
    <br>
   To enter new records manually, or to batch load records, visit the <a [routerLink]="['/survey']">survey page</a>.
 </div>
@@ -17,16 +17,16 @@
   <!-- Beach Identifiers -->
   <div class="query-args">
     <div class="title1">Beach/Site Name:</div>
-    <label for="site" hidden="true">Enter site or beach name</label>
+    <label for="site" class="for-screen-reader-only">Enter site or beach name</label>
     <input type="text" id="site" size="50" maxlength="75">
 
     <div class="title1">Beach <a href="https://watersgeo.epa.gov/BEACON2/Beacon.html" target="_blank" class="tooltip">Act ID<span
       class="tooltiptext">Use this link to find an Act ID</span></a> or EPA Storet ID (if applicable):</div>
-    <label for="actId" hidden="true">Enter the beach act i d or E P A Storet I D if applicable</label>
+    <label for="actId" class="for-screen-reader-only">Enter the beach act I D or EPA Storet I D if applicable</label>
     <input type="text" id="actId" size="50" maxlength="75">
 
     <div class="title1">State/Region:</div>
-    <label for="state" hidden="true">Select a state</label>
+    <label for="state" class="for-screen-reader-only">Select a state</label>
     <select id="state" style="width:175px">
       <option value=""></option>
       <option value="AL">Alabama</option>
@@ -100,7 +100,7 @@
     </select>
 
     <div class="title1">County:</div>
-    <label for="county" hidden="true">Enter the county</label>
+    <label for="county" class="for-screen-reader-only">Enter the county</label>
     <input type="text" id="county" size="50" maxlength="75">
   </div>
 
@@ -113,35 +113,26 @@
       </colgroup>
       <tbody>
       <tr>
-        <label for="bdShallow" hidden="true">Beach descriptor is shallow</label>
-        <td><input type="checkbox" id="bdShallow">Shallow</td>
-        <label for="bdDeep" hidden="true">Beach descriptor is deep</label>
-        <td><input type="checkbox" id="bdDeep">Deep</td>
+        <td><label><input type="checkbox" id="bdShallow">Shallow</label></td>
+        <td><label><input type="checkbox" id="bdDeep">Deep</label></td>
       </tr>
       <tr>
-        <label for="bdOpen" hidden="true">Beach descriptor is open</label>
-        <td><input type="checkbox" id="bdOpen">Open</td>
-        <label for="bdClosed" hidden="true">Beach descriptor is closed</label>
-        <td><input type="checkbox" id="bdClosed">Closed</td>
+        <td><label><input type="checkbox" id="bdOpen">Open</label></td>
+        <td><label><input type="checkbox" id="bdClosed">Closed</label></td>
       </tr>
       <tr>
-        <label for="bdFresh" hidden="true">Beach descriptor is freshwater</label>
-        <td><input type="checkbox" id="bdFresh">Freshwater</td>
-        <label for="bdMarine" hidden="true">Beach descriptor is marine</label>
-        <td><input type="checkbox" id="bdMarine">Marine</td>
+        <td><label><input type="checkbox" id="bdFresh">Freshwater</label></td>
+        <td><label><input type="checkbox" id="bdMarine">Marine</label></td>
       </tr>
       <tr>
-        <label for="bdPier" hidden="true">Beach descriptor is pier</label>
-        <td><input type="checkbox" id="bdPier">Pier</td>
-        <label for="bdDrain" hidden="true">Beach descriptor is storm drain river outlet</label>
-        <td><input type="checkbox" id="bdDrain">Storm Drain/River Outlet<br></td>
+        <td><label><input type="checkbox" id="bdPier">Pier</label></td>
+        <td><label><input type="checkbox" id="bdDrain">Storm Drain/River Outlet</label><br></td>
       </tr>
       <tr>
         <td colspan="2">
           <div>
-            <label for="bdOtherCheck" hidden="true">Tick this box to add other descriptors</label>
-            <input type="checkbox" id="bdOtherCheck" (click)="toggleDisable('bdOther')">Other (please specify)
-            <label for="bdOther" hidden="true">Enter other beach descriptors here</label>
+            <label><input type="checkbox" id="bdOtherCheck" (click)="toggleDisable('bdOther')">Other (please specify) </label>
+            <label for="bdOther" class="for-screen-reader-only">Enter other beach descriptors here</label>
             <input type="text" id="bdOther" size="50" maxlength="300" class="disabled" disabled="true">
           </div>
         </td>
@@ -155,62 +146,43 @@
   <!-- Organism Modeled -->
   <div class="query-args">
     <div class="title2">Modeled organism/condition:</div>
-    <label for="omEcoli" hidden="true">E coli</label>
-    <input type="radio" name="RV" id="omEcoli" value="1" (click)="radioDisable($event, 'omOther')">E.coli<br>
-    <label for="omEnterococci" hidden="true">Enterococci</label>
-    <input type="radio" name="RV" id="omEntercocci" value="2" (click)="radioDisable($event, 'omOther')">Enterococci<br>
-    <label for="omMicrocyctin" hidden="true">Microcystin or H A B</label>
-    <input type="radio" name="RV" id="omMicrocystin" value="3" (click)="radioDisable($event, 'omOther')">Microcystin/HABs<br>
-    <label for="omOtherCheck" hidden="true">Tick this box to enter an orgaism that is not listed</label>
-    <input type="radio" name="RV" id="omOtherCheck" value="4" (click)="radioDisable($event, 'omOther')">Other (please specify)
-    <label for="omOther" hidden="true">Enter an organism not listed</label>
+    <label><input type="radio" id="omEcoli" name="OM" value="1" (click)="radioDisable($event, 'omOther')">E.coli</label><br>
+    <label><input type="radio" id="omEntercocci" name="OM" value="2" (click)="radioDisable($event, 'omOther')">Enterococci</label><br>
+    <label><input type="radio" id="omMicrocystin" name="OM" value="3" (click)="radioDisable($event, 'omOther')">Microcystin/HABs</label><br>
+    <label><input type="radio" id="omOtherCheck" name="OM" value="4" (click)="radioDisable($event, 'omOther')">Other (please specify) </label>
+    <label for="omOther" class="for-screen-reader-only">Enter an organism not listed here</label>
     <input type="text" id="omOther" size="50" maxlength="80" class="disabled" disabled="true">
   </div>
 
   <!-- Software Package -->
   <div class="query-args">
     <div class="title2">What software package was used to develop the model?</div>
-    <label for="spVB" hidden="true">Virtual beach</label>
-    <input name="STAT" id="spVB" value="1" type="radio" (click)="radioDisable($event, 'spOther')">Virtual Beach<br>
-    <label for="spR" hidden="true">R</label>
-    <input name="STAT" id="spR" value="2" type="radio" (click)="radioDisable($event, 'spOther')">R<br>
-    <label for="spSAS" hidden="true">S A S</label>
-    <input name="STAT" id="spSAS" value="3" type="radio" (click)="radioDisable($event, 'spOther')">SAS<br>
-    <label for="spExcel" hidden="true">Excel</label>
-    <input name="STAT" id="spExcel" value="4" type="radio" (click)="radioDisable($event, 'spOther')">Excel<br>
-    <label for="spOtherCheck" hidden="true">Tick this box to enter a software package not listed</label>
-    <input name="STAT" id="spOtherCheck" value="5" type="radio" (click)="radioDisable($event, 'spOther')">Other (please specify)
-    <label for="spOther" hidden="true">Enter software package not listed here</label>
+    <label><input type="radio" id="spVB" name="SP" value="1" (click)="radioDisable($event, 'spOther')">Virtual Beach</label><br>
+    <label><input type="radio" id="spR" name="SP" value="2" (click)="radioDisable($event, 'spOther')">R</label><br>
+    <label><input type="radio" id="spSAS" name="SP" value="3" (click)="radioDisable($event, 'spOther')">SAS</label><br>
+    <label><input type="radio" id="spExcel" name="SP" value="4" (click)="radioDisable($event, 'spOther')">Excel</label><br>
+    <label><input type="radio" id="spOtherCheck" name="SP" value="5" (click)="radioDisable($event, 'spOther')">Other (please specify) </label>
+    <label for="spOther" class="for-screen-reader-only">Enter software package not listed here</label>
     <input type="text" id="spOther" size="50" maxlength="80" class="disabled" disabled="true">
   </div>
 
   <!-- Statistical Model -->
   <div class="query-args">
     <div class="title2">Model Type:</div>
-    <label for="smMLR" hidden="true">Multiple linear regression</label>
-    <input type="radio" name="ModelType" id="smMLR" value="1" (click)="radioDisable($event, 'smOther')">MLR (Multiple Linear Regression)<br>
-    <label for="spGBM" hidden="true">Generalized boosting meathod</label>
-    <input type="radio" name="ModelType" id="smGBM" value="2" (click)="radioDisable($event, 'smOther')">GBM (Generalized Boosting Method)<br>
-    <label for="spPLS" hidden="true">Partial least Squares</label>
-    <input type="radio" name="ModelType" id="smPLS" value="3" (click)="radioDisable($event, 'smOther')">PLS (Partial Least Squares)<br>
-    <label for="spOtherCheck" hidden="true">Tick this box to enter a statistical model not listed</label>
-    <input type="radio" name="ModelType" id="smOtherCheck" value="4" (click)="radioDisable($event, 'smOther')">Other (please specify)
-    <label for="spOther" hidden="true">Enter model not listed here</label>
+    <label><input type="radio" id="smMLR" name="SM" value="1" (click)="radioDisable($event, 'smOther')">MLR (Multiple Linear Regression)</label><br>
+    <label><input type="radio" id="smGBM" name="SM" value="2" (click)="radioDisable($event, 'smOther')">GBM (Generalized Boosting Method)</label><br>
+    <label><input type="radio" id="smPLS" name="SM" value="3" (click)="radioDisable($event, 'smOther')">PLS (Partial Least Squares)</label><br>
+    <label><input type="radio" id="smOtherCheck" name="SM" value="4" (click)="radioDisable($event, 'smOther')">Other (please specify) </label>
+    <label for="spOther" class="for-screen-reader-only">Enter model not listed here</label>
     <input type="text" id="smOther" size="50" maxlength="80" class="disabled" disabled="true">
   </div>
 
   <!-- Model Use -->
   <div class="query-args">
     <div class="title2">Model Use:</div>
-    <label for="muNow" hidden="true">Predicting current water quality conditions</label>
-    <input type="checkbox" id="muNow">Predict current water quality conditions
-    (Nowcasting)<br>
-    <label for="muFore" hidden="true">Predicting future water quality conditions</label>
-    <input type="checkbox" id="muFore">Predict future water quality conditions
-    (Forecasting)<br>
-    <label for="muResearch" hidden="true">Research</label>
-    <input type="checkbox" id="muResearch">Estimate the influence of potential microbial sources or
-    environmental factors (Research)
+    <label><input type="checkbox" id="muNow">Predict current water quality conditions (Nowcasting)</label><br>
+    <label><input type="checkbox" id="muFore">Predict future water quality conditions (Forecasting)</label><br>
+    <label><input type="checkbox" id="muResearch">Estimate the influence of potential microbial sources or environmental factors (Research)</label>
   </div>
 
   <!-- Independent Variables -->
@@ -222,59 +194,40 @@
       </colgroup>
       <tbody>
       <tr>
-        <label for="ivAirTemp" hidden="true">Air Temperature</label>
-        <td><input type="checkbox" id="ivAirTemp">Air Temp</td>
-        <label for="ivWaterTemp" hidden="true">WaterTemp</label>
-        <td><input type="checkbox" id="ivWaterTemp">Water Temp</td>
-        <label for="ivDewpotin" hidden="true">Dewpoint</label>
-        <td><input type="checkbox" id="ivDewpoint">Dewpoint</td>
+        <td><label><input type="checkbox" id="ivAirTemp">Air Temp</label></td>
+        <td><label><input type="checkbox" id="ivWaterTemp">Water Temp</label></td>
+        <td><label><input type="checkbox" id="ivDewpoint">Dewpoint</label></td>
       </tr>
       <tr>
-        <label for="ivWindSpeed" hidden="true">Wind Characteristics</label>
-        <td><input type="checkbox" id="ivWindSpeed">Wind Characteristics</td>
-        <label for="ivCurrentSpeed" hidden="true">Current Characteristics</label>
-        <td><input type="checkbox" id="ivCurrentSpeed">Current Characteristics</td>
-        <label for="ivWaveHeight" hidden="true">Wave Characteristics</label>
-        <td><input type="checkbox" id="ivWaveHeight">Wave Characteristics</td>
+        <td><label><input type="checkbox" id="ivWindSpeed">Wind Characteristics</label></td>
+        <td><label><input type="checkbox" id="ivCurrentSpeed">Current Characteristics</label></td>
+        <td><label><input type="checkbox" id="ivWaveHeight">Wave Characteristics</label></td>
       </tr>
       <tr>
-        <label for="ivRain" hidden="true">Antecedent Rainfall</label>
-        <td><input type="checkbox" id="ivRain">Antecedent Rainfall</td>
-        <label for="ivTurbidity" hidden="true">Turbidity</label>
-        <td><input type="checkbox" id="ivTurbidity">Turbidity</td>
-        <label for="ivTribDischarge" hidden="true">Tributary discharge</label>
-        <td><input type="checkbox" id="ivTribDischarge">Tributary Discharge</td>
+        <td><label><input type="checkbox" id="ivRain">Antecedent Rainfall</label></td>
+        <td><label><input type="checkbox" id="ivTurbidity">Turbidity</label></td>
+        <td><label><input type="checkbox" id="ivTribDischarge">Tributary Discharge</label></td>
       </tr>
       <tr>
-        <label for="ivCloudCover" hidden="true">Cloud Cover</label>
-        <td><input type="checkbox" id="ivCloudCover">Cloud Cover</td>
-        <label for="ivUV" hidden="true">U V or PAR</label>
-        <td><input type="checkbox" id="ivUV">UV/PAR</td>
-        <label for="ivRelHumidity" hidden="true">Relative humidity</label>
-        <td><input type="checkbox" id="ivRelHumidity">Relative Humidity</td>
+        <td><label><input type="checkbox" id="ivCloudCover">Cloud Cover</label></td>
+        <td><label><input type="checkbox" id="ivUV">UV/PAR</label></td>
+        <td><label><input type="checkbox" id="ivRelHumidity">Relative Humidity</label></td>
       </tr>
       <tr>
-        <label for="ivConductivity" hidden="true">Water conductivity</label>
-        <td><input type="checkbox" id="ivConductivity">Conductivity</td>
-        <label for="ivAbsorbance" hidden="true">Water absorbance</label>
-        <td><input type="checkbox" id="ivAbsorbance">Water Absorbance</td>
-        <label for="ivDepth" hidden="true">Water depth or tidal surge</label>
-        <td><input type="checkbox" id="ivDepth">Water Depth/Tidal Stage</td>
+        <td><label><input type="checkbox" id="ivConductivity">Conductivity</label></td>
+        <td><label><input type="checkbox" id="ivAbsorbance">Water Absorbance</label></td>
+        <td><label><input type="checkbox" id="ivDepth">Water Depth/Tidal Stage</label></td>
       </tr>
       <tr>
-        <label for="ivHumans" hidden="true">Humans</label>
-        <td><input type="checkbox" id="ivHumans">Humans</td>
-        <label for="ivBirds" hidden="true">Birds</label>
-        <td><input type="checkbox" id="ivBirds">Birds</td>
-        <label for="ivWildlife" hidden="true">Wildlife</label>
-        <td><input type="checkbox" id="ivWildlife">Other Wildlife</td>
+        <td><label><input type="checkbox" id="ivHumans">Humans</label></td>
+        <td><label><input type="checkbox" id="ivBirds">Birds</label></td>
+        <td><label><input type="checkbox" id="ivWildlife">Other Wildlife</label></td>
       </tr>
       <tr>
         <td colspan="3">
           <div>
-            <label for="ivOtherCHeck" hidden="true">Tick this box to list other independent variables</label>
-            <input type="checkbox" id="ivOtherCheck" (click)="toggleDisable('ivOther')">Other (please specify)
-            <label for="ivOther" hidden="true">Enter other independent variables here</label>
+            <label><input type="checkbox" id="ivOtherCheck" (click)="toggleDisable('ivOther')">Other (please specify) </label>
+            <label for="ivOther" class="for-screen-reader-only">Enter other independent variables here</label>
             <input type="text" id="ivOther" size="50" maxlength="100" class="disabled" disabled="true">
           </div>
         </td>
@@ -286,16 +239,11 @@
   <!-- Evaluation Criterion -->
   <div class="query-args">
     <div class="title2">Primary evaluation criterion:</div>
-    <label for="ecRsquared" hidden="true">R squared or adjusted r squared</label>
-    <input type="checkbox" id="ecRsquared" >R-Squared/Adjusted R-Squared<br>
-    <label for="ecAicBic" hidden="true">A I C, A I C c, or B I C</label>
-    <input type="checkbox" id="ecAicBic" >AIC/AICc/BIC<br>
-    <label for="ecSenSpecAcc" hidden="true">Sensitivity, specify, or accuracy</label>
-    <input type="checkbox" id="ecSenSpecAcc" >Sensitivity/Specificity/Accuracy<br>
-    <label for="ecPress" hidden="true">Press or R M S E P</label>
-    <input type="checkbox" id="ecPress" >PRESS/RMSEP<br>
-    <label for="ecOtherCheck" hidden="true">Tick this box to add evaluation criterion not listed</label>
-    <input type="checkbox" id="ecOtherCheck" (click)="toggleDisable('ecOther')">Other (please specify)
+    <label><input type="checkbox" id="ecRsquared" >R-Squared/Adjusted R-Squared</label><br>
+    <label><input type="checkbox" id="ecAicBic" >AIC/AICc/BIC</label><br>
+    <label><input type="checkbox" id="ecSenSpecAcc" >Sensitivity/Specificity/Accuracy</label><br>
+    <label><input type="checkbox" id="ecPress" >PRESS/RMSEP</label><br>
+    <label><input type="checkbox" id="ecOtherCheck" (click)="toggleDisable('ecOther')">Other (please specify) </label>
     <label for="ecOther" hidden="true">Enter other evaluation criterion here</label>
     <input type="text" id="ecOther" size="50" maxlength="80" class="disabled" disabled="true">
   </div>
@@ -343,7 +291,7 @@
             <td colspan="1">{{e.timePeriod}}</td>
             <td colspan="1"><span *ngIf="e.muNow === 1">N</span> <span *ngIf="e.muFore === 1">F</span> <span *ngIf="e.muResearch === 1">R</span></td>
             <td colspan="1">{{e.dateEntered}}</td>
-            <td><button id="populateSurvey" (click)="populateSurvey()">Send record to survey</button></td>
+            <td><button id="populateSurvey" (click)="populateSurvey()">Populate Survey</button></td>
           </tr>
           </ng-container>
         </tbody>
@@ -361,6 +309,7 @@
       <button onclick="exportrecords()">Save Queried Records as CSV File</button>
       <button onclick="exportcsv()">Export Entire Database to CSV File</button>
     </div>
+    <br><br>
   </div>
 </div>
 </div>
