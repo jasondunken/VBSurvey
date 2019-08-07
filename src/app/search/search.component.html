@@ -2,11 +2,14 @@
 <div class="box">
   <div class="title0">USEPA Statistical Modeling Survey Database Query Builder</div>
   This form has two primary uses:<br>
+  <br>
   1) View records that match desired search criteria. To do this, enter the desired criteria below and use the 'Submit
   Query' button. This is an 'and' query, so only records matching ALL submitted criteria will be displayed in the
   'Results' table.<br>
   2) Send the information from a selected record to the survey form to facilitate creation of a new record. To do this,
-  click on a record in the 'Results' table, then click the 'Send Selected Record...' button.
+   click the 'Populate Form' button.<br>
+   <br>
+  To enter new records manually, or to batch load records, visit the <a [routerLink]="['/survey']">survey page</a>.
 </div>
 
 
@@ -340,7 +343,7 @@
             <td colspan="1">{{e.timePeriod}}</td>
             <td colspan="1"><span *ngIf="e.muNow === 1">N</span> <span *ngIf="e.muFore === 1">F</span> <span *ngIf="e.muResearch === 1">R</span></td>
             <td colspan="1">{{e.dateEntered}}</td>
-            <td><button id="populateSurvey" (click)="populateSurvey()">populate survey</button></td>
+            <td><button id="populateSurvey" (click)="populateSurvey()">Send record to survey</button></td>
           </tr>
           </ng-container>
         </tbody>
@@ -359,13 +362,5 @@
       <button onclick="exportcsv()">Export Entire Database to CSV File</button>
     </div>
   </div>
-</div>
-
-<br><br>
-
-<div id="dev-controls"> <!--these are for dev only-->
-  <button><a routerLink="/home">Home</a></button>
-  <button><a routerLink="/survey">Survey</a></button>
-  <button><a routerLink="/search">Search</a></button>
 </div>
 </div>
