@@ -1,8 +1,9 @@
 <div class="box"><span><div class="title0">USEPA Statistical Water Quality Modeling Survey</div></span>
   The purpose of this survey is to improve data sharing and catalogue predictive modeling performance for
   you, the water quality modeler. The survey is designed for individuals directly involved in the model development
-  process, and includes questions regarding the modeled site's characteristics and model parameters. To query and
-  obtain information from this survey, visit the <a [routerLink]="['/search']">database query</a>.
+  process, and includes questions regarding the modeled site's characteristics and model parameters.<br>
+  <br>
+  To query and obtain information from this survey, visit the <a [routerLink]="['/search']">database query</a>.
 </div>
 
 <div class="box">
@@ -10,18 +11,18 @@
   <!-- user id info -->
   <div class="query-args">
     <div class="title1">Email:</div>
-    <label for="eMail" hidden="true">Enter email</label>
+    <label for="eMail" class="for-screen-reader-only">Enter email</label>
     <input type="email" id="eMail" size="50" maxlength="75">
 
     <div class="title1"><span class="required-field">*</span> Organization/Company:</div>
-    <label for="org" hidden="true">Enter your organization</label>
+    <label for="org" class="for-screen-reader-only">Enter your organization</label>
     <input type="text" id="org" size="50" maxlength="75" formControlName="org" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.org.errors }">
     <div *ngIf="submitted && f.org.errors" class="invalid-feedback">
         <div *ngIf="f.org.errors.required" class="required-field">Organization/Company is required</div>
     </div>
 
     <div class="title1"><span class="required-field">*</span> Beach/Site Name:</div>
-    <label for="site" hidden="true">Enter the site or beach name</label>
+    <label for="site" class="for-screen-reader-only">Enter the site or beach name</label>
     <input type="text" id="site" size="50" maxlength="75" formControlName="site" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.site.errors }">
     <div *ngIf="submitted && f.site.errors" class="invalid-feedback">
         <div *ngIf="f.site.errors.required" class="required-field">Beach/Site Name is required</div>
@@ -29,14 +30,14 @@
 
     <div class="title1"><span class="required-field">*</span> Beach <a href="https://watersgeo.epa.gov/BEACON2/Beacon.html" target="_blank" class="tooltip">Act ID<span
       class="tooltiptext">Use this link to find an Act ID</span></a> or EPA Storet ID (use NA if not applicable):</div>
-    <label for="actId" hidden="true">Enter beach act i d or e p a storet i d, use N A if not applicable</label>
+    <label for="actId" class="for-screen-reader-only">Enter beach act i d or e p a storet i d, use N A if not applicable</label>
     <input type="text" id="actId" size="50" maxlength="75" formControlName="actId" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.actId.errors }">
     <div *ngIf="submitted && f.actId.errors" class="invalid-feedback">
         <div *ngIf="f.actId.errors.required" class="required-field">Beach Act ID is required</div>
     </div>
 
     <div class="title1"><span class="required-field">*</span> State/Region:</div>
-    <label for="state" hidden="true">Select a state</label>
+    <label for="state" class="for-screen-reader-only">Select a state</label>
     <select id="state" style="width:175px" formControlName="state" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.state.errors }">
       <option value=""></option>
       <option value="AL">Alabama</option>
@@ -113,7 +114,7 @@
     </div>
 
     <div class="title1"><span class="required-field">*</span> County:</div>
-    <label for="county" hidden="true">Enter county</label>
+    <label for="county" class="for-screen-reader-only">Enter county</label>
     <input type="text" id="county" size="50" maxlength="75" formControlName="county" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.county.errors }">
     <div *ngIf="submitted && f.county.errors" class="invalid-feedback">
         <div *ngIf="f.county.errors.required" class="required-field">County is required</div>
@@ -128,36 +129,36 @@
         <col width="150"><col width="450">
       </colgroup>
       <tbody>
+      <label for="bdShallow" class="for-screen-reader-only">Beach descriptor is shallow</label>
+      <label for="bdDeep" class="for-screen-reader-only">Beach descriptor is deep</label>
       <tr>
-        <label for="bdShallow" hidden="true">Beach descriptor is shallow</label>
         <td><input type="checkbox" id="bdShallow" formControlName="bdShallow">Shallow</td>
-        <label for="bdDeep" hidden="true">Beach descriptor is deep</label>
         <td><input type="checkbox" id="bdDeep" formControlName="bdDeep">Deep<br></td>
       </tr>
+      <label for="bdOpen" class="for-screen-reader-only">Beach descriptor is open</label>
+      <label for="bdClosed" class="for-screen-reader-only">Beach descriptor is closed</label>
       <tr>
-        <label for="bdOpen" hidden="true">Beach descriptor is open</label>
         <td><input type="checkbox" id="bdOpen" formControlName="bdOpen">Open<br></td>
-        <label for="bdClosed" hidden="true">Beach descriptor is closed</label>
         <td><input type="checkbox" id="bdEmbayed" formControlName="bdEmbayed">Embayed</td>
       </tr>
+      <label for="bdFresh" class="for-screen-reader-only">Beach descriptor is freshwater</label>
+      <label for="bdMarine" class="for-screen-reader-only">Beach descriptor is marine</label>
       <tr>
-        <label for="bdFresh" hidden="true">Beach descriptor is freshwater</label>
         <td><input type="checkbox" id="bdFresh" formControlName="bdFresh">Freshwater</td>
-        <label for="bdMarine" hidden="true">Beach descriptor is marine</label>
         <td><input type="checkbox" id="bdMarine" formControlName="bdMarine">Marine<br></td>
       </tr>
+      <label for="bdPier" class="for-screen-reader-only">Beach descriptor is pier</label>
+      <label for="bdDrain" class="for-screen-reader-only">Beach descriptor is storm drain river outlet</label>
       <tr>
-        <label for="bdPier" hidden="true">Beach descriptor is pier</label>
         <td><input type="checkbox" id="bdPier" formControlName="bdPier">Pier</td>
-        <label for="bdDrain" hidden="true">Beach descriptor is storm drain river outlet</label>
         <td><input type="checkbox" id="bdDrain" formControlName="bdDrain">Storm Drain/River Outlet<br></td>
       </tr>
+      <label for="bdOtherCheck" class="for-screen-reader-only">Tick this box to add other descriptors</label>
+      <label for="bdOther" class="for-screen-reader-only">Enter other beach descriptors here</label>
       <tr>
         <td colspan="2">
           <div>
-            <label for="bdOtherCheck" hidden="true">Tick this box to add other descriptors</label>
             <input type="checkbox" id="bdOtherCheck" (click)="toggleDisable('bdOther')" formControlName="bdOtherCheck">Other (please specify)
-            <label for="bdOther" hidden="true">Enter other beach descriptors here</label>
             <input type="text" id="bdOther" size="50" maxlength="300" class="disabled" disabled="true">
           </div>
         </td>
@@ -172,15 +173,15 @@
   <!-- Organism Modeled -->
   <div class="query-args">
     <div class="title2"><span class="required-field">*</span> What organism/condition was modeled?</div>
-    <label for="omEcoli" hidden="true">E coli</label>
+    <label for="omEcoli" class="for-screen-reader-only">E coli</label>
     <input type="radio" id="omEcoli" value="1" name="organismModeled" formControlName="organismModeled" (click)="radioDisable($event, 'omOther')">E.coli<br>
-    <label for="omEnterococci" hidden="true">Enterococci</label>
+    <label for="omEnterococci" class="for-screen-reader-only">Enterococci</label>
     <input type="radio" id="omEnterococci" value="2" name="organismModeled" formControlName="organismModeled" (click)="radioDisable($event, 'omOther')">Enterococci<br>
-    <label for="omMicrocyctin" hidden="true">Microcystin or  HAB</label>
+    <label for="omMicrocyctin" class="for-screen-reader-only">Microcystin or  HAB</label>
     <input type="radio" id="omMicrocyctin" value="3" name="organismModeled" formControlName="organismModeled" (click)="radioDisable($event, 'omOther')">Microcystin/HABs<br>
-    <label for="omOtherCheck" hidden="true">Tick this box to enter an orgaism that is not listed</label>
+    <label for="omOtherCheck" class="for-screen-reader-only">Tick this box to enter an orgaism that is not listed</label>
     <input type="radio" id="omOtherCheck" value="4" name="organismModeled" formControlName="organismModeled" (click)="radioDisable($event, 'omOther')">Other (please specify)
-    <label for="omOther" hidden="true">Enter an organism not listed</label>
+    <label for="omOther" class="for-screen-reader-only">Enter an organism not listed</label>
     <input type="text" id="omOther" size="50" maxlength="80" class="disabled" disabled="true">
     <div *ngIf="submitted && f.organismModeled.invalid" class="invalid-feedback">
       <div class="required-field">Organism modeled is required</div>
@@ -194,7 +195,7 @@
         class="tooltiptext">For example: "235 CFU/100 mL" for plated E. coli, etc.</span></div>
       for the modeled organism/condition?
     </div>
-    <label for="adviLevel" hidden="true">Enter the advisory level for the modeled organism</label>
+    <label for="adviLevel" class="for-screen-reader-only">Enter the advisory level for the modeled organism</label>
     <input type="text" id="adviLevel" size="50" maxlength="150" formControlName="adviLevel" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.adviLevel.errors }">
     <div *ngIf="submitted && f.adviLevel.errors" class="invalid-feedback">
       <div *ngIf="f.adviLevel.errors.required" class="required-field">Advisory level is required</div>
@@ -205,9 +206,9 @@
   <div class="query-args form-group" formGroupName="daysPerYear">
     <div class="title2"><span class="required-field">*</span> How many days per year is this site posted/closed due to poor water quality conditions?
     </div>
-    <label for="dPosted" hidden="true">Enter the days per year this site is typically posted due to poor water conditions</label>
+    <label for="dPosted" class="for-screen-reader-only">Enter the days per year this site is typically posted due to poor water conditions</label>
     <input type="number" id="dPosted" size="4" min="0" max="365" formControlName="dPosted"> Days Posted<br>
-    <label for="dClosed" hidden="true">Enter the days per year this site is typically closed due to poor water conditions</label>
+    <label for="dClosed" class="for-screen-reader-only">Enter the days per year this site is typically closed due to poor water conditions</label>
     <input type="number" id="dClosed" size="4" min="0" max="365" formControlName="dClosed"> Days Closed
     <div *ngIf="submitted && f.daysPerYear.errors" class="invalid-feedback">
       <div *ngIf="f.daysPerYear.errors.selectionMade" class="required-field">Days posted/closed is required</div>
@@ -217,17 +218,17 @@
   <!-- Software Package -->
   <div class="query-args">
     <div class="title2"><span class="required-field">*</span> What software package was used to develop the model?</div>
-    <label for="spVB" hidden="true">Virtual beach</label>
+    <label for="spVB" class="for-screen-reader-only">Virtual beach</label>
     <input type="radio" id="spVB" value="1" name="softwarePackage" formControlName="softwarePackage" (click)="radioDisable($event, 'spOther')">Virtual Beach<br>
-    <label for="spR" hidden="true">R</label>
+    <label for="spR" class="for-screen-reader-only">R</label>
     <input type="radio" id="spR" value="2" name="softwarePackage" formControlName="softwarePackage" (click)="radioDisable($event, 'spOther')">R<br>
-    <label for="spSAS" hidden="true">S A S</label>
+    <label for="spSAS" class="for-screen-reader-only">S A S</label>
     <input type="radio" id="spSAS" value="3" name="softwarePackage" formControlName="softwarePackage" (click)="radioDisable($event, 'spOther')">SAS<br>
-    <label for="spExcel" hidden="true">Excel</label>
+    <label for="spExcel" class="for-screen-reader-only">Excel</label>
     <input type="radio" id="spExcel" value="4" name="softwarePackage" formControlName="softwarePackage" (click)="radioDisable($event, 'spOther')">Excel<br>
-    <label for="spOtherCheck" hidden="true">Tick this box to enter a software package not listed</label>
+    <label for="spOtherCheck" class="for-screen-reader-only">Tick this box to enter a software package not listed</label>
     <input type="radio" id="spOtherCheck" value="5" name="softwarePackage" formControlName="softwarePackage" (click)="radioDisable($event, 'spOther')">Other (please specify)
-    <label for="spOther" hidden="true">Enter software package not listed here</label>
+    <label for="spOther" class="for-screen-reader-only">Enter software package not listed here</label>
     <input type="text" id="spOther" size="50" maxlength="80" class="disabled" disabled="true">
     <div *ngIf="submitted && f.softwarePackage.invalid" class="invalid-feedback">
       <div class="required-field">Software package is required</div>
@@ -237,15 +238,15 @@
   <!-- Statistical Model -->
   <div class="query-args">
     <div class="title2"><span class="required-field">*</span> What type of statistical model was built?</div>
-    <label for="smMLR" hidden="true">Multiple linear regression</label>
+    <label for="smMLR" class="for-screen-reader-only">Multiple linear regression</label>
     <input type="radio" id="smMLR" value="1" name="statModel" formControlName="statModel" (click)="radioDisable($event, 'smOther')">MLR (Multiple Linear Regression)<br>
-    <label for="spGBM" hidden="true">Generalized boosting meathod</label>
+    <label for="spGBM" class="for-screen-reader-only">Generalized boosting meathod</label>
     <input type="radio" id="smGBM" value="2" name="statModel" formControlName="statModel" (click)="radioDisable($event, 'smOther')">GBM (Generalized Boosting Method)<br>
-    <label for="spPLS" hidden="true">Partial least Squares</label>
+    <label for="spPLS" class="for-screen-reader-only">Partial least Squares</label>
     <input type="radio" id="smPLS" value="3" name="statModel" formControlName="statModel" (click)="radioDisable($event, 'smOther')">PLS (Partial Least Squares)<br>
-    <label for="spOtherCheck" hidden="true">Tick this box to enter a statistical model not listed</label>
+    <label for="spOtherCheck" class="for-screen-reader-only">Tick this box to enter a statistical model not listed</label>
     <input type="radio" id="smOtherCheck" value="4" name="statModel" formControlName="statModel" (click)="radioDisable($event, 'smOther')">Other (please specify)
-    <label for="spOther" hidden="true">Enter model not listed here</label>
+    <label for="spOther" class="for-screen-reader-only">Enter model not listed here</label>
     <input type="text" name="ModelTypeText" id="smOther" size="50" maxlength="80" class="disabled" disabled="true">
     <div *ngIf="submitted && f.statModel.invalid" class="invalid-feedback">
       <div class="required-field">Statistical model is required</div>
@@ -260,14 +261,14 @@
       was this model used for?
     </div>
     <div>
-    <label for="tpDevelop" hidden="true">Model development</label>
+    <label for="tpDevelop" class="for-screen-reader-only">Model development</label>
     <input type="text" id="tpDevelop" size="30" maxlength="80" formControlName="tpDevelop" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.tpDevelop.errors }"> Development
     <div *ngIf="submitted && f.tpDevelop.errors" class="invalid-feedback">
       <div *ngIf="f.tpDevelop.errors.required" class="required-field">Development time period is required</div>
     </div>
   </div>
   <div>
-    <label for="tpImplement" hidden="true">Model implementation</label>
+    <label for="tpImplement" class="for-screen-reader-only">Model implementation</label>
     <input type="text" id="tpImplement" size="30" maxlength="80" formControlName="tpImplement" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.tpImplement.errors }"> Implementation
     <div *ngIf="submitted && f.tpImplement.errors" class="invalid-feedback">
       <div *ngIf="f.tpImplement.errors.required" class="required-field">Implementation time period is required</div>
@@ -278,13 +279,13 @@
   <!-- Model Usage -->
   <div class="query-args" formGroupName="modelUse">
     <div class="title2"><span class="required-field">*</span> How was the model being used?</div>
-    <label for="muNow" hidden="true">To predict current water quality conditions</label>
+    <label for="muNow" class="for-screen-reader-only">To predict current water quality conditions</label>
     <input type="checkbox" id="muNow" formControlName="muNow">Predict current water quality conditions
     (Nowcasting)<br>
-    <label for="muFore" hidden="true">To predict future water quality conditions</label>
+    <label for="muFore" class="for-screen-reader-only">To predict future water quality conditions</label>
     <input type="checkbox" id="muFore" formControlName="muFore">Predict future water quality conditions
     (Forecasting)<br>
-    <label for="muResearch" hidden="true">For research</label>
+    <label for="muResearch" class="for-screen-reader-only">For research</label>
     <input type="checkbox" id="muResearch" formControlName="muResearch">Estimate the influence of potential microbial sources or
     environmental factors (Research)
     <div *ngIf="submitted && f.modelUse.errors" class="invalid-feedback">
@@ -299,7 +300,7 @@
           class="tooltiptext">examples here!</span></div>
           was used on the dependent variable?
       </div>
-      <label for="dvTransform" hidden="true">Enter the transform applied to the dependent variable</label>
+      <label for="dvTransform" class="for-screen-reader-only">Enter the transform applied to the dependent variable</label>
       <input type="text" id="dvTransform" size="50" maxlength="150" formControlName="dvTransform" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.dvTransform.errors }">
       <div *ngIf="submitted && f.dvTransform.errors" class="invalid-feedback">
         <div *ngIf="f.dvTransform.errors.required" class="required-field">Dependent variable transform required</div>
@@ -314,66 +315,65 @@
       </div>
       ?
     </div>
-    <label for="checkbox_3" generated="true" class="error"></label>
     <table>
       <colgroup>
         <col width="200"><col width="200"><col width="200">
       </colgroup>
       <tbody>
+      <label for="ivAirTemp" class="for-screen-reader-only">Air Temperature</label>
+      <label for="ivWaterTemp" class="for-screen-reader-only">WaterTemp</label>
+      <label for="ivDewpotin" class="for-screen-reader-only">Dewpoint</label>
       <tr>
-        <label for="ivAirTemp" hidden="true">Air Temperature</label>
         <td><input type="checkbox" id="ivAirTemp" formControlName="ivAirTemp">Air Temp</td>
-        <label for="ivWaterTemp" hidden="true">WaterTemp</label>
         <td><input type="checkbox" id="ivWaterTemp" formControlName="ivWaterTemp">Water Temp</td>
-        <label for="ivDewpotin" hidden="true">Dewpoint</label>
         <td><input type="checkbox" id="ivDewpoint" formControlName="ivDewpoint">Dewpoint</td>
       </tr>
+      <label for="ivWindSpeed" class="for-screen-reader-only">Wind Characteristics</label>
+      <label for="ivCurrentSpeed" class="for-screen-reader-only">Current Characteristics</label>
+      <label for="ivWaveHeight" class="for-screen-reader-only">Wave Characteristics</label>
       <tr>
-        <label for="ivWindSpeed" hidden="true">Wind Characteristics</label>
         <td><input type="checkbox" id="ivWindSpeed" formControlName="ivWindSpeed">Wind Characteristics</td>
-        <label for="ivCurrentSpeed" hidden="true">Current Characteristics</label>
         <td><input type="checkbox" id="ivCurrentSpeed" formControlName="ivCurrentSpeed">Current Characteristics</td>
-        <label for="ivWaveHeight" hidden="true">Wave Characteristics</label>
         <td><input type="checkbox" id="ivWaveHeight" formControlName="ivWaveHeight">Wave Characteristics</td>
       </tr>
+      <label for="ivRain" class="for-screen-reader-only">Antecedent Rainfall</label>
+      <label for="ivTurbidity" class="for-screen-reader-only">Turbidity</label>
+      <label for="ivTribDischarge" class="for-screen-reader-only">Tributary discharge</label>
       <tr>
-        <label for="ivRain" hidden="true">Antecedent Rainfall</label>
         <td><input type="checkbox" id="ivRain" formControlName="ivRain">Antecedent Rainfall</td>
-        <label for="ivTurbidity" hidden="true">Turbidity</label>
         <td><input type="checkbox" id="ivTurbidity" formControlName="ivTurbidity">Turbidity</td>
-        <label for="ivTribDischarge" hidden="true">Tributary discharge</label>
         <td><input type="checkbox" id="ivTribDischarge" formControlName="ivTribDischarge">Tributary Discharge</td>
       </tr>
+      <label for="ivCloudCover" class="for-screen-reader-only">Cloud Cover</label>
+      <label for="ivUV" class="for-screen-reader-only">U V or PAR</label>
+      <label for="ivRelHumidity" class="for-screen-reader-only">Relative humidity</label>
       <tr>
-        <label for="ivCloudCover" hidden="true">Cloud Cover</label>
         <td><input type="checkbox" id="ivCloudCover" formControlName="ivCloudCover">Cloud Cover</td>
-        <label for="ivUV" hidden="true">U V or PAR</label>
         <td><input type="checkbox" id="ivUV" formControlName="ivUV">UV/PAR</td>
-        <label for="ivRelHumidity" hidden="true">Relative humidity</label>
         <td><input type="checkbox" id="ivRelHumidity" formControlName="ivRelHumidity">Relative Humidity</td>
       </tr>
+      <label for="ivConductivity" class="for-screen-reader-only">Water conductivity</label>
+      <label for="ivAbsorbance" class="for-screen-reader-only">Water absorbance</label>
+      <label for="ivDepth" class="for-screen-reader-only">Water depth or tidal surge</label>
       <tr>
-        <label for="ivConductivity" hidden="true">Water conductivity</label>
         <td><input type="checkbox" id="ivConductivity" formControlName="ivConductivity">Conductivity</td>
-        <label for="ivAbsorbance" hidden="true">Water absorbance</label>
         <td><input type="checkbox" id="ivAbsorbance" formControlName="ivAbsorbance">Water Absorbance</td>
-        <label for="ivDepth" hidden="true">Water depth or tidal surge</label>
         <td><input type="checkbox" id="ivDepth" formControlName="ivDepth">Water Depth/Tidal Stage</td>
       </tr>
+      <label for="ivHumans" class="for-screen-reader-only">Humans</label>
+      <label for="ivBirds" class="for-screen-reader-only">Birds</label>
+      <label for="ivWildlife" class="for-screen-reader-only">Wildlife</label>
       <tr>
-        <label for="ivHumans" hidden="true">Humans</label>
         <td><input type="checkbox" id="ivHumans" formControlName="ivHumans">Humans</td>
-        <label for="ivBirds" hidden="true">Birds</label>
         <td><input type="checkbox" id="ivBirds" formControlName="ivBirds">Birds</td>
-        <label for="ivWildlife" hidden="true">Wildlife</label>
         <td><input type="checkbox" id="ivWildlife" formControlName="ivWildlife">Other Wildlife</td>
       </tr>
+      <label for="ivOtherCHeck" class="for-screen-reader-only">Tick this box to list other independent variables</label>
+      <label for="ivOther" class="for-screen-reader-only">Enter other independent variables here</label>
       <tr>
         <td colspan="3">
           <div>
-            <label for="ivOtherCHeck" hidden="true">Tick this box to list other independent variables</label>
             <input type="checkbox" id="ivOtherCheck" formControlName="ivOtherCheck" (click)="toggleDisable('ivOther')">Other (please specify)
-            <label for="ivOther" hidden="true">Enter other independent variables here</label>
             <input type="text" id="ivOther" size="50" maxlength="100" class="disabled" disabled="true">
           </div>
         </td>
@@ -389,9 +389,9 @@
     <div class="title2">
       <span class="required-field">*</span> What was the Independant Variable source?
     </div>
-    <label for="onSite" hidden="true">Varaibles collected on site</label>
+    <label for="onSite" class="for-screen-reader-only">Varaibles collected on site</label>
     <input type="checkbox" id="onSite" formControlName="onSite">Collected Onsite<br>
-    <label for="onLine" hidden="true">Variables accessed online</label>
+    <label for="onLine" class="for-screen-reader-only">Variables accessed online</label>
     <input type="checkbox" id="onLine" formControlName="onLine">Accessed Online
     <div *ngIf="submitted && f.ivSource.errors" class="invalid-feedback">
       <div *ngIf="f.ivSource.errors.selectionMade" class="required-field">At least one independent variable source is required</div>
@@ -403,17 +403,17 @@
     <div class="title2">
       <span class="required-field">*</span> What type of evaluation criterion was primarily used for model selection?
     </div>
-    <label for="ecRsquared" hidden="true">R squared or adjusted r squared</label>
+    <label for="ecRsquared" class="for-screen-reader-only">R squared or adjusted r squared</label>
     <input type="checkbox" id="ecRsquared" formControlName="ecRsquared">R-Squared/Adjusted R-Squared<br>
-    <label for="ecAicBic" hidden="true">A I C, A I C c, or B I C</label>
+    <label for="ecAicBic" class="for-screen-reader-only">A I C, A I C c, or B I C</label>
     <input type="checkbox" id="ecAicBic" formControlName="ecAicBic">AIC/AICc/BIC<br>
-    <label for="ecSenSpecAcc" hidden="true">Sensitivity, specify, or accuracy</label>
+    <label for="ecSenSpecAcc" class="for-screen-reader-only">Sensitivity, specify, or accuracy</label>
     <input type="checkbox" id="ecSenSpecAcc" formControlName="ecSenSpecAcc">Sensitivity/Specificity/Accuracy<br>
-    <label for="ecPress" hidden="true">Press or R M S E P</label>
+    <label for="ecPress" class="for-screen-reader-only">Press or R M S E P</label>
     <input type="checkbox" id="ecPress" formControlName="ecPress">PRESS/RMSEP<br>
-    <label for="ecOtherCheck" hidden="true">Tick this box to add evaluation criterion not listed</label>
+    <label for="ecOtherCheck" class="for-screen-reader-only">Tick this box to add evaluation criterion not listed</label>
     <input type="checkbox" id="ecOtherCheck" formControlName="ecOtherCheck" (click)="toggleDisable('ecOther')">Other (please specify)
-    <label for="ecOther" hidden="true">Enter other evaluation criterion here</label>
+    <label for="ecOther" class="for-screen-reader-only">Enter other evaluation criterion here</label>
     <input type="text" id="ecOther" size="50" maxlength="80" class="disabled" disabled="true">
     <div *ngIf="submitted && f.evalCriterion.invalid" class="invalid-feedback">
       <div class="required-field">Evaluation criterion is required</div>
@@ -427,7 +427,7 @@
           class="tooltiptext">examples here!</span></div>
           was used for evaluating model predictions?
       </div>
-      <label for="dCriterion" hidden="true">Enter decision criterion here</label>
+      <label for="dCriterion" class="for-screen-reader-only">Enter decision criterion here</label>
       <input type="text" id="dCriterion" size="50" maxlength="150" formControlName="dCriterion" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.dCriterion.errors }">
       <div *ngIf="submitted && f.dCriterion.errors" class="invalid-feedback">
         <div *ngIf="f.dCriterion.errors.required" class="required-field">Decision criterion for model predictions is required</div>
@@ -444,36 +444,36 @@
         <div>
           <span class="perf-arg">Sensitivity (%)</span>
           <span class="perf-val">
-            <label for="mpFitSensitivity" hidden="true">Enter fitted model performance sensitivity</label>
+            <label for="mpFitSensitivity" class="for-screen-reader-only">Enter fitted model performance sensitivity</label>
             <input type="number" style="width:60px"  id="mpFitSensitivity" min="0" max="100">
           </span>
         </div>
         <div>
           <span class="perf-arg">Specificity (%)</span>
           <span class="perf-val">
-            <label for="mpFitSpecificity" hidden="true">Enter fitted model performance Specificity</label>
+            <label for="mpFitSpecificity" class="for-screen-reader-only">Enter fitted model performance Specificity</label>
             <input type="number" style="width:60px" id="mpFitSpecificity" min="0" max="100">
           </span>
         </div>
         <div>
           <span class="perf-arg">Accuracy (%)</span>
           <span class="perf-val">
-            <label for="mpFitAccuracy" hidden="true">Enter fitted model performance accuracy</label>
+            <label for="mpFitAccuracy" class="for-screen-reader-only">Enter fitted model performance accuracy</label>
             <input type="number" style="width:60px" id="mpFitAccuracy" min="0" max="100">
           </span>
         </div>
         <div>
           <span class="perf-arg">R-Squared</span>
           <span class="perf-val">
-            <label for="mpFitRsquared" hidden="true">Enter fitted model performance r squared</label>
+            <label for="mpFitRsquared" class="for-screen-reader-only">Enter fitted model performance r squared</label>
             <input type="number" style="width:60px" id="mpFitRsquared" min="0" max="1" step="0.01">
           </span>
         </div>
         <div>
           <span class="perf-arg">Dataset Size (N)</span>
           <span class="perf-val">
+            <label for="mpFitSetSize" class="for-screen-reader-only">Enter fitted model performance set size</label>
             <input type="number" style="width:60px" id="mpFitSetSize" min="1">
-            <label for="mpFitSetSize" hidden="true">Enter fitted model performance set size</label>
           </span>
         </div>
       </div>
@@ -485,28 +485,28 @@
         <div>
           <span class="perf-arg">Sensitivity (%)</span>
           <span class="perf-val">
-            <label for="mpPredSensitivity" hidden="true">Enter fitted model performance sensitivity</label>
+            <label for="mpPredSensitivity" class="for-screen-reader-only">Enter fitted model performance sensitivity</label>
             <input type="number" style="width:60px" id="mpPredSensitivity" min="0" max="100">
           </span>
         </div>
         <div>
           <span class="perf-arg">Specificity (%)</span>
           <span class="perf-val">
-            <label for="mpPredSpecificity" hidden="true">Enter fitted model performance Specificity</label>
+            <label for="mpPredSpecificity" class="for-screen-reader-only">Enter fitted model performance Specificity</label>
             <input type="number" style="width:60px" id="mpPredSpecificity" min="0" max="100">
           </span>
         </div>
         <div>
           <span class="perf-arg">Accuracy (%)</span>
           <span class="perf-val">
-            <label for="mpPredAccuracy" hidden="true">Enter fitted model performance accuracy</label>
+            <label for="mpPredAccuracy" class="for-screen-reader-only">Enter fitted model performance accuracy</label>
             <input type="number" style="width:60px" id="mpPredAccuracy" min="0" max="100">
           </span>
         </div>
         <div>
           <span class="perf-arg">Predictions (N)</span>
           <span class="perf-val">
-            <label for="mpPredPredictions" hidden="true">Enter fitted model performance number of predictions</label>
+            <label for="mpPredPredictions" class="for-screen-reader-only">Enter fitted model performance number of predictions</label>
             <input type="number" style="width:60px" id="mpPredPredictions" min="0" max="1" step="0.01">
           </span>
         </div>
@@ -519,6 +519,7 @@
       <div class="title2">
         Any additional comments?
       </div>
+      <label for="comments" class="for-screen-reader-only">Enter any additional comments here</label>
       <textarea id="comments" rows="4" cols="100"></textarea>
     </div>
   </div>
