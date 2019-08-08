@@ -162,16 +162,16 @@
     </div>
 
   <!-- Organism Modeled -->
-  <div class="query-args">
+  <div class="query-args" formGroupName="organismModeled">
     <div class="title2"><span class="required-field">*</span> What organism/condition was modeled?</div>
-    <label><input type="radio" id="omEcoli" name="OM" value="1" formControlName="OM" (click)="radioDisable($event, 'omOther')">E.coli</label><br>
-    <label><input type="radio" id="omEnterococci" name="OM" value="2" formControlName="OM" (click)="radioDisable($event, 'omOther')">Enterococci</label><br>
-    <label><input type="radio" id="omMicrocyctin" name="OM" value="3" formControlName="OM" (click)="radioDisable($event, 'omOther')">Microcystin/HABs</label><br>
-    <label><input type="radio" id="omOtherCheck" name="OM" value="4" (click)="radioDisable($event, 'omOther')">Other (please specify) </label>
+    <label><input type="radio" id="omEcoli" name="OM" value="1" formControlName="OM" (click)="radioDisable($event, 'omOther', 'organismModeled')">E.coli</label><br>
+    <label><input type="radio" id="omEnterococci" name="OM" value="2" formControlName="OM" (click)="radioDisable($event, 'omOther', 'organismModeled')">Enterococci</label><br>
+    <label><input type="radio" id="omMicrocyctin" name="OM" value="3" formControlName="OM" (click)="radioDisable($event, 'omOther', 'organismModeled')">Microcystin/HABs</label><br>
+    <label><input type="radio" id="omOtherCheck" name="OM" value="4" (click)="radioDisable($event, 'omOther', 'organismModeled', 'OM')">Other (please specify) </label>
     <label for="omOther" class="for-screen-reader-only">Enter an organism not listed</label>
     <input type="text" id="omOther" size="50" maxlength="80" formControlName="omOther">
-    <div *ngIf="submitted && f.OM.invalid" class="invalid-feedback">
-      <div class="required-field">Organism modeled is required</div>
+    <div *ngIf="submitted && f.organismModeled.errors" class="invalid-feedback">
+      <div *ngIf="f.organismModeled.errors.selectionMade" class="required-field">Organism modeled is required</div>
     </div>
   </div>
 
@@ -192,40 +192,40 @@
   <div class="query-args form-group" formGroupName="daysPerYear">
     <div class="title2"><span class="required-field">*</span> How many days per year is this site posted/closed due to poor water quality conditions?</div>
     <label for="dPosted" class="for-screen-reader-only">Enter the days per year this site is typically posted due to poor water conditions</label>
-    <input type="number" id="dPosted" size="4" min="0" max="365" formControlName="dPosted"> Days Posted<br>
+    <input type="number" id="dPosted" size="4" min="0" max="365" formControlName="dPosted" [ngClass]="{ 'is-invalid': submitted && f.daysPerYear.errors}"> Days Posted<br>
     <label for="dClosed" class="for-screen-reader-only">Enter the days per year this site is typically closed due to poor water conditions</label>
-    <input type="number" id="dClosed" size="4" min="0" max="365" formControlName="dClosed"> Days Closed
+    <input type="number" id="dClosed" size="4" min="0" max="365" formControlName="dClosed" [ngClass]="{ 'is-invalid': submitted && f.daysPerYear.errors}"> Days Closed
     <div *ngIf="submitted && f.daysPerYear.errors" class="invalid-feedback">
       <div *ngIf="f.daysPerYear.errors.selectionMade" class="required-field">Days posted/closed is required</div>
     </div>
   </div>
 
   <!-- Software Package -->
-  <div class="query-args">
+  <div class="query-args" formGroupName="softwarePackage">
     <div class="title2"><span class="required-field">*</span> What software package was used to develop the model?</div>
-    <label><input type="radio" id="spVB" name="SP" value="1" formControlName="SP" (click)="radioDisable($event, 'spOther')">Virtual Beach</label><br>
-    <label><input type="radio" id="spR" name="SP" value="2" formControlName="SP" (click)="radioDisable($event, 'spOther')">R</label><br>
-    <label><input type="radio" id="spSAS" name="SP" value="3" formControlName="SP" (click)="radioDisable($event, 'spOther')">SAS</label><br>
-    <label><input type="radio" id="spExcel" name="SP" value="4" (click)="radioDisable($event, 'spOther')">Excel</label><br>
-    <label><input type="radio" id="spOtherCheck" name="SP" value="5" (click)="radioDisable($event, 'spOther')">Other (please specify) </label>
+    <label><input type="radio" id="spVB" name="SP" value="1" formControlName="SP" (click)="radioDisable($event, 'spOther', 'softwarePackage')">Virtual Beach</label><br>
+    <label><input type="radio" id="spR" name="SP" value="2" formControlName="SP" (click)="radioDisable($event, 'spOther', 'softwarePackage')">R</label><br>
+    <label><input type="radio" id="spSAS" name="SP" value="3" formControlName="SP" (click)="radioDisable($event, 'spOther', 'softwarePackage')">SAS</label><br>
+    <label><input type="radio" id="spExcel" name="SP" value="4" formControlName="SP" (click)="radioDisable($event, 'spOther', 'softwarePackage')">Excel</label><br>
+    <label><input type="radio" id="spOtherCheck" name="SP" value="5" (click)="radioDisable($event, 'spOther', 'softwarePackage', 'SP')">Other (please specify) </label>
     <label for="spOther" class="for-screen-reader-only">Enter software package not listed here</label>
     <input type="text" id="spOther" size="50" maxlength="80" formControlName="spOther">
-    <div *ngIf="submitted && f.SP.invalid && f.spOther.invalid" class="invalid-feedback">
-      <div class="required-field">Software package is required</div>
+    <div *ngIf="submitted && f.softwarePackage.errors" class="invalid-feedback">
+      <div *ngIf="f.softwarePackage.errors.selectionMade" class="required-field">Software package is required</div>
     </div>
   </div>
 
   <!-- Statistical Model -->
-  <div class="query-args">
+  <div class="query-args" formGroupName="statModel">
     <div class="title2"><span class="required-field">*</span> What type of statistical model was built?</div>
-    <label><input type="radio" id="smMLR" name="SM" value="1" formControlName="SM" (click)="radioDisable($event, 'smOther')">MLR (Multiple Linear Regression)</label><br>
-    <label><input type="radio" id="smGBM" name="SM" value="2" formControlName="SM" (click)="radioDisable($event, 'smOther')">GBM (Generalized Boosting Method)</label><br>
-    <label><input type="radio" id="smPLS" name="SM" value="3" formControlName="SM" (click)="radioDisable($event, 'smOther')">PLS (Partial Least Squares)</label><br>
-    <label><input type="radio" id="smOtherCheck" name="SM" value="4" formControlName="SM" (click)="radioDisable($event, 'smOther')">Other (please specify) </label>
+    <label><input type="radio" id="smMLR" name="SM" value="1" formControlName="SM" (click)="radioDisable($event, 'smOther', 'statModel')">MLR (Multiple Linear Regression)</label><br>
+    <label><input type="radio" id="smGBM" name="SM" value="2" formControlName="SM" (click)="radioDisable($event, 'smOther', 'statModel')">GBM (Generalized Boosting Method)</label><br>
+    <label><input type="radio" id="smPLS" name="SM" value="3" formControlName="SM" (click)="radioDisable($event, 'smOther', 'statModel')">PLS (Partial Least Squares)</label><br>
+    <label><input type="radio" id="smOtherCheck" name="SM" value="4" (click)="radioDisable($event, 'smOther', 'statModel', 'SM')">Other (please specify) </label>
     <label for="spOther" class="for-screen-reader-only">Enter model not listed here</label>
     <input type="text" id="smOther" size="50" maxlength="80" formControlName="smOther">
-    <div *ngIf="submitted && f.SM.invalid" class="invalid-feedback">
-      <div class="required-field">Statistical model is required</div>
+    <div *ngIf="submitted && f.statModel.errors" class="invalid-feedback">
+      <div *ngIf="f.statModel.errors.selectionMade" class="required-field">Statistical model is required</div>
     </div>
   </div>
 

@@ -35,17 +35,23 @@ export class SurveyComponent implements OnInit {
         bdDrain: new FormControl(),
         bdOther: new FormControl({value: '', disabled: true}, Validators.minLength(1))
       }, this.groupValidator()),
-      OM: ['', Validators.required],
-      omOther: new FormControl({value: '', disabled: true}, Validators.minLength(1)),
+      organismModeled: new FormGroup({
+        OM: new FormControl({value: null}, Validators.required),
+        omOther: new FormControl({value: '', disabled: true}, Validators.minLength(1)),
+      }, this.radioWithTextValidator()),
       adviLevel: ['', Validators.required],
       daysPerYear: new FormGroup({
         dPosted: new FormControl(false),
         dClosed: new FormControl(false)
       }, this.numberGroupValidator()),
-      SP: ['', Validators.required],
-      spOther: new FormControl({value: '', disabled: true}, Validators.minLength(1)),
-      SM: ['', Validators.required],
-      smOther: new FormControl({value: '', disabled: true}, Validators.minLength(1)),
+      softwarePackage: new FormGroup({
+        SP: new FormControl({value: null}, Validators.required),
+        spOther: new FormControl({value: '', disabled: true}, Validators.minLength(1)),
+      }, this.radioWithTextValidator()),
+      statModel: new FormGroup({
+        SM: new FormControl({value: null}, Validators.required),
+        smOther: new FormControl({value: '', disabled: true}, Validators.minLength(1)),
+      }, this.radioWithTextValidator()),
       tpDevelop: ['', Validators.required],
       tpImplement: ['', Validators.required],
       modelUse: new FormGroup({
@@ -90,9 +96,10 @@ export class SurveyComponent implements OnInit {
     });
   }
 
-  // convenience getter for easy access to form fields
   // thanks https://stackoverflow.com/users/5688490/mick !
   // for help with angular form controls/custom validators
+  // this function is only used from the html for reactive form actions,
+  // convenience getter for easy access to form fields
   get f() { return this.surveyForm.controls; }
 
   submitSurvey(): void {
@@ -149,23 +156,27 @@ export class SurveyComponent implements OnInit {
     }
   }
 
-  radioDisable(event: any, id): void {
-    const textbox = document.getElementById(id) as HTMLInputElement;
+  radioDisable(event: any, id: string, parent?: string, group?: string): void {
+    console.log(id + ' | ' + parent + ' | ' + group);
     if (event.target.id !== id) {
-      const control = this.surveyForm.get(id);
+      const control = this.surveyForm.get([parent, id]);
       if (event.target.id === id + 'Check') {
-       /*  textbox.classList.remove('disabled');
-        textbox.disabled = false; */
         control.enable();
-
+        if (group) {
+          // in order for the reactive form to behave properly this value needs to be reset when otherCheck is selected
+          this.surveyForm.get([parent, group]).reset({value: null});
+        }
       } else {
-       /*  textbox.classList.add('disabled');
-        textbox.disabled = true;
-        textbox.value = ''; */
         control.disable();
         control.reset('');
       }
     }
+  }
+
+  // it really should be this easy, but alas
+  clearForm2(): void {
+    this.surveyForm.reset(/* an initial form state object */);
+    window.scrollTo(0, 0);
   }
 
   clearForm(): void {
@@ -173,11 +184,6 @@ export class SurveyComponent implements OnInit {
     for (const i in inputs) {
       if (inputs[i].type === 'text' || inputs[i].type === 'email' || inputs[i].type === 'number') {
         inputs[i].value = '';
-        /* if (inputs[i].name.substring(inputs[i].name.length - 4) === 'Text') {
-          const otherText = inputs[i] as HTMLInputElement;
-          otherText.classList.add('disabled');
-          otherText.disabled = true;
-        } */
       } else if (inputs[i].type === 'radio' || inputs[i].type === 'checkbox') {
         inputs[i].checked = false;
       }
@@ -213,8 +219,6 @@ export class SurveyComponent implements OnInit {
     };
   }
 
-  // yes, this function looks awfully similar to the one above, but the above doesn't work
-  // on an input of type number
   numberGroupValidator(minRequired = 1): ValidatorFn {
     return function validate(formGroup: FormGroup) {
       let numValid = 0;
@@ -231,14 +235,33 @@ export class SurveyComponent implements OnInit {
     };
   }
 
-  radioValidator(): ValidatorFn {
+  /* radioValidator(): ValidatorFn {
     return function validate(formGroup: FormGroup) {
       Object.keys(formGroup.controls).forEach(key => {
         const control = formGroup.controls[key];
         if (control.value === true) {
-          return { selctionMade: true };
+          return { selectionMade: true };
         }
       });
+      return null;
+    };
+  } */
+
+  radioWithTextValidator(minRequired = 1): ValidatorFn {
+    return function validate(formGroup: FormGroup) {
+      let numValid = 0;
+      let index = 0;
+      Object.keys(formGroup.controls).forEach(key => {
+        const control = formGroup.controls[key];
+        if ((key.substring(2) === 'Other' && control.value !== '') || (key.substring(2) !== 'Other' && control.value > 0)) {
+          numValid++;
+        }
+        index++;
+      });
+      console.log('numValid: ' + numValid);
+      if (numValid < minRequired) {
+        return { selectionMade: true };
+      }
       return null;
     };
   }
