@@ -157,7 +157,6 @@ export class SurveyComponent implements OnInit {
   }
 
   radioDisable(event: any, id: string, parent?: string, group?: string): void {
-    console.log(id + ' | ' + parent + ' | ' + group);
     if (event.target.id !== id) {
       const control = this.surveyForm.get([parent, id]);
       if (event.target.id === id + 'Check') {
@@ -194,6 +193,8 @@ export class SurveyComponent implements OnInit {
         selects[j].selectedIndex = 0;
       }
     }
+
+    this.surveyForm.reset(/* an initial form state object */);
     /* Object.keys(this.surveyForm.controls).forEach(key => {
       const control = this.surveyForm.controls[key];
       if (control) {
@@ -258,7 +259,6 @@ export class SurveyComponent implements OnInit {
         }
         index++;
       });
-      console.log('numValid: ' + numValid);
       if (numValid < minRequired) {
         return { selectionMade: true };
       }

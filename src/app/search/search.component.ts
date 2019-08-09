@@ -126,7 +126,20 @@ export class SearchComponent implements OnInit {
     document.getElementById('results-table').hidden = true;
   }
 
-  populateSurvey(): void {
-    // this method will populate the survey form with data from an existing record
+  populateSurvey(e: {}): void {
+    const records = [];
+    records.push(e);
+    console.log(JSON.stringify(e));
+    this.db.batchLoadRecords(records);
+  }
+
+  saveQuery(): void {
+    console.log(JSON.stringify(this.searchResult));
+  }
+
+  saveDB(): void {
+    // save the entire db to a csv file
+    // send a request for all records
+    console.log('Saving all records to local csv file');
   }
 }

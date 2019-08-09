@@ -27,6 +27,7 @@ export class DbServiceService {
   }
 
   addRecord(record: Record): Observable<Record> {
+    // console.log('addRecord: ' + JSON.stringify(record));
     const jsonRecord = JSON.stringify(record);
     return this.http.post<Record>(this.dbUrl, jsonRecord, httpOptions).pipe(
       tap((newRecord: Record) => this.log(`added new record to db: ${newRecord.eMail}`)),
@@ -34,9 +35,25 @@ export class DbServiceService {
     );
   }
 
+  batchLoadRecords(records: Record[]): void {
+    // console.log('batchLoad: ' + JSON.stringify(records));
+    for (const r in records) {
+      if (records[r]) {
+        console.log('adding a record from the batch!');
+        this.addRecord(records[r]);
+      }
+    }
+  }
+
   private handleError<T>(operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
-      console.error(error);
+      if (error.status === 0) {
+        alert('The server is currently unavailable, please try again later.');
+      } else if (error.status === 400) {
+        alert('The server had an issue with your request: ' + error.status);
+      } else {
+        alert('An error has been encountered, error.status: ' + error.status);
+      }
       this.log(`${operation} failed: ${error.message}`);
       return of(result as T);
     };

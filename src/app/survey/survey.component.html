@@ -7,7 +7,7 @@
 </div>
 
 <div class="box">
-  <form [formGroup]="surveyForm" (ngSubmit)="submitSurvey()">
+  <form [formGroup]="surveyForm">  <!-- (ngSubmit)="submitSurvey()">-->
   <!-- user id info -->
   <div class="query-args">
     <div class="title1">Email:</div>
@@ -477,7 +477,8 @@
   <div id="controls">
       <em>Fields marked with <span class="required-field">*</span> are required</em>
       <div>
-        <button type="submit" value="Submit" name="formSubmit">Submit Survey</button>&nbsp;&nbsp;&nbsp;
+        <!--<button type="submit" value="Submit" name="formSubmit">Submit Survey</button>&nbsp;&nbsp;&nbsp;-->
+        <button type="button" (click)="submitSurvey()">Submit Survey</button>&nbsp;&nbsp;&nbsp;
         <button type="button" (click)="clearForm()">Reset Survey</button>
       </div>
       <div>
