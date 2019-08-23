@@ -29,7 +29,6 @@ export class DbServiceService {
   }
 
   addRecord(record: Record): Observable<Record> {
-    console.log('addRecord: ' + JSON.stringify(record));
     const jsonRecord = JSON.stringify(record);
     return this.http.post<Record>(this.apiUrl, jsonRecord, httpOptions).pipe(
       tap((newRecord: any) => this.log(`added new record to db: ${newRecord.vbserver}`)),
@@ -38,7 +37,6 @@ export class DbServiceService {
   }
 
   batchLoadRecords(records: Record[]): Observable<any> {
-    console.log('batchLoad: ' + JSON.stringify(records));
     const jsonRecord = JSON.stringify(records);
     return this.http.post(this.api_batchUrl, jsonRecord, httpOptions).pipe(
       tap((newRecord: any) => this.log(`db: ${newRecord.vbserver}`)),
