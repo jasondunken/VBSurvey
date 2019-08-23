@@ -17,7 +17,7 @@ const httpOptions = {
 export class DbServiceService {
   private dbUrl = 'http://127.0.0.1:4000/api';
   private apiUrl = 'http://127.0.0.1:4000/api';
-  private api_batchUrl = 'http://127.0.0.1:4000/api/batch';
+  private apiBatchUrl = 'http://127.0.0.1:4000/api/batch';
   constructor(private http: HttpClient) { }
 
   getRecords(query): Observable<Record[]> {
@@ -38,7 +38,7 @@ export class DbServiceService {
 
   batchLoadRecords(records: Record[]): Observable<any> {
     const jsonRecord = JSON.stringify(records);
-    return this.http.post(this.api_batchUrl, jsonRecord, httpOptions).pipe(
+    return this.http.post(this.apiBatchUrl, jsonRecord, httpOptions).pipe(
       tap((newRecord: any) => this.log(`db: ${newRecord.vbserver}`)),
       catchError(this.handleError<Record>('addRecord'))
     );
