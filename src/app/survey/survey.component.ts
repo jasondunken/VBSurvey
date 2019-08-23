@@ -1,9 +1,13 @@
-import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators, ValidatorFn, FormControl } from '@angular/forms';
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { FormBuilder, FormGroup, Validators, ValidatorFn, FormControl, SelectControlValueAccessor } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
+
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 import { DbServiceService } from '../db-service.service';
-
 import { Record } from '../record';
+import { TestRecord } from '../test-record';
 
 @Component({
   selector: 'app-survey',
@@ -11,14 +15,16 @@ import { Record } from '../record';
   styleUrls: ['./survey.component.css']
 })
 
-export class SurveyComponent implements OnInit {
+export class SurveyComponent implements OnInit, OnDestroy {
+  state$: Observable<object>;
   surveyForm: FormGroup;
   submitted = false;
 
-  constructor(private db: DbServiceService, private formBuilder: FormBuilder) {}
+  constructor(private db: DbServiceService, private formBuilder: FormBuilder, public activatedRoute: ActivatedRoute) { }
 
   ngOnInit() {
     this.surveyForm = this.formBuilder.group({
+      eMail: [''],
       org: ['', Validators.required],
       site: ['', Validators.required],
       actId: ['', Validators.required],
@@ -33,11 +39,11 @@ export class SurveyComponent implements OnInit {
         bdMarine: new FormControl(),
         bdPier: new FormControl(),
         bdDrain: new FormControl(),
-        bdOther: new FormControl({value: '', disabled: true}, Validators.minLength(1))
+        bdOther: new FormControl({ value: '', disabled: true }, Validators.minLength(1))
       }, this.groupValidator()),
       organismModeled: new FormGroup({
-        OM: new FormControl({value: null}, Validators.required),
-        omOther: new FormControl({value: '', disabled: true}, Validators.minLength(1)),
+        OM: new FormControl({ value: null }, Validators.required),
+        omOther: new FormControl({ value: '', disabled: true }, Validators.minLength(1)),
       }, this.radioWithTextValidator()),
       adviLevel: ['', Validators.required],
       daysPerYear: new FormGroup({
@@ -45,12 +51,12 @@ export class SurveyComponent implements OnInit {
         dClosed: new FormControl(false)
       }, this.numberGroupValidator()),
       softwarePackage: new FormGroup({
-        SP: new FormControl({value: null}, Validators.required),
-        spOther: new FormControl({value: '', disabled: true}, Validators.minLength(1)),
+        SP: new FormControl({ value: null }, Validators.required),
+        spOther: new FormControl({ value: '', disabled: true }, Validators.minLength(1)),
       }, this.radioWithTextValidator()),
       statModel: new FormGroup({
-        SM: new FormControl({value: null}, Validators.required),
-        smOther: new FormControl({value: '', disabled: true}, Validators.minLength(1)),
+        SM: new FormControl({ value: null }, Validators.required),
+        smOther: new FormControl({ value: '', disabled: true }, Validators.minLength(1)),
       }, this.radioWithTextValidator()),
       tpDevelop: ['', Validators.required],
       tpImplement: ['', Validators.required],
@@ -79,7 +85,7 @@ export class SurveyComponent implements OnInit {
         ivHumans: new FormControl(),
         ivBirds: new FormControl(),
         ivWildlife: new FormControl(),
-        ivOther: new FormControl({value: '', disabled: true}, Validators.minLength(1))
+        ivOther: new FormControl({ value: '', disabled: true }, Validators.minLength(1))
       }, this.groupValidator()),
       ivSource: new FormGroup({
         onSite: new FormControl(),
@@ -90,10 +96,61 @@ export class SurveyComponent implements OnInit {
         ecAicBic: new FormControl(),
         ecSenSpecAcc: new FormControl(),
         ecPress: new FormControl(),
-        ecOther: new FormControl({value: '', disabled: true}, Validators.minLength(1))
+        ecOther: new FormControl({ value: '', disabled: true }, Validators.minLength(1))
       }, this.groupValidator()),
-      dCriterion: ['', Validators.required]
+      dCriterion: ['', Validators.required],
+      comments: ['']
     });
+    this.state$ = this.activatedRoute.paramMap.pipe(map(() => window.history.state));
+    this.state$.subscribe(data => {
+      if (data.hasOwnProperty('record')) {
+        this.populateSurvey2(data['record']);
+      }
+    });
+  }
+
+  ngOnDestroy(): void {
+  }
+
+  populateSurvey(record): void {
+    console.log('submitted ' + this.submitted + '\nstatus ' + this.surveyForm.status);
+    for (const i in this.surveyForm.controls) {
+      if (record.hasOwnProperty(i)) {
+        // this gets top level formControls
+        const control = this.surveyForm.get(i);
+        control.setValue(record[i]);
+        control.markAsDirty();
+        control.markAsTouched();
+        //control.updateValueAndValidity();
+      } else {
+        // this gets formGroup.controls of nested formControls
+        const fGroup = this.surveyForm.controls[i] as FormGroup;
+        const controls = fGroup.controls;
+        for (const j in controls) {
+          if (record.hasOwnProperty(j)) {
+            const control = this.surveyForm.get(i + '.' + j);
+            if (record[j] === 1) {
+              control.setValue(record[j]);
+              control.markAsDirty();
+              control.markAsTouched();
+            }
+          }
+        }
+        //fGroup.updateValueAndValidity();
+      }
+    }
+  }
+
+  populateSurvey2(record): void {
+    const inputs = document.getElementsByTagName('input');
+    for (const i in inputs) {
+      if (record.hasOwnProperty(inputs[i].id)) {
+        console.log('input: ' + inputs[i].id + ' | inputValue: ' + inputs[i].value + ' | recordValue: ' + record[inputs[i].id]);
+        // inputs[i].value = record[inputs[i].id];
+        const fInput = document.getElementById(inputs[i].id);
+        fInput.innerHTML = record[inputs[i].id];
+      }
+    }
   }
 
   // thanks https://stackoverflow.com/users/5688490/mick !
@@ -113,31 +170,38 @@ export class SurveyComponent implements OnInit {
     this.db.addRecord(record).subscribe();
   }
 
+  batchLoadRecords(): void {
+    console.log('batchLoadRecords! -> open file browser here');
+    const testRecords = [new TestRecord(), new TestRecord()];
+    this.db.batchLoadRecords(testRecords).subscribe();
+  }
+
+  // TODO: refactor to be more angular?
   buildRecord(record: Record): void {
     const inputs = document.getElementsByTagName('input');
     for (const i in inputs) {
-        if (record.hasOwnProperty(inputs[i].id)) {
-          if (inputs[i].type === 'text' || inputs[i].type === 'email') {
-            record[inputs[i].id] = '"' + inputs[i].value + '"';
-          } else if (inputs[i].type === 'number') {
-            record[inputs[i].id] = inputs[i].value !== '' ? inputs[i].value : 0;
-          } else {
-            record[inputs[i].id] = inputs[i].checked === true ? 1 : 0;
-          }
+      if (record.hasOwnProperty(inputs[i].id)) {
+        if (inputs[i].type === 'text' || inputs[i].type === 'email') {
+          record[inputs[i].id] = inputs[i].value;
+        } else if (inputs[i].type === 'number') {
+          record[inputs[i].id] = inputs[i].value !== '' ? inputs[i].value : 0;
+        } else {
+          record[inputs[i].id] = inputs[i].checked === true ? 1 : 0;
         }
+      }
     }
     const selects = document.getElementsByTagName('select');
     for (const j in selects) {
-        if (record.hasOwnProperty(selects[j].id)) {
-          if (selects[j].id === 'state') {
-            record[selects[j].id] = '"' + selects[j].options[selects[j].selectedIndex].text + '"';
-          }
+      if (record.hasOwnProperty(selects[j].id)) {
+        if (selects[j].id === 'state') {
+          record[selects[j].id] = selects[j].options[selects[j].selectedIndex].text;
         }
+      }
     }
     const textAreas = document.getElementsByTagName('textarea');
     for (const k in textAreas) {
-        if (record.hasOwnProperty(textAreas[k].id)) {
-        record[textAreas[k].id] = '"' + textAreas[k].value + '"';
+      if (record.hasOwnProperty(textAreas[k].id)) {
+        record[textAreas[k].id] = textAreas[k].value;
       }
     }
   }
@@ -163,7 +227,7 @@ export class SurveyComponent implements OnInit {
         control.enable();
         if (group) {
           // in order for the reactive form to behave properly this value needs to be reset when otherCheck is selected
-          this.surveyForm.get([parent, group]).reset({value: null});
+          this.surveyForm.get([parent, group]).reset({ value: null });
         }
       } else {
         control.disable();

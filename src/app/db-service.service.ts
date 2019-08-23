@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 
-import { HttpClient, HttpHeaders} from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 import { catchError, tap } from 'rxjs/operators';
 
@@ -15,11 +15,13 @@ const httpOptions = {
 @Injectable({ providedIn: 'root' })
 
 export class DbServiceService {
-  private dbUrl = 'http://127.0.0.1:3000/api';
+  private dbUrl = 'http://127.0.0.1:4000/api';
+  private apiUrl = 'http://127.0.0.1:4000/api';
+  private api_batchUrl = 'http://127.0.0.1:4000/api/batch';
   constructor(private http: HttpClient) { }
 
   getRecords(query): Observable<Record[]> {
-    return this.http.get<Record[]>(this.dbUrl + query)
+    return this.http.get<Record[]>(this.apiUrl + query)
       .pipe(
         tap(_ => this.log('fetched records')),
         catchError(this.handleError<Record[]>('getRecords', []))
@@ -27,22 +29,21 @@ export class DbServiceService {
   }
 
   addRecord(record: Record): Observable<Record> {
-    // console.log('addRecord: ' + JSON.stringify(record));
+    console.log('addRecord: ' + JSON.stringify(record));
     const jsonRecord = JSON.stringify(record);
-    return this.http.post<Record>(this.dbUrl, jsonRecord, httpOptions).pipe(
-      tap((newRecord: Record) => this.log(`added new record to db: ${newRecord.eMail}`)),
+    return this.http.post<Record>(this.apiUrl, jsonRecord, httpOptions).pipe(
+      tap((newRecord: any) => this.log(`added new record to db: ${newRecord.vbserver}`)),
       catchError(this.handleError<Record>('addRecord'))
     );
   }
 
-  batchLoadRecords(records: Record[]): void {
-    // console.log('batchLoad: ' + JSON.stringify(records));
-    for (const r in records) {
-      if (records[r]) {
-        console.log('adding a record from the batch!');
-        this.addRecord(records[r]);
-      }
-    }
+  batchLoadRecords(records: Record[]): Observable<any> {
+    console.log('batchLoad: ' + JSON.stringify(records));
+    const jsonRecord = JSON.stringify(records);
+    return this.http.post(this.api_batchUrl, jsonRecord, httpOptions).pipe(
+      tap((newRecord: any) => this.log(`db: ${newRecord.vbserver}`)),
+      catchError(this.handleError<Record>('addRecord'))
+    );
   }
 
   private handleError<T>(operation = 'operation', result?: T) {
