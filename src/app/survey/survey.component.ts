@@ -236,12 +236,6 @@ export class SurveyComponent implements OnInit, OnDestroy {
     }
   }
 
-  // it really should be this easy, but alas
-  clearForm2(): void {
-    this.surveyForm.reset(/* an initial form state object */);
-    window.scrollTo(0, 0);
-  }
-
   clearForm(): void {
     const inputs = document.getElementsByTagName('input');
     for (const i in inputs) {
@@ -257,14 +251,7 @@ export class SurveyComponent implements OnInit, OnDestroy {
         selects[j].selectedIndex = 0;
       }
     }
-
     this.surveyForm.reset(/* an initial form state object */);
-    /* Object.keys(this.surveyForm.controls).forEach(key => {
-      const control = this.surveyForm.controls[key];
-      if (control) {
-       control.reset();
-      }
-    }); */
     window.scrollTo(0, 0);
   }
 
@@ -299,18 +286,6 @@ export class SurveyComponent implements OnInit, OnDestroy {
       return null;
     };
   }
-
-  /* radioValidator(): ValidatorFn {
-    return function validate(formGroup: FormGroup) {
-      Object.keys(formGroup.controls).forEach(key => {
-        const control = formGroup.controls[key];
-        if (control.value === true) {
-          return { selectionMade: true };
-        }
-      });
-      return null;
-    };
-  } */
 
   radioWithTextValidator(minRequired = 1): ValidatorFn {
     return function validate(formGroup: FormGroup) {
