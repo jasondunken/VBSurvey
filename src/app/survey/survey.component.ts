@@ -7,7 +7,6 @@ import { map } from 'rxjs/operators';
 
 import { DbServiceService } from '../db-service.service';
 import { Record } from '../record';
-import { TestRecord } from '../test-record';
 
 @Component({
   selector: 'app-survey',
@@ -168,12 +167,6 @@ export class SurveyComponent implements OnInit, OnDestroy {
     const record = new Record();
     this.buildRecord(record);
     this.db.addRecord(record).subscribe();
-  }
-
-  batchLoadRecords(): void {
-    console.log('batchLoadRecords! -> open file browser here');
-    const testRecords = [new TestRecord(), new TestRecord()];
-    this.db.batchLoadRecords(testRecords).subscribe();
   }
 
   // TODO: refactor to be more angular?

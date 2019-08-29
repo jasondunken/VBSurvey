@@ -15,19 +15,18 @@ const httpOptions = {
 @Injectable({ providedIn: 'root' })
 
 export class DbServiceService {
-  private dbUrl = 'http://127.0.0.1:4000/api';
   private apiUrl = 'http://127.0.0.1:4000/api';
   private apiBatchUrl = 'http://127.0.0.1:4000/api/batch';
   constructor(private http: HttpClient) { }
 
   getRecords(query): Observable<Record[]> {
-    return this.http.get<Record[]>(this.apiUrl + query)
-      .pipe(
-        tap(_ => this.log('fetched records')),
-        catchError(this.handleError<Record[]>('getRecords', []))
-      );
+    return this.http.get<Record[]>(this.apiUrl + query).pipe(
+      tap(_ => this.log('fetched records')),
+      catchError(this.handleError<Record[]>('getRecords', []))
+    );
   }
 
+  // TODO: why am I not passing a JSON?
   addRecord(record: Record): Observable<Record> {
     const jsonRecord = JSON.stringify(record);
     return this.http.post<Record>(this.apiUrl, jsonRecord, httpOptions).pipe(
@@ -36,6 +35,7 @@ export class DbServiceService {
     );
   }
 
+  // TODO: why am I not passing a JSON?
   batchLoadRecords(records: Record[]): Observable<any> {
     const jsonRecord = JSON.stringify(records);
     return this.http.post(this.apiBatchUrl, jsonRecord, httpOptions).pipe(

@@ -1,0 +1,12 @@
+<div>
+    <br />
+    <div class="perf-heading title2">You can upload one or more .csv files to add survey records below</div>
+</div>
+<div class="form-group">
+    <label for="files">Upload CSV formatted file(s):</label>
+    <input type="file" id="files" class="form-control" accept=".csv" name="files[]" (change)="updateFileList($event)"
+        multiple required />
+</div>
+<div class="form-group">
+    <button type="button" id="submit-file" class="btn btn-primary" (click)="handleUpload()">Upload File(s)</button>
+</div>

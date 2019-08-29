@@ -11,12 +11,14 @@ import { SurveyComponent } from './survey/survey.component';
 import { SearchComponent } from './search/search.component';
 
 import { NgxPaginationModule } from 'ngx-pagination';
+import { UploadComponent } from './upload/upload.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     SurveyComponent,
-    SearchComponent
+    SearchComponent,
+    UploadComponent
   ],
   imports: [
     BrowserModule,
