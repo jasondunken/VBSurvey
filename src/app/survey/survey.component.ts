@@ -103,7 +103,7 @@ export class SurveyComponent implements OnInit, OnDestroy {
     this.state$ = this.activatedRoute.paramMap.pipe(map(() => window.history.state));
     this.state$.subscribe(data => {
       if (data.hasOwnProperty('record')) {
-        this.populateSurvey2(data['record']);
+        this.populateSurvey(data['record']);
       }
     });
   }
@@ -117,6 +117,7 @@ export class SurveyComponent implements OnInit, OnDestroy {
       if (record.hasOwnProperty(i)) {
         // this gets top level formControls
         const control = this.surveyForm.get(i);
+        console.log('control ' + i + ': ' + control.dirty + ' | ' + control.touched + ' | status: ' + control.status);
         control.setValue(record[i]);
         control.markAsDirty();
         control.markAsTouched();
@@ -128,6 +129,7 @@ export class SurveyComponent implements OnInit, OnDestroy {
         for (const j in controls) {
           if (record.hasOwnProperty(j)) {
             const control = this.surveyForm.get(i + '.' + j);
+            console.log('control ' + i + '.' + j + ': ' + control.dirty + ' | ' + control.touched + ' | status: ' + control.status);
             if (record[j] === 1) {
               control.setValue(record[j]);
               control.markAsDirty();

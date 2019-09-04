@@ -1,8 +1,10 @@
-import {Component, OnInit} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
-import {DbServiceService} from '../db-service.service';
+import { DbServiceService } from '../db-service.service';
 
-import {Record} from '../record';
+import * as saveFile from 'file-saver';
+
+import { Record } from '../record';
 
 @Component({
   selector: 'app-search',
@@ -32,7 +34,7 @@ export class SearchComponent implements OnInit {
         }
       }
 
-      const pageSizeSelect  = document.getElementById('itemsPerPage') as  HTMLSelectElement;
+      const pageSizeSelect = document.getElementById('itemsPerPage') as HTMLSelectElement;
       this.count = +(pageSizeSelect.options[pageSizeSelect.options.selectedIndex].value);
       const topResult = document.getElementById('results-table');
       topResult.hidden = false;
@@ -42,7 +44,7 @@ export class SearchComponent implements OnInit {
   }
 
   updatePageSize(): void {
-    const pageSizeSelect  = document.getElementById('itemsPerPage') as HTMLSelectElement;
+    const pageSizeSelect = document.getElementById('itemsPerPage') as HTMLSelectElement;
     this.count = +(pageSizeSelect.options[pageSizeSelect.options.selectedIndex].value);
   }
 
@@ -67,6 +69,7 @@ export class SearchComponent implements OnInit {
         }
       }
     }
+    // handle selects
     const selects = document.getElementsByTagName('select');
     for (const j in selects) {
       if (record.hasOwnProperty(selects[j].id)) {
@@ -75,11 +78,11 @@ export class SearchComponent implements OnInit {
         }
       }
     }
-    // handle selects
     query = query.substring(0, query.length - 1); // remove the trailing &
+    if (query.length < 1) {
+      alert('No criterion was selected.\nAll records will be returned from the database.');
+    }
     return query;
-
-    // TODO: check to see if any criterion selected, if not warn of all records being returned
   }
 
   toggleDisable(name): void {
@@ -107,19 +110,19 @@ export class SearchComponent implements OnInit {
     const inputs = document.getElementsByTagName('input');
     for (const i in inputs) {
       if (inputs[i].type === 'text' || inputs[i].type === 'email') {
-          inputs[i].value = '';
-          if (inputs[i].name.substring(inputs[i].name.length - 4) === 'Text') {
-            inputs[i].classList.add('disabled');
-            inputs[i].setAttribute('disabled', 'true');
-          }
-        } else if (inputs[i].type === 'radio' || inputs[i].type === 'checkbox') {
-          inputs[i].checked = false;
+        inputs[i].value = '';
+        if (inputs[i].name.substring(inputs[i].name.length - 4) === 'Text') {
+          inputs[i].classList.add('disabled');
+          inputs[i].setAttribute('disabled', 'true');
         }
+      } else if (inputs[i].type === 'radio' || inputs[i].type === 'checkbox') {
+        inputs[i].checked = false;
+      }
     }
     const selects = document.getElementsByTagName('select');
     for (const j in selects) {
       if (selects[j].id === 'state') {
-          selects[j].selectedIndex = 0;
+        selects[j].selectedIndex = 0;
       }
     }
     window.scrollTo(0, 0);
@@ -134,7 +137,24 @@ export class SearchComponent implements OnInit {
   }
 
   saveQuery(): void {
-    console.log(JSON.stringify(this.searchResult));
+    const record = new Record();
+    let csvFile = '';
+    for (let i = 0; i < this.searchResult.length; i++) {
+      if (this.searchResult[i]) {
+        const row = this.searchResult[i];
+        let rowVals = '';
+        for (const j in row) {
+          if (record.hasOwnProperty(j)) {
+            rowVals += row[j] + ',';
+          }
+        }
+        rowVals = rowVals.slice(0, rowVals.length - 1);
+        csvFile += rowVals + '\n';
+      }
+    }
+    console.log('csvFile: ' + csvFile);
+    const file = new Blob([csvFile], { type: 'text/csv;charset=utf-8' });
+    saveFile(file, 'test_save.csv');
   }
 
   saveDB(): void {

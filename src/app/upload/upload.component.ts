@@ -78,10 +78,16 @@ export class UploadComponent implements OnInit {
   isValidRecordProperties(line): boolean {
     // validate that the correct format is used and to remove column headings if present
     const vals = line.split(',');
-    // hack to remove the time values form the csv as they are not part of a Record
-    vals.splice(vals.length - 2, 2);
+    console.log('line: ' + line + ' | ' + vals);
+
+    // validate correct number of args
     if (vals.length !== this.numValsInRecord) {
-      return false;
+      // remove last two values (might be timestamp) and chack again
+      vals.splice(vals.length - 2, 2);
+      if (vals.length !== this.numValsInRecord) {
+        console.log('this record has the wrong wrong number of values: ' + vals);
+        return false;
+      }
     }
     // validate correct types
     // index needs to be incremented first because function can return in a number of places
@@ -92,6 +98,7 @@ export class UploadComponent implements OnInit {
         index++;
         // validate booleans are either 1 or 0
         if (typeof this.record[key] === 'boolean' && (vals[index] !== '1' && vals[index] !== '0')) {
+          console.log(key + 'typeof: boolean ' + ' | supplied: ' + this.record[key]);
           return false;
         }
         // validate numbers
@@ -101,11 +108,13 @@ export class UploadComponent implements OnInit {
           // even if the string contains letters
           // check to ensure val is only numeric
           if (vals[index].match(/[a-z]/i) || isNaN(parseFloat(vals[index]))) {
+            console.log(key + ' typeof: number ' + ' | supplied: ' + vals[index]);
             return false;
           }
         }
       }
     }
+    console.log('valid arg list: ' + vals);
     return true;
   }
 
@@ -131,7 +140,6 @@ export class UploadComponent implements OnInit {
   }
 
   batchLoadRecords(records): void {
-    // const testRecords = [new TestRecord(), new TestRecord()];
     this.db.batchLoadRecords(records).subscribe();
   }
 }
