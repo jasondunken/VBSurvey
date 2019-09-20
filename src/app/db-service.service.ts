@@ -8,16 +8,18 @@ import { Record } from './record';
 
 const httpOptions = {
   headers: new HttpHeaders({
-    'Content-Type': 'application/json',
+    'Content-Type': 'application/json'
   })
 };
 
 @Injectable({ providedIn: 'root' })
-
 export class DbServiceService {
   private apiUrl = 'http://127.0.0.1:4000/api';
+  // private apiUrl = 'http://vbserver.apps.internal:3000/api';
   private apiBatchUrl = 'http://127.0.0.1:4000/api/batch';
-  constructor(private http: HttpClient) { }
+  // private apiBatchUrl = 'http://vbserver.apps.internal:3000/api/batch';
+
+  constructor(private http: HttpClient) {}
 
   getRecords(query): Observable<Record[]> {
     return this.http.get<Record[]>(this.apiUrl + query).pipe(

@@ -1,7 +1,9 @@
 ---
 applications:
-- name: VBSurvey
-  memory: 256M
-  disk_quota: 256M
-  instances: 1
-  buildpack: staticfile_buildpack
+  - name: VBSurvey
+    memory: 256M
+    disk_quota: 256M
+    instances: 1
+    buildpack: staticfile_buildpack
+    env:
+      API_URL: VBServer.apps.internal:4000

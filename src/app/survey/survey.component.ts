@@ -13,13 +13,12 @@ import { Record } from '../record';
   templateUrl: './survey.component.html',
   styleUrls: ['./survey.component.css']
 })
-
 export class SurveyComponent implements OnInit, OnDestroy {
   state$: Observable<object>;
   surveyForm: FormGroup;
   submitted = false;
 
-  constructor(private db: DbServiceService, private formBuilder: FormBuilder, public activatedRoute: ActivatedRoute) { }
+  constructor(private db: DbServiceService, private formBuilder: FormBuilder, public activatedRoute: ActivatedRoute) {}
 
   ngOnInit() {
     this.surveyForm = this.formBuilder.group({
@@ -29,74 +28,101 @@ export class SurveyComponent implements OnInit, OnDestroy {
       actId: ['', Validators.required],
       state: ['', Validators.required],
       county: ['', Validators.required],
-      beachDescriptors: new FormGroup({
-        bdDeep: new FormControl(),
-        bdShallow: new FormControl(),
-        bdOpen: new FormControl(),
-        bdEmbayed: new FormControl(),
-        bdFresh: new FormControl(),
-        bdMarine: new FormControl(),
-        bdPier: new FormControl(),
-        bdDrain: new FormControl(),
-        bdOther: new FormControl({ value: '', disabled: true }, Validators.minLength(1))
-      }, this.groupValidator()),
-      organismModeled: new FormGroup({
-        OM: new FormControl({ value: null }, Validators.required),
-        omOther: new FormControl({ value: '', disabled: true }, Validators.minLength(1)),
-      }, this.radioWithTextValidator()),
+      beachDescriptors: new FormGroup(
+        {
+          bdDeep: new FormControl(),
+          bdShallow: new FormControl(),
+          bdOpen: new FormControl(),
+          bdEmbayed: new FormControl(),
+          bdFresh: new FormControl(),
+          bdMarine: new FormControl(),
+          bdPier: new FormControl(),
+          bdDrain: new FormControl(),
+          bdOther: new FormControl({ value: '', disabled: true }, Validators.minLength(1))
+        },
+        this.groupValidator()
+      ),
+      organismModeled: new FormGroup(
+        {
+          OM: new FormControl({ value: null }, Validators.required),
+          omOther: new FormControl({ value: '', disabled: true }, Validators.minLength(1))
+        },
+        this.radioWithTextValidator()
+      ),
       adviLevel: ['', Validators.required],
-      daysPerYear: new FormGroup({
-        dPosted: new FormControl(false),
-        dClosed: new FormControl(false)
-      }, this.numberGroupValidator()),
-      softwarePackage: new FormGroup({
-        SP: new FormControl({ value: null }, Validators.required),
-        spOther: new FormControl({ value: '', disabled: true }, Validators.minLength(1)),
-      }, this.radioWithTextValidator()),
-      statModel: new FormGroup({
-        SM: new FormControl({ value: null }, Validators.required),
-        smOther: new FormControl({ value: '', disabled: true }, Validators.minLength(1)),
-      }, this.radioWithTextValidator()),
+      daysPerYear: new FormGroup(
+        {
+          dPosted: new FormControl(false),
+          dClosed: new FormControl(false)
+        },
+        this.numberGroupValidator()
+      ),
+      softwarePackage: new FormGroup(
+        {
+          SP: new FormControl({ value: null }, Validators.required),
+          spOther: new FormControl({ value: '', disabled: true }, Validators.minLength(1))
+        },
+        this.radioWithTextValidator()
+      ),
+      statModel: new FormGroup(
+        {
+          SM: new FormControl({ value: null }, Validators.required),
+          smOther: new FormControl({ value: '', disabled: true }, Validators.minLength(1))
+        },
+        this.radioWithTextValidator()
+      ),
       tpDevelop: ['', Validators.required],
       tpImplement: ['', Validators.required],
-      modelUse: new FormGroup({
-        muNow: new FormControl(),
-        muFore: new FormControl(),
-        muResearch: new FormControl()
-      }, this.groupValidator()),
+      modelUse: new FormGroup(
+        {
+          muNow: new FormControl(),
+          muFore: new FormControl(),
+          muResearch: new FormControl()
+        },
+        this.groupValidator()
+      ),
       dvTransform: ['', Validators.required],
-      iVariables: new FormGroup({
-        ivAirTemp: new FormControl(),
-        ivWaterTemp: new FormControl(),
-        ivDewpoint: new FormControl(),
-        ivWindSpeed: new FormControl(),
-        ivCurrentSpeed: new FormControl(),
-        ivWaveHeight: new FormControl(),
-        ivRain: new FormControl(),
-        ivTurbidity: new FormControl(),
-        ivTribDischarge: new FormControl(),
-        ivCloudCover: new FormControl(),
-        ivUV: new FormControl(),
-        ivRelHumidity: new FormControl(),
-        ivConductivity: new FormControl(),
-        ivAbsorbance: new FormControl(),
-        ivDepth: new FormControl(),
-        ivHumans: new FormControl(),
-        ivBirds: new FormControl(),
-        ivWildlife: new FormControl(),
-        ivOther: new FormControl({ value: '', disabled: true }, Validators.minLength(1))
-      }, this.groupValidator()),
-      ivSource: new FormGroup({
-        onSite: new FormControl(),
-        onLine: new FormControl()
-      }, this.groupValidator()),
-      evalCriterion: new FormGroup({
-        ecRsquared: new FormControl(),
-        ecAicBic: new FormControl(),
-        ecSenSpecAcc: new FormControl(),
-        ecPress: new FormControl(),
-        ecOther: new FormControl({ value: '', disabled: true }, Validators.minLength(1))
-      }, this.groupValidator()),
+      iVariables: new FormGroup(
+        {
+          ivAirTemp: new FormControl(),
+          ivWaterTemp: new FormControl(),
+          ivDewpoint: new FormControl(),
+          ivWindSpeed: new FormControl(),
+          ivCurrentSpeed: new FormControl(),
+          ivWaveHeight: new FormControl(),
+          ivRain: new FormControl(),
+          ivTurbidity: new FormControl(),
+          ivTribDischarge: new FormControl(),
+          ivCloudCover: new FormControl(),
+          ivUV: new FormControl(),
+          ivRelHumidity: new FormControl(),
+          ivConductivity: new FormControl(),
+          ivAbsorbance: new FormControl(),
+          ivDepth: new FormControl(),
+          ivHumans: new FormControl(),
+          ivBirds: new FormControl(),
+          ivWildlife: new FormControl(),
+          ivOther: new FormControl({ value: '', disabled: true }, Validators.minLength(1))
+        },
+        this.groupValidator()
+      ),
+      ivSource: new FormGroup(
+        {
+          onSite: new FormControl(),
+          onLine: new FormControl()
+        },
+        this.groupValidator()
+      ),
+      evalCriterion: new FormGroup(
+        {
+          ecRsquared: new FormControl(),
+          ecAicBic: new FormControl(),
+          ecSenSpecAcc: new FormControl(),
+          ecPress: new FormControl(),
+          ecOther: new FormControl({ value: '', disabled: true }, Validators.minLength(1))
+        },
+        this.groupValidator()
+      ),
       dCriterion: ['', Validators.required],
       comments: ['']
     });
@@ -108,10 +134,10 @@ export class SurveyComponent implements OnInit, OnDestroy {
     });
   }
 
-  ngOnDestroy(): void {
-  }
+  ngOnDestroy(): void {}
 
   populateSurvey(record): void {
+    this.surveyForm.reset();
     console.log('submitted ' + this.submitted + '\nstatus ' + this.surveyForm.status);
     for (const i in this.surveyForm.controls) {
       if (record.hasOwnProperty(i)) {
@@ -119,9 +145,7 @@ export class SurveyComponent implements OnInit, OnDestroy {
         const control = this.surveyForm.get(i);
         console.log('control ' + i + ': ' + control.dirty + ' | ' + control.touched + ' | status: ' + control.status);
         control.setValue(record[i]);
-        control.markAsDirty();
-        control.markAsTouched();
-        //control.updateValueAndValidity();
+        control.updateValueAndValidity();
       } else {
         // this gets formGroup.controls of nested formControls
         const fGroup = this.surveyForm.controls[i] as FormGroup;
@@ -132,12 +156,10 @@ export class SurveyComponent implements OnInit, OnDestroy {
             console.log('control ' + i + '.' + j + ': ' + control.dirty + ' | ' + control.touched + ' | status: ' + control.status);
             if (record[j] === 1) {
               control.setValue(record[j]);
-              control.markAsDirty();
-              control.markAsTouched();
+              control.updateValueAndValidity();
             }
           }
         }
-        //fGroup.updateValueAndValidity();
       }
     }
   }
@@ -158,7 +180,9 @@ export class SurveyComponent implements OnInit, OnDestroy {
   // for help with angular form controls/custom validators
   // this function is only used from the html for reactive form actions,
   // convenience getter for easy access to form fields
-  get f() { return this.surveyForm.controls; }
+  get f() {
+    return this.surveyForm.controls;
+  }
 
   submitSurvey(): void {
     this.submitted = true;
@@ -250,6 +274,7 @@ export class SurveyComponent implements OnInit, OnDestroy {
     window.scrollTo(0, 0);
   }
 
+  // validators return null if valid and an error if not
   groupValidator(minRequired = 1): ValidatorFn {
     return function validate(formGroup: FormGroup) {
       let numValid = 0;
