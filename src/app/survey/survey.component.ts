@@ -1,8 +1,11 @@
-import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators, ValidatorFn, FormControl } from '@angular/forms';
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { FormBuilder, FormGroup, Validators, ValidatorFn, FormControl, SelectControlValueAccessor } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
+
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 import { DbServiceService } from '../db-service.service';
-
 import { Record } from '../record';
 
 @Component({
@@ -11,81 +14,150 @@ import { Record } from '../record';
   styleUrls: ['./survey.component.css']
 })
 
-export class SurveyComponent implements OnInit {
+export class SurveyComponent implements OnInit, OnDestroy {
+  state$: Observable<object>;
   surveyForm: FormGroup;
   submitted = false;
 
-  constructor(private db: DbServiceService, private formBuilder: FormBuilder) {}
+  constructor(private db: DbServiceService, private formBuilder: FormBuilder, public activatedRoute: ActivatedRoute) { }
 
   ngOnInit() {
     this.surveyForm = this.formBuilder.group({
+      eMail: [''],
       org: ['', Validators.required],
       site: ['', Validators.required],
       actId: ['', Validators.required],
       state: ['', Validators.required],
       county: ['', Validators.required],
       beachDescriptors: new FormGroup({
-        bdDeep: new FormControl(false),
-        bdShallow: new FormControl(false),
-        bdOpen: new FormControl(false),
-        bdEmbayed: new FormControl(false),
-        bdFresh: new FormControl(false),
-        bdMarine: new FormControl(false),
-        bdPier: new FormControl(false),
-        bdDrain: new FormControl(false),
-        bdOtherCheck: new FormControl(false)
-      }, this.checkboxValidator()),
-      organismModeled: new FormControl('', Validators.required),
+        bdDeep: new FormControl(),
+        bdShallow: new FormControl(),
+        bdOpen: new FormControl(),
+        bdEmbayed: new FormControl(),
+        bdFresh: new FormControl(),
+        bdMarine: new FormControl(),
+        bdPier: new FormControl(),
+        bdDrain: new FormControl(),
+        bdOther: new FormControl({ value: '', disabled: true }, Validators.minLength(1))
+      }, this.groupValidator()),
+      organismModeled: new FormGroup({
+        OM: new FormControl({ value: null }, Validators.required),
+        omOther: new FormControl({ value: '', disabled: true }, Validators.minLength(1)),
+      }, this.radioWithTextValidator()),
       adviLevel: ['', Validators.required],
       daysPerYear: new FormGroup({
         dPosted: new FormControl(false),
         dClosed: new FormControl(false)
-      }, this.textGroupValidator()),
-      softwarePackage: new FormControl('', Validators.required),
-      statModel: new FormControl('', Validators.required),
-      timePeriod: ['', Validators.required],
+      }, this.numberGroupValidator()),
+      softwarePackage: new FormGroup({
+        SP: new FormControl({ value: null }, Validators.required),
+        spOther: new FormControl({ value: '', disabled: true }, Validators.minLength(1)),
+      }, this.radioWithTextValidator()),
+      statModel: new FormGroup({
+        SM: new FormControl({ value: null }, Validators.required),
+        smOther: new FormControl({ value: '', disabled: true }, Validators.minLength(1)),
+      }, this.radioWithTextValidator()),
+      tpDevelop: ['', Validators.required],
+      tpImplement: ['', Validators.required],
       modelUse: new FormGroup({
-        muNow: new FormControl(false),
-        muFore: new FormControl(false),
-        muResearch: new FormControl(false)
-      }, this.checkboxValidator()),
+        muNow: new FormControl(),
+        muFore: new FormControl(),
+        muResearch: new FormControl()
+      }, this.groupValidator()),
+      dvTransform: ['', Validators.required],
       iVariables: new FormGroup({
-        ivAirTemp: new FormControl(false),
-        ivWaterTemp: new FormControl(false),
-        ivDewpoint: new FormControl(false),
-        ivWindSpeed: new FormControl(false),
-        ivCurrentSpeed: new FormControl(false),
-        ivWaveHeight: new FormControl(false),
-        ivRain: new FormControl(false),
-        ivTurbidity: new FormControl(false),
-        ivTribDischarge: new FormControl(false),
-        ivCloudCover: new FormControl(false),
-        ivUV: new FormControl(false),
-        ivRelHumidity: new FormControl(false),
-        ivConductivity: new FormControl(false),
-        ivAbsorbance: new FormControl(false),
-        ivDepth: new FormControl(false),
-        ivHumans: new FormControl(false),
-        ivBirds: new FormControl(false),
-        ivWildlife: new FormControl(false),
-        ivOtherCheck: new FormControl(false)
-      }, this.checkboxValidator()),
+        ivAirTemp: new FormControl(),
+        ivWaterTemp: new FormControl(),
+        ivDewpoint: new FormControl(),
+        ivWindSpeed: new FormControl(),
+        ivCurrentSpeed: new FormControl(),
+        ivWaveHeight: new FormControl(),
+        ivRain: new FormControl(),
+        ivTurbidity: new FormControl(),
+        ivTribDischarge: new FormControl(),
+        ivCloudCover: new FormControl(),
+        ivUV: new FormControl(),
+        ivRelHumidity: new FormControl(),
+        ivConductivity: new FormControl(),
+        ivAbsorbance: new FormControl(),
+        ivDepth: new FormControl(),
+        ivHumans: new FormControl(),
+        ivBirds: new FormControl(),
+        ivWildlife: new FormControl(),
+        ivOther: new FormControl({ value: '', disabled: true }, Validators.minLength(1))
+      }, this.groupValidator()),
       ivSource: new FormGroup({
-        onSite: new FormControl(false),
-        onLine: new FormControl(false)
-      }, this.checkboxValidator()),
+        onSite: new FormControl(),
+        onLine: new FormControl()
+      }, this.groupValidator()),
       evalCriterion: new FormGroup({
-        ecRsquared: new FormControl(false),
-        ecAicBic: new FormControl(false),
-        ecSenSpecAcc: new FormControl(false),
-        ecPress: new FormControl(false),
-        ecOtherCheck: new FormControl(false)
-      }, this.checkboxValidator())
+        ecRsquared: new FormControl(),
+        ecAicBic: new FormControl(),
+        ecSenSpecAcc: new FormControl(),
+        ecPress: new FormControl(),
+        ecOther: new FormControl({ value: '', disabled: true }, Validators.minLength(1))
+      }, this.groupValidator()),
+      dCriterion: ['', Validators.required],
+      comments: ['']
+    });
+    this.state$ = this.activatedRoute.paramMap.pipe(map(() => window.history.state));
+    this.state$.subscribe(data => {
+      if (data.hasOwnProperty('record')) {
+        this.populateSurvey(data['record']);
+      }
     });
   }
 
-  // convenience getter for easy access to form fields
+  ngOnDestroy(): void {
+  }
+
+  populateSurvey(record): void {
+    console.log('submitted ' + this.submitted + '\nstatus ' + this.surveyForm.status);
+    for (const i in this.surveyForm.controls) {
+      if (record.hasOwnProperty(i)) {
+        // this gets top level formControls
+        const control = this.surveyForm.get(i);
+        console.log('control ' + i + ': ' + control.dirty + ' | ' + control.touched + ' | status: ' + control.status);
+        control.setValue(record[i]);
+        control.markAsDirty();
+        control.markAsTouched();
+        //control.updateValueAndValidity();
+      } else {
+        // this gets formGroup.controls of nested formControls
+        const fGroup = this.surveyForm.controls[i] as FormGroup;
+        const controls = fGroup.controls;
+        for (const j in controls) {
+          if (record.hasOwnProperty(j)) {
+            const control = this.surveyForm.get(i + '.' + j);
+            console.log('control ' + i + '.' + j + ': ' + control.dirty + ' | ' + control.touched + ' | status: ' + control.status);
+            if (record[j] === 1) {
+              control.setValue(record[j]);
+              control.markAsDirty();
+              control.markAsTouched();
+            }
+          }
+        }
+        //fGroup.updateValueAndValidity();
+      }
+    }
+  }
+
+  populateSurvey2(record): void {
+    const inputs = document.getElementsByTagName('input');
+    for (const i in inputs) {
+      if (record.hasOwnProperty(inputs[i].id)) {
+        console.log('input: ' + inputs[i].id + ' | inputValue: ' + inputs[i].value + ' | recordValue: ' + record[inputs[i].id]);
+        // inputs[i].value = record[inputs[i].id];
+        const fInput = document.getElementById(inputs[i].id);
+        fInput.innerHTML = record[inputs[i].id];
+      }
+    }
+  }
+
   // thanks https://stackoverflow.com/users/5688490/mick !
+  // for help with angular form controls/custom validators
+  // this function is only used from the html for reactive form actions,
+  // convenience getter for easy access to form fields
   get f() { return this.surveyForm.controls; }
 
   submitSurvey(): void {
@@ -99,47 +171,62 @@ export class SurveyComponent implements OnInit {
     this.db.addRecord(record).subscribe();
   }
 
+  // TODO: refactor to be more angular?
   buildRecord(record: Record): void {
     const inputs = document.getElementsByTagName('input');
     for (const i in inputs) {
-        if (record.hasOwnProperty(inputs[i].id)) {
-          if (inputs[i].type === 'text' || inputs[i].type === 'email') {
-            record[inputs[i].id] = '"' + inputs[i].value + '"';
-          } else if (inputs[i].type === 'number') {
-            record[inputs[i].id] = inputs[i].value !== '' ? inputs[i].value : 0;
-          } else {
-            record[inputs[i].id] = inputs[i].checked === true ? 1 : 0;
-          }
+      if (record.hasOwnProperty(inputs[i].id)) {
+        if (inputs[i].type === 'text' || inputs[i].type === 'email') {
+          record[inputs[i].id] = inputs[i].value;
+        } else if (inputs[i].type === 'number') {
+          record[inputs[i].id] = inputs[i].value !== '' ? inputs[i].value : 0;
+        } else {
+          record[inputs[i].id] = inputs[i].checked === true ? 1 : 0;
         }
+      }
     }
     const selects = document.getElementsByTagName('select');
     for (const j in selects) {
-        if (record.hasOwnProperty(selects[j].id)) {
-          if (selects[j].id === 'state') {
-            record[selects[j].id] = '"' + selects[j].options[selects[j].selectedIndex].text + '"';
-          }
+      if (record.hasOwnProperty(selects[j].id)) {
+        if (selects[j].id === 'state') {
+          record[selects[j].id] = selects[j].options[selects[j].selectedIndex].text;
         }
+      }
     }
     const textAreas = document.getElementsByTagName('textarea');
     for (const k in textAreas) {
-        if (record.hasOwnProperty(textAreas[k].id)) {
-        record[textAreas[k].id] = '"' + textAreas[k].value + '"';
+      if (record.hasOwnProperty(textAreas[k].id)) {
+        record[textAreas[k].id] = textAreas[k].value;
       }
     }
   }
 
-  toggleDisable(name): void {
-    const textbox = document.getElementById(name);
-    textbox.classList.toggle('disabled');
+  toggleDisable(name, parent?): void {
+    if (parent) {
+      const control = this.surveyForm.get([parent, name]);
+      if (control) {
+        if (control.disabled) {
+          control.enable();
+        } else {
+          control.disable();
+          control.reset('');
+        }
+      }
+    }
   }
 
-  radioDisable(event: any, id): void {
-    const textbox = document.getElementById(id);
+  radioDisable(event: any, id: string, parent?: string, group?: string): void {
     if (event.target.id !== id) {
+      const control = this.surveyForm.get([parent, id]);
       if (event.target.id === id + 'Check') {
-        textbox.classList.remove('disabled');
+        control.enable();
+        if (group) {
+          // in order for the reactive form to behave properly this value needs to be reset when otherCheck is selected
+          this.surveyForm.get([parent, group]).reset({ value: null });
+        }
       } else {
-        textbox.classList.add('disabled');
+        control.disable();
+        control.reset('');
       }
     }
   }
@@ -149,9 +236,6 @@ export class SurveyComponent implements OnInit {
     for (const i in inputs) {
       if (inputs[i].type === 'text' || inputs[i].type === 'email' || inputs[i].type === 'number') {
         inputs[i].value = '';
-        if (inputs[i].name.substring(inputs[i].name.length - 4) === 'Text') {
-          inputs[i].classList.add('disabled');
-        }
       } else if (inputs[i].type === 'radio' || inputs[i].type === 'checkbox') {
         inputs[i].checked = false;
       }
@@ -162,49 +246,56 @@ export class SurveyComponent implements OnInit {
         selects[j].selectedIndex = 0;
       }
     }
+    this.surveyForm.reset(/* an initial form state object */);
     window.scrollTo(0, 0);
   }
 
-  checkboxValidator(minRequired = 1): ValidatorFn {
+  groupValidator(minRequired = 1): ValidatorFn {
     return function validate(formGroup: FormGroup) {
-      let checked = 0;
+      let numValid = 0;
       Object.keys(formGroup.controls).forEach(key => {
         const control = formGroup.controls[key];
-        if (control.value === true) {
-          checked++;
+        if ((key.substring(2) === 'Other' && control.value !== '') || (key.substring(2) !== 'Other' && control.value === true)) {
+          numValid++;
         }
       });
-      if (checked < minRequired) {
+      if (numValid < minRequired) {
         return { selectionMade: true };
       }
       return null;
     };
   }
 
-  textGroupValidator(minRequired = 1): ValidatorFn {
+  numberGroupValidator(minRequired = 1): ValidatorFn {
     return function validate(formGroup: FormGroup) {
-      let checked = 0;
+      let numValid = 0;
       Object.keys(formGroup.controls).forEach(key => {
         const control = formGroup.controls[key];
         if (control.value !== false) {
-          checked++;
+          numValid++;
         }
       });
-      if (checked < minRequired) {
+      if (numValid < minRequired) {
         return { selectionMade: true };
       }
       return null;
     };
   }
 
-  radioValidator(): ValidatorFn {
+  radioWithTextValidator(minRequired = 1): ValidatorFn {
     return function validate(formGroup: FormGroup) {
+      let numValid = 0;
+      let index = 0;
       Object.keys(formGroup.controls).forEach(key => {
         const control = formGroup.controls[key];
-        if (control.value === true) {
-          return { selctionMade: true };
+        if ((key.substring(2) === 'Other' && control.value !== '') || (key.substring(2) !== 'Other' && control.value > 0)) {
+          numValid++;
         }
+        index++;
       });
+      if (numValid < minRequired) {
+        return { selectionMade: true };
+      }
       return null;
     };
   }
